@@ -1,4 +1,3 @@
-@import-normalize;
 @import 'colours';
 
 * {
@@ -23,8 +22,7 @@ body {
 
   &__main {
     flex-basis: 100%;
-    min-height: 100vh;
-    margin-top: 130px;
+    margin-top: 110px;
   }
 
   &__footer {
@@ -69,6 +67,10 @@ body {
 .topbar {
   background-color: $white-color;
   color: $primary-color;
+
+  &__link {
+    max-width: 400px;
+  }
 
   &__logo {
     max-width: 100%;
@@ -341,6 +343,83 @@ body {
     & li {
       margin-top: 15px;
       margin-bottom: 15px;
+    }
+  }
+}
+
+.welcome-page {
+  display: flex;
+  height: calc(100vh - 110px);
+  background: url('../../Assets/images/banner.jpg');
+  background-size: cover;
+
+  &__banner {
+    margin-left: 100px;
+    background-color: rgba(255, 255, 255, 0.2);
+    width: 450px;
+  }
+}
+
+.products-page {
+  display: flex;
+  margin-top: 20px;
+  height: calc(100vh - 110px);
+}
+
+.account-page {
+  display: flex;
+  margin-top: 20px;
+  height: calc(100vh - 110px);
+}
+
+.cart-page {
+  display: flex;
+  margin-top: 20px;
+  height: calc(100vh - 110px);
+}
+
+.banner {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+
+  &__container {
+    margin-left: 40px;
+  }
+
+  &__title {
+    flex-basis: 100%;
+    font-size: 3.8rem;
+    color: $white-color;
+    text-shadow: 2px 2px 3px rgb(61, 131, 194);
+    margin: 0;
+  }
+
+  &__desc {
+    flex-basis: 100%;
+    font-size: 1.6rem;
+    text-shadow: 2px 2px 3px $white-color;
+    margin: 0;
+  }
+
+  &__go-to-store {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    background-color: $white-color;
+    border: 0;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 40px;
+    margin-left: 70px;
+
+    &:hover {
+      font-weight: 900;
     }
   }
 }

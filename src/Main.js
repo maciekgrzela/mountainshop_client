@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import ProductsCategory from './Pages/Product/ProductsCategory';
 import ProductsDetails from './Pages/Product/ProductsDetails';
 import Welcome from './Pages/Welcome/Welcome';
@@ -12,14 +12,27 @@ import NotFound from './Pages/NotFound/NotFound';
 import About from './Pages/Static/About';
 import RefundPolicy from './Pages/Static/RefundPolicy';
 import Statute from './Pages/Static/Statute';
+import { useSelector } from 'react-redux';
 
 const Main = () => {
+  const interfaceState = useSelector((state) => state.interface);
+
   return (
     <main className='page-wrapper__main main'>
       <Switch>
-        <Route exact path='/'>
-          <Welcome />
-        </Route>
+        {interfaceState.welcomeSkipped === false ? (
+          <Route exact path='/'>
+            <Welcome />
+          </Route>
+        ) : (
+          <Route exact path='/'>
+            <Redirect
+              to={{
+                pathname: '/products',
+              }}
+            />
+          </Route>
+        )}
         <Route path='/products/:id' children={<ProductsDetails />} />
         <Route path='/products'>
           <Products />
