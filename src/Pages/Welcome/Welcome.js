@@ -1,13 +1,22 @@
 import React from 'react';
 import { FiArrowDown } from 'react-icons/fi';
+import { useDispatch } from 'react-redux';
+import { skipWelcome } from '../../Actions/ActionCreators/Interface';
+
 const Welcome = () => {
+  const dispatch = useDispatch();
+
+  const goToStore = () => {
+    dispatch(skipWelcome());
+  };
+
   return (
     <div className='welcome-page'>
       <div className='welcome-page__banner banner'>
         <div className='banner__container'>
           <h2 className='banner__title'>Przygotuj się na zimowe szaleństwo!</h2>
           <h4 className='banner__desc'>Teraz wszystko do 60% taniej!</h4>
-          <button className='banner__go-to-store'>
+          <button onClick={goToStore} className='banner__go-to-store'>
             Przejdź do sklepu <FiArrowDown />
           </button>
         </div>

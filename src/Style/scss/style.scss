@@ -22,7 +22,6 @@ body {
 
   &__main {
     flex-basis: 100%;
-    min-height: 100vh;
     margin-top: 110px;
   }
 
@@ -68,6 +67,10 @@ body {
 .topbar {
   background-color: $white-color;
   color: $primary-color;
+
+  &__link {
+    max-width: 400px;
+  }
 
   &__logo {
     max-width: 100%;
@@ -353,8 +356,26 @@ body {
   &__banner {
     margin-left: 100px;
     background-color: rgba(255, 255, 255, 0.2);
-    width: 400px;
+    width: 450px;
   }
+}
+
+.products-page {
+  display: flex;
+  margin-top: 20px;
+  height: calc(100vh - 110px);
+}
+
+.account-page {
+  display: flex;
+  margin-top: 20px;
+  height: calc(100vh - 110px);
+}
+
+.cart-page {
+  display: flex;
+  margin-top: 20px;
+  height: calc(100vh - 110px);
 }
 
 .banner {
@@ -364,7 +385,7 @@ body {
   align-items: center;
 
   &__container {
-    margin-left: 20px;
+    margin-left: 40px;
   }
 
   &__title {

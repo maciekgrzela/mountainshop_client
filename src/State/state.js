@@ -1,22 +1,28 @@
 export const initialProductsState = {
-    products: [{
-        name: 'Produkt',
-        price: 9.90,
-        description: 'Opis jakiegoś super produktu'
-    }],
-}
+  products: [
+    {
+      name: 'Produkt',
+      price: 9.9,
+      description: 'Opis jakiegoś super produktu',
+    },
+  ],
+};
 
 export const initialUserState = {
-    isLogged: false,
-    user: [],
-}
+  isLogged: false,
+  user: [],
+};
+
+export const initialInterfaceState = {
+  welcomeSkipped: false,
+};
 
 export const initialCategoriesState = {
-    categories: [],
-}
+  categories: [],
+};
 
 export const initialCartState = {
-    cart: [],
-    paymentMethods: [],
-    deliveryMethods: []
-}
+  cart: [],
+  paymentMethods: [],
+  deliveryMethods: [],
+};

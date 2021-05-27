@@ -1,0 +1,1 @@
+export const WELCOME_SKIPPED = 'WELCOME_SKIPPED';
