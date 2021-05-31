@@ -3,13 +3,16 @@ import Footer from './Components/Footer/Footer';
 import './Style/css/style.css';
 import React from 'react';
 import Main from './Main';
+import { useSelector } from 'react-redux';
 
 const App = () => {
+  const interfaceState = useSelector((state) => state.interface);
+
   return (
     <div className='page-wrapper'>
       <Header />
       <Main />
-      <Footer />
+      {interfaceState.welcomeSkipped && <Footer />}
     </div>
   );
 };
