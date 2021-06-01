@@ -1,0 +1,44 @@
+* {
+  font-family: 'Bahnschrift', Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: $white-color;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $primary-color;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.page-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  &__header {
+    flex-basis: 100%;
+  }
+
+  &__main {
+    flex-basis: 100%;
+    margin-top: 110px;
+  }
+
+  &__footer {
+    background-color: $info-color;
+    flex-basis: 100%;
+  }
+}

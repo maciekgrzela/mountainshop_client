@@ -1,0 +1,124 @@
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  height: 130px;
+  position: fixed;
+  z-index: 10000;
+
+  &__topbar {
+    display: flex;
+    padding-left: 20px;
+    padding-right: 20px;
+    flex-basis: 100%;
+    height: 90px;
+  }
+
+  &__navbar {
+    display: flex;
+    height: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: $primary-color;
+    color: $white-color;
+    flex-basis: 100%;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25);
+
+    & ul {
+      margin: 0;
+      padding-left: 0;
+      list-style-type: none;
+      display: flex;
+    }
+  }
+}
+
+.topbar {
+  background-color: $white-color;
+  color: $primary-color;
+
+  &__link {
+    max-width: 400px;
+  }
+
+  &__logo {
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  &__searchbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+  }
+
+  &__aside {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.navbar {
+  &__categories {
+    flex-basis: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: 100;
+    text-transform: uppercase;
+  }
+
+  &__category {
+    margin-left: 20px;
+    margin-right: 20px;
+    &:hover {
+      cursor: pointer;
+      font-weight: 400;
+    }
+  }
+}
+
+.searchbar {
+  &__wrapper {
+    display: flex;
+    align-items: stretch;
+    width: 50%;
+    min-width: 200px;
+  }
+
+  &__input {
+    width: 100%;
+    background-color: $accent-color;
+    color: $accent-dark-color;
+    border: 0;
+    padding: 10px 20px;
+  }
+
+  &__btn {
+    background-color: $primary-color;
+    color: $white-color;
+    border: 0;
+    padding: 10px;
+  }
+}
+
+.account-info,
+.cart-info {
+  display: flex;
+  margin-right: 20px;
+
+  &__link {
+    background-color: $accent-color;
+    color: $accent-dark-color;
+    border: 0;
+    padding: 10px 20px;
+    text-decoration: none;
+  }
+
+  &__icon {
+    background-color: $primary-color;
+    color: $white-color;
+    border: 0;
+    padding: 10px;
+  }
+}
