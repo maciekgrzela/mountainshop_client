@@ -1,17 +1,12 @@
 import React from 'react';
 import plecakMock from '../../../Assets/images/plecak_mock.jpg';
 import { FiShoppingCart } from 'react-icons/fi';
-import { GlassMagnifier } from 'react-image-magnifiers';
+import Magnifier from 'react-magnifier';
 
 const ProductsViewProduct = ({ viewType }) => {
   return (
     <div className={`products-view__product product product--${viewType}`}>
-      <GlassMagnifier
-        imageSrc={plecakMock}
-        imageAlt='ProductsName'
-        largeImageSrc={plecakMock}
-        className='product__image'
-      />
+      <Magnifier src={plecakMock} className='product__image' />
       <div className='product__info'>
         <h3 className='product__name'>Nazwa Produktu</h3>
         <h5 className='product__price'>290.99PLN</h5>

@@ -1,0 +1,72 @@
+$weights: 100, 200, 300, 400, 500, 600, 700, 800, 900, bold, bolder, lighter,
+  normal;
+
+$spaces: 0, 1, 2, 3, 4, 5;
+
+@each $weight in $weights {
+  .text-weight-#{$weight} {
+    font-weight: $weight;
+  }
+}
+
+@each $space in $spaces {
+  .m-#{$space} {
+    margin: #{$space}rem;
+  }
+
+  .mt-#{$space} {
+    margin-top: #{$space}rem;
+  }
+
+  .mb-#{$space} {
+    margin-bottom: #{$space}rem;
+  }
+
+  .ml-#{$space} {
+    margin-left: #{$space}rem;
+  }
+
+  .mr-#{$space} {
+    margin-right: #{$space}rem;
+  }
+
+  .mx-#{$space} {
+    margin-left: #{$space}rem;
+    margin-right: #{$space}rem;
+  }
+
+  .my-#{$space} {
+    margin-top: #{$space}rem;
+    margin-bottom: #{$space}rem;
+  }
+
+  .p-#{$space} {
+    padding: #{$space}rem;
+  }
+
+  .pt-#{$space} {
+    padding-top: #{$space}rem;
+  }
+
+  .pb-#{$space} {
+    padding-bottom: #{$space}rem;
+  }
+
+  .pl-#{$space} {
+    padding-left: #{$space}rem;
+  }
+
+  .pr-#{$space} {
+    padding-right: #{$space}rem;
+  }
+
+  .px-#{$space} {
+    padding-left: #{$space}rem;
+    padding-right: #{$space}rem;
+  }
+
+  .py-#{$space} {
+    padding-top: #{$space}rem;
+    padding-bottom: #{$space}rem;
+  }
+}
