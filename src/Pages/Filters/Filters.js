@@ -4,7 +4,6 @@ import { FiFilter } from 'react-icons/fi';
 const Filters = () => {
   return (
     <div className='categories-list__filters filters'>
-      <h3 className='categories-list__header'>Filtruj produkty</h3>
       <div className='filters__price'>
         <h4>Cena:</h4>
         <input

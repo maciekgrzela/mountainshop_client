@@ -3,7 +3,7 @@ import ProductsCategoriesListItem from './ProductsCategoriesListItem';
 
 const ProductsCategoriesListItems = () => {
   return (
-    <ul className='categories-list__items'>
+    <ul className='categories-list__items p-0'>
       {[
         'Promocje',
         'Nowości',

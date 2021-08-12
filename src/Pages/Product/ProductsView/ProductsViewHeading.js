@@ -17,7 +17,8 @@ const ProductsViewHeading = ({ viewType }) => {
   return (
     <div className='products-view__headline'>
       <h3 className='products-view__header'>
-        Produkty z kategorii: {'{kategoria}'}
+        Produkty z kategorii:{' '}
+        <span className='text-weight-400'>{'{kategoria}'}</span>
       </h3>
       <div className='products-view__controls'>
         <select name='sorting' className='products-view__sorting-select'>

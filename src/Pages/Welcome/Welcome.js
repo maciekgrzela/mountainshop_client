@@ -14,8 +14,8 @@ const Welcome = () => {
     <div className='welcome-page'>
       <div className='welcome-page__banner banner'>
         <div className='banner__container'>
-          <h2 className='banner__title'>Przygotuj się na zimowe szaleństwo!</h2>
-          <h4 className='banner__desc'>Teraz wszystko do 60% taniej!</h4>
+          <h2 className='banner__title'>Zimowe szaleństwo!</h2>
+          <h4 className='banner__desc'>Wszystko do 60% taniej!</h4>
           <button onClick={goToStore} className='banner__go-to-store'>
             Przejdź do sklepu <FiArrowDown />
           </button>
