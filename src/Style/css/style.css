@@ -109,7 +109,7 @@ img {
 }
 
 .topbar__logo {
-  max-width: 100%;
+  max-width: 80%;
   padding: 20px;
 }
 
@@ -495,22 +495,41 @@ img {
 }
 
 .banner__container {
-  margin-left: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  max-width: 100%;
 }
 
 .banner__title {
-  -ms-flex-preferred-size: 100%;
-      flex-basis: 100%;
-  font-size: 3.8rem;
+  text-align: center;
+  -webkit-transform: rotate(355deg);
+          transform: rotate(355deg);
+  font-family: fantasy;
+  text-transform: uppercase;
+  font-weight: 100;
+  font-size: 100px;
   color: #ffffff;
   text-shadow: 2px 2px 3px #3d83c2;
   margin: 0;
 }
 
 .banner__desc {
-  -ms-flex-preferred-size: 100%;
-      flex-basis: 100%;
-  font-size: 1.6rem;
+  text-align: center;
+  -webkit-transform: rotate(355deg);
+          transform: rotate(355deg);
+  font-family: fantasy;
+  font-weight: 100;
+  font-size: 30px;
   text-shadow: 2px 2px 3px #ffffff;
   margin: 0;
 }
@@ -532,7 +551,6 @@ img {
   cursor: pointer;
   text-align: center;
   margin-top: 40px;
-  margin-left: 70px;
 }
 
 .banner__go-to-store:hover {
