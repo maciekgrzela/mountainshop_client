@@ -1,0 +1,164 @@
+.products-details {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 20px 40px;
+  min-height: calc(100vh - 110px);
+
+  &__headline {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    flex-grow: 1;
+    flex-basis: 100%;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    justify-content: center;
+  }
+
+  &__header {
+    text-align: center;
+    flex-grow: 1;
+    font-size: 1.8rem;
+    font-weight: 300;
+  }
+
+  &__controls {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__back-btn {
+    display: flex;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    margin-bottom: 2px;
+  }
+}
+
+.product-content {
+  &__images {
+    flex-basis: 40%;
+  }
+
+  &__add-to-cart {
+    flex-basis: 35%;
+  }
+
+  &__description {
+    flex-basis: 100%;
+  }
+}
+
+.product-image-gallery {
+  display: flex;
+  justify-content: space-evenly;
+
+  &__thumbnails {
+    display: flex;
+    flex-direction: column;
+
+    & img {
+      max-width: 60px;
+      padding: 10px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      margin: 5px;
+    }
+
+    & img:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+  &__full-view {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    & img {
+      max-height: 400px;
+      padding: 10px;
+    }
+  }
+}
+
+.product-add-to-cart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+
+  &__title {
+    display: flex;
+    align-items: center;
+
+    & h1 {
+      justify-self: center;
+      flex-grow: 1;
+      margin-bottom: 0;
+    }
+  }
+
+  &__add-to-cart {
+    background: rgb(245, 245, 245);
+    padding: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__quantity {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  &__add-btn {
+    padding: 10px 30px !important;
+  }
+
+  &__grossprice {
+    line-height: 1;
+    font-size: 4rem;
+    color: #dc3545;
+    font-weight: 900;
+  }
+
+  &__availability {
+    display: flex;
+    font-size: 1.3rem;
+    line-height: 1;
+    align-items: center;
+    margin-top: 30px;
+  }
+
+  &__availability-comment {
+    margin-top: 10px;
+    font-size: 0.8rem;
+    text-align: center;
+
+    &--success {
+      color: #28a745;
+    }
+
+    &--danger {
+      color: #dc3545;
+    }
+  }
+
+  &__netprice {
+    color: #dc3545;
+    font-weight: 900;
+  }
+
+  &__related-products,
+  &__comments {
+    margin-top: 100px;
+  }
+}

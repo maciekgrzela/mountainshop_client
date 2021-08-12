@@ -1,6 +1,9 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
+  const interfaceState = useSelector((state) => state.interface);
+
   return (
     <nav className='header__navbar navbar'>
       <ul className='navbar__categories'>

@@ -1,9 +1,10 @@
 .header {
   display: flex;
   flex-wrap: wrap;
-  height: 130px;
+  width: 100%;
   position: fixed;
   z-index: 10000;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 
   &__topbar {
     display: flex;
