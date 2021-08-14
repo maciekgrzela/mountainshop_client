@@ -6,7 +6,7 @@ const ProductsDetailsAddToCart = () => {
   const [quantity, setQuantity] = useState(15);
 
   return (
-    <div className='product-content__add-to-cart product-add-to-cart px-2'>
+    <div className='product-content__add-to-cart product-add-to-cart px-3'>
       <span className='product-add-to-cart__grossprice'>{`123.90zł`}</span>
       <span className='product-add-to-cart__netprice'>{`99.90zł (23% VAT)`}</span>
       <div className='product-add-to-cart__quantity'>
@@ -25,7 +25,7 @@ const ProductsDetailsAddToCart = () => {
       {quantity > 0 ? (
         <>
           <span className='product-add-to-cart__availability product-add-to-cart__availability--success'>
-            <FiCheckCircle className='mr-2' /> Dostępny
+            <FiCheckCircle className='mr-1' /> Dostępny
           </span>
           <span className='product-add-to-cart__availability-comment product-add-to-cart__availability-comment--success'>
             Liczba wybranych sztuk jest mniejsza od maksymalnej dostępnej ilości
