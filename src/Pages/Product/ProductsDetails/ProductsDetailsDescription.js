@@ -70,6 +70,26 @@ const ProductsDetailsDescription = () => {
         Reprehenderit irure consequat tempor aute mollit aliquip laboris
         ullamco.
       </p>
+      <div className='product-content__properties'>
+        <table>
+          <thead>
+            <th>
+              <td>Właściwość</td>
+              <td>Wartość</td>
+            </th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Wodoodporny</td>
+              <td>TAK</td>
+            </tr>
+            <tr>
+              <td>Pojemność</td>
+              <td>100L</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
