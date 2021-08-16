@@ -1,9 +1,10 @@
 .header {
   display: flex;
   flex-wrap: wrap;
-  height: 130px;
+  width: 100%;
   position: fixed;
   z-index: 10000;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 
   &__topbar {
     display: flex;
@@ -83,7 +84,7 @@
     display: flex;
     align-items: stretch;
     width: 50%;
-    min-width: 200px;
+    min-width: 250px;
   }
 
   &__input {
@@ -102,23 +103,33 @@
   }
 }
 
-.account-info,
-.cart-info {
+.option-info {
   display: flex;
+  justify-content: center;
+  align-items: stretch;
   margin-right: 20px;
 
   &__link {
     background-color: $accent-color;
     color: $accent-dark-color;
     border: 0;
-    padding: 10px 20px;
+    padding: 10px 15px;
     text-decoration: none;
   }
 
   &__icon {
+    display: flex;
+    align-items: center;
+    border: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+
     background-color: $primary-color;
     color: $white-color;
-    border: 0;
-    padding: 10px;
+
+    &--secondary {
+      background-color: $secondary-color;
+      color: $white-color;
+    }
   }
 }

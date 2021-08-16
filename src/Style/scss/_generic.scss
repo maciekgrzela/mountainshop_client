@@ -9,6 +9,17 @@ body {
   background-color: $white-color;
 }
 
+a {
+  text-decoration: none;
+  color: initial;
+  cursor: pointer;
+}
+
+a:focus,
+a:hover {
+  color: initial;
+}
+
 h1,
 h2,
 h3,
