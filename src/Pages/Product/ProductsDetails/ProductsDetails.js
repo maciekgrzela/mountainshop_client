@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import ProductsDetailsComments from './ProductsDetailsComments';
 import ProductsDetailsContent from './ProductsDetailsContent';
 import ProductsDetailsHeading from './ProductsDetailsHeading';
+import ProductsDetailsBar from './ProductsDetailsBar';
 
 const ProductsDetails = () => {
   const { id } = useParams();

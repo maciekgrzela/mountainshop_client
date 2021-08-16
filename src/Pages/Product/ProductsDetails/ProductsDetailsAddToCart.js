@@ -13,7 +13,7 @@ const ProductsDetailsAddToCart = () => {
         <button>+</button>
         <input
           type='text'
-          value='5 SZT'
+          value='1 SZT'
           onChange={(e) => {
             e.preventDefault();
           }}

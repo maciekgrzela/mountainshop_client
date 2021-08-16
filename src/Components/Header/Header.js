@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import ProductsDetailsBar from '../../Pages/Product/ProductsDetails/ProductsDetailsBar';
 import Navbar from './Navbar';
 import Topbar from './Topbar';
 
@@ -8,8 +9,10 @@ const Header = () => {
 
   return (
     <header className='page-wrapper__header header'>
-      <Topbar />
+      <Topbar skipped={interfaceState.welcomeSkipped} />
       {interfaceState.welcomeSkipped === false && <Navbar />}
+      {interfaceState.welcomeSkipped === true &&
+        interfaceState.singleProductScrolling && <ProductsDetailsBar />}
     </header>
   );
 };

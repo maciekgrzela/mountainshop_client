@@ -47,6 +47,11 @@
     font-size: 2rem;
     margin-bottom: 2px;
   }
+
+  &__bar {
+    width: 100%;
+    height: 70px;
+  }
 }
 
 .product-content {
@@ -122,12 +127,24 @@
   }
 
   &__quantity {
-    margin-top: 10px;
+    margin-top: 20px;
     margin-bottom: 10px;
+    display: flex;
+
+    & button {
+      background-color: $primary-color;
+      color: $white-color;
+      font-size: 1.2rem;
+      padding: 5px 15px;
+      border: 0;
+    }
   }
 
   &__add-btn {
     padding: 10px 30px !important;
+    background-color: $primary-color;
+    color: $white-color;
+    border: 0;
   }
 
   &__grossprice {
@@ -175,10 +192,6 @@
 
   &__summary {
     flex-basis: 30%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
   }
 
   &__list {
@@ -245,6 +258,14 @@
 .comments-summary {
   border: 1px solid rgba(0, 0, 0, 0.1);
 
+  &__sticky {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: sticky;
+    top: 150px;
+  }
+
   &__rating {
     color: $secondary-color;
     font-size: 3rem;
@@ -300,5 +321,78 @@
         height: 10px;
       }
     }
+  }
+}
+
+.add-comment {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 10px;
+  padding: 10px;
+
+  &__heading {
+    flex-basis: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    & input {
+      margin-left: 1rem;
+      padding: 10px;
+      flex-grow: 1;
+    }
+  }
+
+  &__author {
+    flex-basis: 100%;
+    margin-top: 20px;
+    margin-left: 5px;
+    margin-bottom: 20px;
+    font-weight: 100;
+    font-size: 1.1rem;
+  }
+
+  &__content {
+    flex-basis: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+
+  &__send {
+    display: flex;
+    flex-grow: 1;
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  &__send-btn {
+    background-color: $primary-color;
+    color: $white-color;
+    border: 0;
+    padding: 10px 20px;
+  }
+}
+
+.products-bar {
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+  background-color: $white-color;
+
+  &__image {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08);
+
+    & img {
+      width: 45px;
+      border-radius: 5px;
+    }
+  }
+
+  &__title {
+    font-size: 1.2rem;
   }
 }

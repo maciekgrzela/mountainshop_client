@@ -16,6 +16,7 @@ export const initialUserState = {
 export const initialInterfaceState = {
   welcomeSkipped: false,
   productsViewType: 'grid',
+  singleProductScrolling: null,
 };
 
 export const initialCategoriesState = {

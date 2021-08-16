@@ -1,11 +1,11 @@
 import React from 'react';
 import logo from '../../Assets/images/logo.svg';
 import Searchbar from './Searchbar';
-import AccountInfo from './AccountInfo';
-import CartInfo from './CartInfo';
 import { Link } from 'react-router-dom';
+import TopbarOption from './TopbarOption';
+import { FiUser, FiShoppingCart, FiPercent, FiTag } from 'react-icons/fi';
 
-const Topbar = () => {
+const Topbar = ({ skipped }) => {
   return (
     <div className='header__topbar topbar'>
       <Link className='topbar__link' to='/'>
@@ -13,8 +13,19 @@ const Topbar = () => {
       </Link>
       <Searchbar />
       <div className='topbar__aside'>
-        <AccountInfo />
-        <CartInfo />
+        {skipped === true && (
+          <>
+            <TopbarOption
+              variant='secondary'
+              path='/sale'
+              label='Promocje'
+              Icon={<FiPercent />}
+            />
+            <TopbarOption path='/new' label='Nowości' Icon={<FiTag />} />
+          </>
+        )}
+        <TopbarOption path='/account' label='Moje konto' Icon={<FiUser />} />
+        <TopbarOption path='/cart' label='0.00PLN' Icon={<FiShoppingCart />} />
       </div>
     </div>
   );

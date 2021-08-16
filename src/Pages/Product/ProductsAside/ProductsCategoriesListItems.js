@@ -5,16 +5,15 @@ const ProductsCategoriesListItems = () => {
   return (
     <ul className='categories-list__items p-0'>
       {[
-        'Promocje',
-        'Nowości',
-        'Dla niego',
-        'Dla niej',
-        'Dla dziecka',
         'Wyposażenie turystyczne',
-        'Narty',
+        'Wspinaczka',
+        'Sprzęt zimowy',
+        'Sprzęt do pracy na wysokościach',
+        'Obuwie i odzież do biegania',
+        'Wyposażenie skitourowe',
+        'Narciarstwo',
         'Kemping',
         'Fitness',
-        'Wyprzedaż',
       ].map((category, idx) => (
         <ProductsCategoriesListItem key={idx} name={category} />
       ))}
