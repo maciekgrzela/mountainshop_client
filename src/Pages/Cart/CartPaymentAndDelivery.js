@@ -5,8 +5,8 @@ import CartPayment from './CartPayment';
 const CartPaymentAndDelivery = () => {
   return (
     <div className='cart-page__payment-and-delivery payment-and-delivery'>
-      <CartPayment />
       <CartDelivery />
+      <CartPayment />
     </div>
   );
 };

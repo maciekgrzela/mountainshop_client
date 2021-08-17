@@ -3,6 +3,7 @@ import CartProductsTable from './CartProductsTable';
 import CartPaymentAndDelivery from './CartPaymentAndDelivery';
 import CartOrderSummary from './CartOrderSummary';
 import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
   return (
@@ -14,13 +15,17 @@ const Cart = () => {
         <CartOrderSummary netSum={800.9} taxSum={126.83} />
       </div>
       <div className='cart-page__actions cart-actions'>
-        <button className='cart-actions__back-to-store'>
-          <FiArrowLeft /> Wróć do sklepu
-        </button>
-        <button className='cart-actions__go-to-payment'>
-          Przejdź do płatności
-          <FiArrowRight />
-        </button>
+        <Link to='/'>
+          <button className='cart-actions__back-to-store'>
+            <FiArrowLeft /> Wróć do sklepu
+          </button>
+        </Link>
+        <Link to='/payment'>
+          <button className='cart-actions__go-to-payment'>
+            Przejdź do płatności
+            <FiArrowRight />
+          </button>
+        </Link>
       </div>
     </div>
   );

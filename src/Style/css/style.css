@@ -1950,7 +1950,7 @@ img {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-top: 20px;
+  margin-top: 30px;
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
   font-size: 2rem;
@@ -2077,6 +2077,11 @@ img {
 
 .cart-products-table__table > :not(caption) > * > * {
   border-width: 0 1px;
+}
+
+.cart-products-table__table > thead > tr > th {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .cart-products-table__product-description {
