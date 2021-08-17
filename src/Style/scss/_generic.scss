@@ -29,6 +29,12 @@ h6 {
   color: $primary-color;
 }
 
+button {
+  border: 0;
+  background-color: $primary-color;
+  color: $white-color;
+}
+
 img {
   max-width: 100%;
   max-height: 100%;

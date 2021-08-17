@@ -13,6 +13,7 @@ import About from './Pages/Static/About';
 import RefundPolicy from './Pages/Static/RefundPolicy';
 import Statute from './Pages/Static/Statute';
 import { useSelector } from 'react-redux';
+import Payment from './Pages/Cart/Payment';
 
 const Main = () => {
   const interfaceState = useSelector((state) => state.interface);
@@ -39,6 +40,9 @@ const Main = () => {
         </Route>
         <Route path='/cart'>
           <Cart />
+        </Route>
+        <Route path='/payment'>
+          <Payment />
         </Route>
         <Route path='/sign/in'>
           <SignIn />
