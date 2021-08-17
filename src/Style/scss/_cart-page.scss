@@ -1,5 +1,278 @@
 .cart-page {
   display: flex;
-  margin-top: 20px;
-  height: calc(100vh - 110px);
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 20px 40px;
+
+  &__title {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    flex-basis: 100%;
+    font-size: 2rem;
+  }
+
+  &__title::after {
+    content: '';
+    display: flex;
+    background-color: $secondary-color;
+    margin-left: 10px;
+    margin-right: 20px;
+    flex-grow: 1;
+    height: 2px;
+  }
+
+  &__table {
+    display: flex;
+    justify-content: center;
+    flex-basis: 100%;
+  }
+
+  &__payment-and-delivery {
+    display: flex;
+    flex-basis: 70%;
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 100%;
+    padding: 10px 20px;
+    flex-basis: 100%;
+  }
+
+  &__order-summary {
+    flex-basis: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__actions {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.cart-products-table {
+  padding: 20px;
+
+  &__table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    vertical-align: top;
+    border-color: #dee2e6;
+    caption-side: bottom;
+    border-collapse: collapse;
+
+    & thead {
+      vertical-align: bottom;
+    }
+
+    & tbody {
+      vertical-align: middle;
+    }
+
+    & td {
+      text-align: center;
+    }
+
+    & tbody,
+    & td,
+    & tfoot,
+    & th,
+    & thead,
+    & tr {
+      border: 0 solid;
+      border-color: inherit;
+    }
+
+    & > :not(caption) > * {
+      border-width: 1px 0;
+      padding: 0.5rem;
+    }
+
+    & > :not(caption) > * > * {
+      border-width: 0 1px;
+    }
+  }
+
+  &__product-description {
+    display: flex;
+    align-items: center;
+  }
+
+  &__product-image {
+    padding: 15px;
+    width: 100px;
+    height: 100px;
+  }
+
+  &__product-quantity {
+    display: flex;
+    justify-content: center;
+
+    & input {
+      width: 50px;
+    }
+
+    & button {
+      background-color: $primary-color;
+      color: $white-color;
+      padding: 10px;
+      border: 0;
+    }
+
+    & button.secondary {
+      background-color: $secondary-color;
+    }
+  }
+
+  &__product-name {
+    text-align: left;
+    font-size: 1.1rem;
+    margin: 0;
+  }
+
+  &__product-desc {
+    text-align: left;
+    font-weight: 200;
+    margin: 0;
+    padding-right: 30px;
+  }
+}
+
+.payment-and-delivery {
+  &__payment {
+    flex-basis: 50%;
+  }
+
+  &__delivery {
+    flex-basis: 50%;
+  }
+}
+
+.payment-methods {
+  padding: 10px;
+
+  &__list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  &__item {
+    display: flex;
+    margin: 10px;
+    flex-basis: 100%;
+
+    & label {
+      flex-grow: 1;
+    }
+  }
+}
+
+.delivery-methods {
+  padding: 10px;
+
+  &__list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  &__item {
+    display: flex;
+    margin: 10px;
+    flex-basis: 100%;
+
+    & label {
+      flex-grow: 1;
+    }
+  }
+}
+
+.cart-order-summary {
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.05);
+
+  &__tax,
+  &__net-price,
+  &__gross-price {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px auto;
+  }
+
+  &__tax {
+    & h3 {
+      font-size: 1.4rem;
+      font-weight: 400;
+    }
+  }
+
+  &__net-price {
+    & h3 {
+      font-size: 1.6rem;
+      font-weight: 400;
+    }
+  }
+
+  &__gross-price {
+    & h4 {
+      color: $secondary-color;
+    }
+    & h3 {
+      font-size: 1.9rem;
+      font-weight: 600;
+      color: $secondary-color;
+    }
+  }
+
+  & > div > h4 {
+    display: block;
+    width: 120px;
+    margin: 0;
+    margin-left: -40px;
+    font-weight: 200;
+    font-size: 1.1rem;
+  }
+
+  & > div > h3 {
+    margin: 0;
+  }
+}
+
+.cart-actions {
+  margin-top: 40px;
+  margin-bottom: 20px;
+
+  & button {
+    display: flex;
+    font-size: 0.9rem;
+    justify-content: space-evenly;
+    margin: 5px;
+    padding: 10px 20px;
+
+    & svg {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+  }
+
+  &__back-to-store {
+    border: 2px solid $primary-color;
+  }
+
+  &__go-to-payment {
+    background-color: $white-color;
+    color: $primary-color;
+    border: 2px solid $primary-color;
+  }
 }
