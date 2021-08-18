@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ProductsAside from './ProductsAside/ProductsAside';
 import ProductsView from './ProductsView/ProductsView';
 

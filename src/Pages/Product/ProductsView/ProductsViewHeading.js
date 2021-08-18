@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { changeProductsViewType } from '../../../Actions/ActionCreators/Interface';
 import { FiGrid, FiList } from 'react-icons/fi';
 
-const ProductsViewHeading = ({ viewType }) => {
+const ProductsViewHeading = ({ viewType, selectedCategory }) => {
   const dispatch = useDispatch();
 
   const setGridView = () => {
@@ -17,8 +17,14 @@ const ProductsViewHeading = ({ viewType }) => {
   return (
     <div className='products-view__headline'>
       <h3 className='products-view__header'>
-        Produkty z kategorii:{' '}
-        <span className='text-weight-400'>{'{kategoria}'}</span>
+        {selectedCategory === null ? (
+          'Wszystkie produkty'
+        ) : (
+          <>
+            Produkty z kategorii:
+            <span className='text-weight-400'>{selectedCategory.name}</span>
+          </>
+        )}
       </h3>
       <div className='products-view__controls'>
         <select name='sorting' className='products-view__sorting-select'>

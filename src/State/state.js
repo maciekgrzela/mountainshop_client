@@ -1,11 +1,7 @@
 export const initialProductsState = {
-  products: [
-    {
-      name: 'Produkt',
-      price: 9.9,
-      description: 'Opis jakiegoś super produktu',
-    },
-  ],
+  products: [],
+  displayedProducts: [],
+  filterForDisplayedProducts: {},
 };
 
 export const initialUserState = {
@@ -21,6 +17,7 @@ export const initialInterfaceState = {
 
 export const initialCategoriesState = {
   categories: [],
+  selectedCategory: null,
 };
 
 export const initialCartState = {

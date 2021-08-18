@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
-axios.defaults.baseURL = process.env.REACT_APP_API_URL;
+axios.defaults.baseURL = 'https://localhost:5001/api';
 
 axios.interceptors.response.use(undefined, (error) => {
   const { status, headers } = error.response;
@@ -11,12 +12,12 @@ axios.interceptors.response.use(undefined, (error) => {
         headers['www-authenticate'] !== undefined &&
         headers['www-authenticate'].includes('The token expired') === true
       ) {
-        history.push('/expired');
+        // history.push('/expired');
         toast.info('Sesja wygasła. Wprowadź ponownie dane uwierzytelniające');
       }
       break;
     case 404:
-      history.push('/notfound');
+      // history.push('/notfound');
       break;
     case 500:
       toast.error(
@@ -39,7 +40,10 @@ axios.interceptors.request.use(
   }
 );
 
-const responseBody = (response) => response.data;
+const responseBody = (response) => ({
+  data: response.data,
+  status: response.status,
+});
 
 const requests = {
   get: (url) => axios.get(url).then(responseBody),
@@ -48,4 +52,15 @@ const requests = {
   delete: (url) => axios.delete(url).then(responseBody),
 };
 
-export default {};
+const products = {
+  list: () => requests.get('/products'),
+};
+
+const categories = {
+  list: () => requests.get('/categories'),
+};
+
+export default {
+  products,
+  categories,
+};
