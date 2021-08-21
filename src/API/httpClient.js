@@ -43,6 +43,7 @@ axios.interceptors.request.use(
 const responseBody = (response) => ({
   data: response.data,
   status: response.status,
+  headers: response.headers,
 });
 
 const requests = {
@@ -53,14 +54,19 @@ const requests = {
 };
 
 const products = {
-  list: () => requests.get('/products'),
+  list: (filters) => requests.get(`/products?${filters}`),
 };
 
 const categories = {
   list: () => requests.get('/categories'),
 };
 
+const producers = {
+  list: (filters) => requests.get(`/producers?${filters}`),
+};
+
 export default {
   products,
   categories,
+  producers,
 };

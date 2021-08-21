@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { changeProductsViewType } from '../../../Actions/ActionCreators/Interface';
 import { FiGrid, FiList } from 'react-icons/fi';
+import { setProductsFilterProperties } from '../../../Actions/ActionCreators/Products';
 
 const ProductsViewHeading = ({ viewType, selectedCategory }) => {
   const dispatch = useDispatch();
@@ -12,6 +13,29 @@ const ProductsViewHeading = ({ viewType, selectedCategory }) => {
 
   const setListView = () => {
     dispatch(changeProductsViewType('list'));
+  };
+
+  const preparePropertiesObjectWithActiveProp = (activeProp) => {
+    const propObject = {
+      grossPriceAsc: null,
+      grossPriceDesc: null,
+      bestRatingDesc: null,
+      commentsCountDesc: null,
+    };
+
+    propObject[activeProp] = true;
+
+    return propObject;
+  };
+
+  const handleSortingOptions = (e) => {
+    dispatch(
+      setProductsFilterProperties(
+        preparePropertiesObjectWithActiveProp(
+          e.target.options[e.target.options.selectedIndex].value
+        )
+      )
+    );
   };
 
   return (
@@ -27,14 +51,16 @@ const ProductsViewHeading = ({ viewType, selectedCategory }) => {
         )}
       </h3>
       <div className='products-view__controls'>
-        <select name='sorting' className='products-view__sorting-select'>
-          <option value='popular'>Popularność</option>
-          <option value='brand_asc'>Marka A-Z</option>
-          <option value='brand_desc'>Marka Z-A</option>
-          <option value='price_asc'>Od najtańszego</option>
-          <option value='price_desc'>Od najdroższego</option>
-          <option value='rating'>Najlepiej oceniane</option>
-          <option value='comments'>Liczba opinii</option>
+        <select
+          onChange={handleSortingOptions}
+          name='sorting'
+          className='products-view__sorting-select'
+        >
+          <option value=''>Wybierz opcję</option>
+          <option value='grossPriceAsc'>Od najtańszego</option>
+          <option value='grossPriceDesc'>Od najdroższego</option>
+          <option value='bestRatingDesc'>Najlepiej oceniane</option>
+          <option value='commentsCountDesc'>Liczba opinii</option>
         </select>
         <button
           onClick={setGridView}

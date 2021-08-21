@@ -1,9 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProductsSlice } from '../../../Actions/ActionCreators/Products';
+import {
+  fetchProductsSlice,
+  setProductsFilterProperty,
+} from '../../../Actions/ActionCreators/Products';
+import { fetchProducersSlice } from '../../../Actions/ActionCreators/Producers';
 
 import ProductsViewHeading from './ProductsViewHeading';
 import ProductsViewProducts from './ProductsViewProducts';
+import InfiniteScroll from 'react-infinite-scroller';
 
 const ProductsView = () => {
   const dispatch = useDispatch();
@@ -14,15 +19,23 @@ const ProductsView = () => {
   const categories = useSelector((state) => state.categories);
   const products = useSelector((state) => state.products);
 
+  const handleNextPage = () => {
+    dispatch(
+      setProductsFilterProperty(
+        'pageNumber',
+        products.filterForDisplayedProducts.pageNumber + 1
+      )
+    );
+  };
+
   useEffect(() => {
     dispatch(fetchProductsSlice(false));
+    dispatch(fetchProducersSlice);
   }, []);
 
   useEffect(() => {
-    if (categories.selectedCategory != null) {
-      dispatch(fetchProductsSlice(true));
-    }
-  }, [categories.selectedCategory]);
+    dispatch(fetchProductsSlice(true));
+  }, [products.filterForDisplayedProducts]);
 
   return (
     <main className='products-view'>
@@ -30,10 +43,19 @@ const ProductsView = () => {
         selectedCategory={categories.selectedCategory}
         viewType={productsViewType}
       />
-      <ProductsViewProducts
-        products={products.products}
-        viewType={productsViewType}
-      />
+      <InfiniteScroll
+        pageStart={1}
+        loadMore={handleNextPage}
+        hasMore={
+          products.filterForDisplayedProducts.pageNumber < products.totalPages
+        }
+        initialLoad={false}
+      >
+        <ProductsViewProducts
+          products={products.displayedProducts}
+          viewType={productsViewType}
+        />
+      </InfiniteScroll>
     </main>
   );
 };

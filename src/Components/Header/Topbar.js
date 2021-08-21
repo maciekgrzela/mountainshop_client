@@ -13,17 +13,6 @@ const Topbar = ({ skipped }) => {
       </Link>
       <Searchbar />
       <div className='topbar__aside'>
-        {skipped === true && (
-          <>
-            <TopbarOption
-              variant='secondary'
-              path='/sale'
-              label='Promocje'
-              Icon={<FiPercent />}
-            />
-            <TopbarOption path='/new' label='Nowości' Icon={<FiTag />} />
-          </>
-        )}
         <TopbarOption path='/account' label='Moje konto' Icon={<FiUser />} />
         <TopbarOption path='/cart' label='0.00PLN' Icon={<FiShoppingCart />} />
       </div>

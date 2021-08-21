@@ -1192,6 +1192,7 @@ img {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  position: relative;
 }
 
 .product--grid {
@@ -1201,6 +1202,32 @@ img {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+.product--grid .product__sale {
+  background-color: #dc3545;
+  color: #ffffff;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  padding: 10px;
+  z-index: 1;
+}
+
+.product--grid .product__the-new {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #012454;
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  padding: 10px;
+  z-index: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .product--grid .product__image {
@@ -1224,11 +1251,28 @@ img {
 }
 
 .product--grid .product__price {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   color: #dc3545;
   margin-top: 0;
   margin-bottom: 10px;
+  font-weight: 600;
+  padding: 10px;
+  padding-left: 0;
+}
+
+.product--grid .product__price-after-sale {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.product--grid .product__price-before-sale {
+  font-size: 1.2rem;
+  margin-left: 10px;
+  text-decoration: line-through;
   font-weight: 400;
+  background-color: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.4);
+  padding: 5px;
 }
 
 .product--grid .product__desc {
@@ -1254,8 +1298,50 @@ img {
 }
 
 .product--list .product__image {
+  position: relative;
   max-width: 200px;
   padding: 20px;
+}
+
+.product--list .product__sale {
+  background-color: #dc3545;
+  color: #ffffff;
+  position: absolute;
+  top: 60px;
+  left: 20px;
+  padding: 10px;
+  z-index: 1;
+}
+
+.product--list .product__price-after-sale {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.product--list .product__price-before-sale {
+  font-size: 1.2rem;
+  margin-left: 10px;
+  text-decoration: line-through;
+  font-weight: 400;
+  background-color: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.4);
+  padding: 5px;
+}
+
+.product--list .product__the-new {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #012454;
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  padding: 10px;
+  z-index: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .product--list .product__name {
@@ -1317,6 +1403,86 @@ img {
 
 .filters__price input {
   width: 100px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.05);
+  margin: 5px;
+  padding: 10px;
+}
+
+.filters__sale {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.filters__sale input {
+  border: none;
+  background-color: rgba(0, 0, 0, 0.05);
+  margin: 5px;
+  padding: 10px;
+}
+
+.filters__name {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.filters__name input {
+  width: 230px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.05);
+  margin: 5px;
+  padding: 10px;
+}
+
+.filters__storage {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.filters__storage input {
+  width: 130px;
   border: none;
   background-color: rgba(0, 0, 0, 0.05);
   margin: 5px;

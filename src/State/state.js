@@ -1,7 +1,18 @@
 export const initialProductsState = {
   products: [],
   displayedProducts: [],
-  filterForDisplayedProducts: {},
+  filterForDisplayedProducts: {
+    pageSize: 3,
+    pageNumber: 1,
+  },
+  appendProductsToList: false,
+  totalPages: null,
+  totalItems: null,
+};
+
+export const initialProducersState = {
+  producers: [],
+  filterForProducers: {},
 };
 
 export const initialUserState = {

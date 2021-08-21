@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCategoriesSlice } from '../../../Actions/ActionCreators/Categories';
-import Filters from '../../Filters/Filters';
+import ProductsAsideFilters from './ProductsAsideFilters';
 import ProductsCategoriesListItems from './ProductsCategoriesListItems';
 
 const ProductsAside = () => {
@@ -17,7 +17,7 @@ const ProductsAside = () => {
       <h3 className='categories-list__header'>Wybierz kategorię</h3>
       <ProductsCategoriesListItems categories={categories.categories} />
       <h3 className='categories-list__header mt-3'>Filtruj produkty</h3>
-      <Filters />
+      <ProductsAsideFilters />
     </aside>
   );
 };
