@@ -12,7 +12,9 @@ const Header = () => {
       <Topbar skipped={interfaceState.welcomeSkipped} />
       {interfaceState.welcomeSkipped === false && <Navbar />}
       {interfaceState.welcomeSkipped === true &&
-        interfaceState.singleProductScrolling && <ProductsDetailsBar />}
+        interfaceState.singleProductScrolling === true && (
+          <ProductsDetailsBar />
+        )}
     </header>
   );
 };

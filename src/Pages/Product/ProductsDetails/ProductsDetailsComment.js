@@ -1,38 +1,83 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactStars from 'react-rating-stars-component';
 import { BsStar, BsStarFill, BsStarHalf } from 'react-icons/bs';
-import { AiOutlineLike, AiOutlineDislike } from 'react-icons/ai';
+import {
+  AiOutlineLike,
+  AiOutlineDislike,
+  AiFillDislike,
+  AiFillLike,
+} from 'react-icons/ai';
+import { useDispatch } from 'react-redux';
+import {
+  likeDisplayedCommentSlice,
+  dislikeDisplayedCommentSlice,
+  removeDislikeSlice,
+  removeLikeSlice,
+} from '../../../Actions/ActionCreators/Products';
+import StarRatingComponent from 'react-star-rating-component';
 
 const ProductsDetailsComment = ({ comment }) => {
+  const [likeAdded, setLikeAdded] = useState(false);
+  const [dislikeAdded, setDislikeAdded] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const handleLikeComment = () => {
+    dispatch(likeDisplayedCommentSlice(comment.id));
+    setLikeAdded(true);
+  };
+
+  const handleDislikeComment = () => {
+    dispatch(dislikeDisplayedCommentSlice(comment.id));
+    setDislikeAdded(true);
+  };
+
+  const handleRemoveLike = () => {
+    dispatch(removeLikeSlice(comment.id));
+    setLikeAdded(false);
+  };
+
+  const handleRemoveDislike = () => {
+    dispatch(removeDislikeSlice(comment.id));
+    setDislikeAdded(false);
+  };
+
   return (
     <div className='comments-list__comment product-comment'>
       <div className='product-comment__header'>
         <h5 className='product-comment__title'>{comment.title}</h5>
         <div className='product-comment__stars'>
-          <ReactStars
-            count={5}
-            size={30}
-            value={comment.value}
-            isHalf={true}
-            edit={false}
-            activeColor='#283b56'
-            color='#283b56'
-            emptyIcon={<BsStar />}
-            halfIcon={<BsStarHalf />}
-            filledIcon={<BsStarFill />}
+          <StarRatingComponent
+            name={comment.id}
+            value={comment.rate}
+            editing={false}
+            renderStarIcon={() => (
+              <BsStarFill style={{ paddingTop: 5, fontSize: '1.5rem' }} />
+            )}
+            renderStarIconHalf={() => <BsStarHalf />}
           />
         </div>
       </div>
       <h6 className='product-comment__author'>
-        {comment.author.firstName} {comment.author.lastName}
+        Autor: {comment.user.firstName} {comment.user.lastName}
       </h6>
       <p className='product-comment__content'>{comment.content}</p>
       <div className='product-comment__popularity'>
         <div className='product-comment__like'>
-          <AiOutlineLike /> <span>10</span>
+          {likeAdded ? (
+            <AiFillLike onClick={handleRemoveLike} />
+          ) : (
+            <AiOutlineLike onClick={handleLikeComment} />
+          )}
+          <span>{comment.likes}</span>
         </div>
         <div className='product-comment__dislike'>
-          <AiOutlineDislike /> <span>15</span>
+          {dislikeAdded ? (
+            <AiFillDislike onClick={handleRemoveDislike} />
+          ) : (
+            <AiOutlineDislike onClick={handleDislikeComment} />
+          )}
+          <span>{comment.dislikes}</span>
         </div>
       </div>
     </div>

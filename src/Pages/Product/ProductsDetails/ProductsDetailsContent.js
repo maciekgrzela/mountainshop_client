@@ -3,12 +3,12 @@ import ProductsDetailsAddToCart from './ProductsDetailsAddToCart';
 import ProductsDetailsImages from './ProductsDetailsImages';
 import ProductsDetailsDescription from './ProductsDetailsDescription';
 
-const ProductsDetailsContent = () => {
+const ProductsDetailsContent = ({ properties, product }) => {
   return (
     <div className='products-details__content product-content'>
-      <ProductsDetailsImages />
-      <ProductsDetailsAddToCart />
-      <ProductsDetailsDescription />
+      <ProductsDetailsImages image={product.image} />
+      <ProductsDetailsAddToCart product={product} />
+      <ProductsDetailsDescription properties={properties} product={product} />
     </div>
   );
 };

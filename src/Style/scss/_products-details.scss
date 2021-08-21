@@ -33,6 +33,27 @@
     flex-grow: 1;
     font-size: 1.8rem;
     font-weight: 300;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__header-promo-label {
+    margin-left: 15px;
+    margin-right: 5px;
+    font-size: 1rem;
+    color: $white-color;
+    padding: 10px;
+    background-color: $secondary-color;
+  }
+
+  &__header-new-label {
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 1rem;
+    color: $white-color;
+    padding: 10px;
+    background-color: $primary-color;
   }
 
   &__controls {
@@ -42,6 +63,7 @@
 
   &__back-btn {
     display: flex;
+    color: $primary-color;
     background: none;
     border: none;
     font-size: 2rem;
@@ -66,6 +88,54 @@
 
   &__description {
     flex-basis: 100%;
+  }
+
+  &__table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    vertical-align: top;
+    border-color: #dee2e6;
+    caption-side: bottom;
+    border-collapse: collapse;
+
+    & thead {
+      vertical-align: bottom;
+    }
+
+    & tbody {
+      vertical-align: middle;
+    }
+
+    & td {
+      text-align: center;
+    }
+
+    & tbody,
+    & td,
+    & tfoot,
+    & th,
+    & thead,
+    & tr {
+      border: 0 solid;
+      border-color: inherit;
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+
+    & > :not(caption) > * {
+      border-width: 1px 0;
+      padding: 0.5rem;
+    }
+
+    & > :not(caption) > * > * {
+      border-width: 0 1px;
+    }
+
+    & > thead > tr > th {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
   }
 }
 
@@ -138,6 +208,10 @@
       padding: 5px 15px;
       border: 0;
     }
+
+    & button:disabled {
+      filter: contrast(50%);
+    }
   }
 
   &__add-btn {
@@ -159,14 +233,13 @@
     font-size: 1.3rem;
     line-height: 1;
     align-items: center;
-    margin-top: 30px;
+    margin-top: 20px;
+    margin-bottom: 10px;
   }
 
   &__availability-comment {
-    margin-top: 10px;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     text-align: center;
-
     &--success {
       color: #28a745;
     }
@@ -207,7 +280,7 @@
 
 .product-comment {
   margin: 10px;
-  padding: 10px;
+  padding: 10px 20px;
   background-color: rgba(0, 0, 0, 0.03);
 
   &__header {
@@ -224,8 +297,7 @@
   }
 
   &__author {
-    margin-top: 10px;
-    margin-left: 10px;
+    margin-top: 5px;
     margin-bottom: 10px;
     font-weight: 100;
     font-size: 1.1rem;
@@ -248,10 +320,18 @@
 
   &__like {
     color: $primary-color;
+
+    span {
+      margin-left: 5px;
+    }
   }
 
   &__dislike {
     color: $secondary-color;
+
+    span {
+      margin-left: 5px;
+    }
   }
 }
 

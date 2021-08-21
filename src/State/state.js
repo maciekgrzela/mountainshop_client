@@ -2,9 +2,12 @@ export const initialProductsState = {
   products: [],
   displayedProducts: [],
   filterForDisplayedProducts: {
-    pageSize: 3,
+    pageSize: 10,
     pageNumber: 1,
   },
+  displayedProduct: null,
+  displayedComments: null,
+  displayedProperties: null,
   appendProductsToList: false,
   totalPages: null,
   totalItems: null,

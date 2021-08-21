@@ -17,7 +17,7 @@ const ProductsViewProduct = ({ product, viewType }) => {
       )}
       <Magnifier src={product.image} className='product__image' />
       <div className='product__info'>
-        <Link to='/products/12345'>
+        <Link to={`/products/${product.id}`}>
           <h3 className='product__name'>{product.name}</h3>
         </Link>
         <h5 className='product__price'>

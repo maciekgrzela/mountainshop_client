@@ -1,7 +1,7 @@
 import React from 'react';
 import plecakMock from '../../../Assets/images/plecak_mock.jpg';
 
-const ProductsDetailsImages = () => {
+const ProductsDetailsImages = ({ image }) => {
   return (
     <div className='product-content__images product-image-gallery'>
       <div className='product-image-gallery__thumbnails'>
@@ -23,7 +23,7 @@ const ProductsDetailsImages = () => {
       </div>
       <div className='product-image-gallery__full-view'>
         <img
-          src={plecakMock}
+          src={image}
           alt='Product img'
           className='product-image-gallery__full-img'
         />

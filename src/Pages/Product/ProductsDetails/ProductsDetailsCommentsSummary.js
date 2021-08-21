@@ -2,12 +2,21 @@ import React from 'react';
 import { BsStarFill } from 'react-icons/bs';
 import ProgressBar from '../../../Components/Common/ProgressBar';
 
-const ProductsDetailsCommentsSummary = () => {
+const ProductsDetailsCommentsSummary = ({ comments }) => {
   return (
     <div className='product-comments__summary comments-summary'>
       <div className='comments-summary__sticky'>
-        <h2 className='comments-summary__rating'>3.00 / 5.00</h2>
-        <span className='comments-summary__count'>Na podstawie 125 opinii</span>
+        <h2 className='comments-summary__rating'>
+          {comments !== undefined &&
+            (
+              comments.reduce((total, next) => total + next.rate, 0) /
+              comments.length
+            ).toFixed(2)}
+          / 5.00
+        </h2>
+        <span className='comments-summary__count'>
+          Na podstawie {comments.length} opinii
+        </span>
         <button className='comments-summary__comment-btn'>
           Dodaj komentarz
         </button>
@@ -18,7 +27,11 @@ const ProductsDetailsCommentsSummary = () => {
           {[5, 4, 3, 2, 1].map((idx) => (
             <li className='comments-summary__stars-item'>
               <BsStarFill />
-              <ProgressBar value={idx * 10} />
+              <ProgressBar
+                value={
+                  comments.filter((p) => Math.floor(p.rate) === idx).length * 10
+                }
+              />
             </li>
           ))}
         </ul>

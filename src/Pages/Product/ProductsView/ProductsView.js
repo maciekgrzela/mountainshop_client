@@ -19,15 +19,6 @@ const ProductsView = () => {
   const categories = useSelector((state) => state.categories);
   const products = useSelector((state) => state.products);
 
-  const handleNextPage = () => {
-    dispatch(
-      setProductsFilterProperty(
-        'pageNumber',
-        products.filterForDisplayedProducts.pageNumber + 1
-      )
-    );
-  };
-
   useEffect(() => {
     dispatch(fetchProductsSlice(false));
     dispatch(fetchProducersSlice);
@@ -43,19 +34,10 @@ const ProductsView = () => {
         selectedCategory={categories.selectedCategory}
         viewType={productsViewType}
       />
-      <InfiniteScroll
-        pageStart={1}
-        loadMore={handleNextPage}
-        hasMore={
-          products.filterForDisplayedProducts.pageNumber < products.totalPages
-        }
-        initialLoad={false}
-      >
-        <ProductsViewProducts
-          products={products.displayedProducts}
-          viewType={productsViewType}
-        />
-      </InfiniteScroll>
+      <ProductsViewProducts
+        products={products.displayedProducts}
+        viewType={productsViewType}
+      />
     </main>
   );
 };

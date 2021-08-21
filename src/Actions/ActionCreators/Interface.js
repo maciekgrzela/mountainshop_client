@@ -1,6 +1,7 @@
 import {
   PRODUCTS_VIEW_TYPE_CHANGED,
   WELCOME_SKIPPED,
+  SET_SINGLE_PRODUCT_SCROLLING,
 } from '../ActionTypes/Interface';
 
 export const skipWelcome = () => {
@@ -17,3 +18,10 @@ export const changeProductsViewType = (type) => {
     },
   };
 };
+
+export const setSingleProductScrolling = (value) => ({
+  type: SET_SINGLE_PRODUCT_SCROLLING,
+  payload: {
+    value: value,
+  },
+});

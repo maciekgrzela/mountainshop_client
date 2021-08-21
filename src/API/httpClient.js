@@ -50,11 +50,15 @@ const requests = {
   get: (url) => axios.get(url).then(responseBody),
   post: (url, body) => axios.post(url, body).then(responseBody),
   put: (url, body) => axios.put(url, body).then(responseBody),
+  patch: (url) => axios.patch(url).then(responseBody),
   delete: (url) => axios.delete(url).then(responseBody),
 };
 
 const products = {
   list: (filters) => requests.get(`/products?${filters}`),
+  listOne: (id) => requests.get(`/products/${id}`),
+  listComments: (id) => requests.get(`/products/${id}/comments`),
+  listProperties: (id) => requests.get(`/products/${id}/properties`),
 };
 
 const categories = {
@@ -65,8 +69,16 @@ const producers = {
   list: (filters) => requests.get(`/producers?${filters}`),
 };
 
+const comments = {
+  like: (id) => requests.patch(`/comments/${id}/like`),
+  removeLike: (id) => requests.patch(`/comments/${id}/like/cancel`),
+  dislike: (id) => requests.patch(`/comments/${id}/dislike`),
+  removeDislike: (id) => requests.patch(`/comments/${id}/dislike/cancel`),
+};
+
 export default {
   products,
   categories,
   producers,
+  comments,
 };

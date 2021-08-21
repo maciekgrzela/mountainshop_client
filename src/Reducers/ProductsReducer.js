@@ -2,8 +2,15 @@ import {
   ADD_PRODUCT,
   DELETE_PRODUCT,
   FETCH_PRODUCTS,
+  LIKE_DISPLAYED_COMMENT,
+  SET_DISPLAYED_COMMENTS,
+  SET_DISPLAYED_PRODUCT,
+  SET_DISPLAYED_PROPERTIES,
   SET_PRODUCTS_FILTER_PROP,
   SET_PRODUCTS_FILTER_PROPS,
+  DISLIKE_DISPLAYED_COMMENT,
+  REMOVE_LIKE,
+  REMOVE_DISLIKE,
 } from '../Actions/ActionTypes/Products';
 
 import { initialProductsState } from '../State/state';
@@ -61,6 +68,55 @@ export const productsReducer = (state = initialProductsState, action) => {
           ...state.filterForDisplayedProducts,
           ...action.payload.properties,
         },
+      };
+    case SET_DISPLAYED_PRODUCT:
+      return {
+        ...state,
+        displayedProduct: action.payload.product,
+      };
+    case SET_DISPLAYED_COMMENTS:
+      return {
+        ...state,
+        displayedComments: action.payload.comments,
+      };
+    case LIKE_DISPLAYED_COMMENT:
+      let comments = state.displayedComments;
+      comments.filter((p) => p.id === action.payload.id)[0].likes += 1;
+      return {
+        ...state,
+        displayedComments: comments,
+      };
+    case DISLIKE_DISPLAYED_COMMENT:
+      let dislikeDisplayedComments = state.displayedComments;
+      dislikeDisplayedComments.filter(
+        (p) => p.id === action.payload.id
+      )[0].dislikes += 1;
+      return {
+        ...state,
+        displayedComments: dislikeDisplayedComments,
+      };
+    case REMOVE_LIKE:
+      let removeLikeComments = state.displayedComments;
+      removeLikeComments.filter(
+        (p) => p.id === action.payload.id
+      )[0].likes -= 1;
+      return {
+        ...state,
+        displayedComments: removeLikeComments,
+      };
+    case REMOVE_DISLIKE:
+      let removeDislikeComments = state.displayedComments;
+      removeDislikeComments.filter(
+        (p) => p.id === action.payload.id
+      )[0].dislikes -= 1;
+      return {
+        ...state,
+        displayedComments: removeDislikeComments,
+      };
+    case SET_DISPLAYED_PROPERTIES:
+      return {
+        ...state,
+        displayedProperties: action.payload.properties,
       };
     case ADD_PRODUCT:
       return {
