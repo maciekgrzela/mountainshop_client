@@ -70,3 +70,46 @@ $spaces: 0, 1, 2, 3, 4, 5;
     padding-bottom: #{$space}rem;
   }
 }
+
+.tooltip {
+  position: relative;
+
+  & :nth-child(1) {
+    z-index: 1;
+  }
+
+  & .content {
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    text-overflow: clip;
+    background-color: $primary-color;
+    border-radius: 3px;
+    color: $white-color;
+    padding: 5px;
+    position: absolute;
+    z-index: 2;
+    height: 15px;
+    width: 120px;
+    top: -20px;
+    left: 50%;
+    margin-left: -60px;
+  }
+
+  &:hover .content {
+    visibility: visible;
+  }
+
+  & .content::after {
+    content: ' ';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -10px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: $primary-color transparent transparent transparent;
+  }
+}

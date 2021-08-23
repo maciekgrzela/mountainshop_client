@@ -49,6 +49,7 @@ const ProductsDetails = () => {
             <ProductsDetailsContent
               properties={products.displayedProperties}
               product={products.displayedProduct}
+              otherProducts={products.displayedProducts}
             />
             <ProductsDetailsComments comments={products.displayedComments} />
           </>
