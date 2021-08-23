@@ -52,11 +52,14 @@ const ProductsDetailsImages = ({ products, mainId }) => {
           />
         </div>
         <div ref={imagesContainerRef} className='product-image-gallery__images'>
-          <img
-            src={products.filter((p) => p.id === mainId)[0].image}
-            alt='Product img'
-            className='product-image-gallery__thumbnail product-image-gallery__thumbnail--disabled'
-          />
+          <div className='product-image-gallery__current-thumbnail'>
+            <img
+              src={products.filter((p) => p.id === mainId)[0].image}
+              alt='Product img'
+              className='product-image-gallery__thumbnail product-image-gallery__thumbnail--disabled'
+            />
+          </div>
+
           {products
             .filter((p) => p.id !== mainId)
             .map((product) => (

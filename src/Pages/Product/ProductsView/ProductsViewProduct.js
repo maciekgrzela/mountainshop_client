@@ -1,9 +1,13 @@
 import React from 'react';
 import { FiPercent, FiShoppingCart, FiTag } from 'react-icons/fi';
 import Magnifier from 'react-magnifier';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { addToCart } from '../../../Actions/ActionCreators/Cart';
 
 const ProductsViewProduct = ({ product, viewType }) => {
+  const dispatch = useDispatch();
+
   return (
     <div className={`products-view__product product product--${viewType}`}>
       {product.percentageSale !== null && (
@@ -25,16 +29,22 @@ const ProductsViewProduct = ({ product, viewType }) => {
             <>
               <span className='product__price-after-sale'>
                 {`${(
-                  product.grossPrice -
-                  product.grossPrice * (product.percentageSale / 100)
+                  product.minimalOrderedAmount *
+                  (product.grossPrice -
+                    product.grossPrice * (product.percentageSale / 100))
                 ).toFixed(2)} PLN`}
               </span>
               <span className='product__price-before-sale'>
-                {`${product.grossPrice} PLN`}
+                {`${product.minimalOrderedAmount * product.grossPrice} PLN`}
               </span>
             </>
           ) : (
             <>{`${product.grossPrice.toFixed(2)} PLN`}</>
+          )}
+          {product.minimalOrderedAmount > 1 && (
+            <span className='product__price-after-sale'>
+              Za {product.minimalOrderedAmount} SZT
+            </span>
           )}
         </h5>
         <p className='product__desc'>{`${product.description.substr(
@@ -42,7 +52,12 @@ const ProductsViewProduct = ({ product, viewType }) => {
           150
         )}...`}</p>
       </div>
-      <button className='product__add-to-cart'>
+      <button
+        onClick={() =>
+          dispatch(addToCart(product, product.minimalOrderedAmount))
+        }
+        className='product__add-to-cart'
+      >
         Dodaj do koszyka <FiShoppingCart />
       </button>
     </div>

@@ -439,7 +439,7 @@
   z-index: 2;
   height: 15px;
   width: 120px;
-  top: -20px;
+  top: 0px;
   left: 50%;
   margin-left: -60px;
 }
@@ -1844,9 +1844,8 @@ img {
 }
 
 .product-image-gallery__thumbnail--disabled {
-  background-color: rgba(0, 0, 0, 0.01);
-  -webkit-filter: blur(2px);
-          filter: blur(2px);
+  -webkit-filter: grayscale(80%);
+          filter: grayscale(80%);
 }
 
 .product-image-gallery__thumbnail:nth-child(1) {

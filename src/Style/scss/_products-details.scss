@@ -172,8 +172,7 @@
     margin: 5px;
 
     &--disabled {
-      background-color: rgba(0, 0, 0, 0.01);
-      filter: blur(2px);
+      filter: grayscale(80%);
     }
   }
 

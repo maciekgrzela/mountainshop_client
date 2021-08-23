@@ -37,5 +37,7 @@ export const initialCategoriesState = {
 export const initialCartState = {
   cart: [],
   paymentMethods: [],
+  selectedPaymentMethod: null,
   deliveryMethods: [],
+  selectedDeliveryMethod: null,
 };

@@ -76,9 +76,19 @@ const comments = {
   removeDislike: (id) => requests.patch(`/comments/${id}/dislike/cancel`),
 };
 
+const paymentMethods = {
+  list: () => requests.get('/payment'),
+};
+
+const deliveryMethods = {
+  list: () => requests.get('/delivery'),
+};
+
 export default {
   products,
   categories,
   producers,
   comments,
+  paymentMethods,
+  deliveryMethods,
 };

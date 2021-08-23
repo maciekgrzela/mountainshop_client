@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import plecakMock from '../../Assets/images/plecak_mock.jpg';
 import { Button, Form } from 'react-bootstrap';
 import { FiTrash } from 'react-icons/fi';
+import { useSelector } from 'react-redux';
 
 const someProducts = [
   {
@@ -23,6 +24,12 @@ const someProducts = [
 ];
 
 const CartProductsTable = () => {
+  const cart = useSelector((state) => state.cart);
+
+  useEffect(() => {
+    console.log(cart.cart);
+  }, []);
+
   return (
     <div className='cart-page__table cart-products-table'>
       <table className='cart-products-table__table'>
