@@ -1,30 +1,19 @@
 import React, { useEffect } from 'react';
-import plecakMock from '../../Assets/images/plecak_mock.jpg';
-import { Button, Form } from 'react-bootstrap';
 import { FiTrash } from 'react-icons/fi';
-import { useSelector } from 'react-redux';
-
-const someProducts = [
-  {
-    name: 'Plecak Forclaz 50L',
-    amount: 10,
-    quantity: 4,
-    netPrice: 123.9,
-    tax: 23,
-    image: plecakMock,
-  },
-  {
-    name: 'Buty trekkingowe Quechua',
-    amount: 10,
-    quantity: 1,
-    netPrice: 299.9,
-    tax: 8,
-    image: plecakMock,
-  },
-];
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart, removeFromCart } from '../../Actions/ActionCreators/Cart';
 
 const CartProductsTable = () => {
+  const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
+
+  const handleProductAddItem = (e, product) => {
+    dispatch(addToCart(product, 1));
+  };
+
+  const handleProductRemoveItem = (e, product, removeAll = false) => {
+    dispatch(removeFromCart(product, removeAll));
+  };
 
   useEffect(() => {
     console.log(cart.cart);
@@ -44,7 +33,7 @@ const CartProductsTable = () => {
           </tr>
         </thead>
         <tbody>
-          {someProducts
+          {cart.cart
             .sort((a, b) => a.name.length - b.name.length)
             .map((product, index) => (
               <tr>
@@ -61,9 +50,7 @@ const CartProductsTable = () => {
                         {product.name}
                       </h4>
                       <h5 className='cart-products-table__product-desc'>
-                        Ullamco cupidatat laboris aliqua in do in et nostrud
-                        exercitation ea aute tempor exercitation.Exercitation
-                        Lorem eu deserunt consequat id aliquip.
+                        {`${product.description.substr(0, 100)}...`}
                       </h5>
                     </div>
                   </div>
@@ -71,50 +58,69 @@ const CartProductsTable = () => {
                 <td width={'20%'}>
                   <div className='cart-products-table__product-quantity'>
                     <button
-                      disabled={product.quantity + 1 > product.amount}
-                      onClick={(e) => {
-                        if (product.quantity + 1 <= product.amount) {
-                          // handleModifyProductQuantity(
-                          //   product,
-                          //   product.orderedQuantity + 1
-                          // );
-                        }
-                      }}
+                      disabled={
+                        product.orderedAmount + 1 > product.amountInStorage
+                      }
+                      onClick={(e) => handleProductAddItem(e, product)}
                     >
                       +
                     </button>
                     <input
                       type='text'
-                      value={`${product.quantity} SZT`}
+                      value={`${product.orderedAmount} SZT`}
                       onChange={(e) => {
                         e.preventDefault();
                       }}
                     />
                     <button
-                      disabled={product.quantity - 1 === 0}
-                      onClick={() => {
-                        // handleModifyProductQuantity(
-                        //   product,
-                        //   product.orderedQuantity - 1
-                        // );
-                      }}
+                      disabled={product.orderedAmount - 1 === 0}
+                      onClick={(e) => handleProductRemoveItem(e, product)}
                     >
                       -
                     </button>
-                    <button className='ml-1 secondary'>
+                    <button
+                      onClick={(e) => handleProductRemoveItem(e, product, true)}
+                      className='ml-1 secondary'
+                    >
                       <FiTrash />
                     </button>
                   </div>
                 </td>
                 <td width={'10%'}>
-                  {`${(product.quantity * product.netPrice).toFixed(2)} PLN`}
+                  {product.percentageSale !== null ? (
+                    <>
+                      {(
+                        product.orderedAmount *
+                        (product.netPrice -
+                          product.netPrice * (product.percentageSale / 100))
+                      ).toFixed(2) + 'PLN'}
+                    </>
+                  ) : (
+                    <>
+                      {(product.orderedAmount * product.netPrice).toFixed(2) +
+                        'PLN'}
+                    </>
+                  )}
                 </td>
-                <td width={'5%'}>{`${product.tax.toFixed(2)}%`}</td>
+                <td width={'5%'}>{`${product.percentageTax.toFixed(2)}%`}</td>
                 <td width={'10%'}>
-                  <b>{`${(
-                    product.quantity *
-                    (product.netPrice + (product.tax / 100) * product.netPrice)
-                  ).toFixed(2)} PLN`}</b>
+                  <b>
+                    {product.percentageSale !== null ? (
+                      <>
+                        {(
+                          product.orderedAmount *
+                          (product.grossPrice -
+                            product.grossPrice * (product.percentageSale / 100))
+                        ).toFixed(2) + 'PLN'}
+                      </>
+                    ) : (
+                      <>
+                        {(product.orderedAmount * product.grossPrice).toFixed(
+                          2
+                        ) + 'PLN'}
+                      </>
+                    )}
+                  </b>
                 </td>
               </tr>
             ))}

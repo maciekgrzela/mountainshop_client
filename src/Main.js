@@ -13,7 +13,9 @@ import About from './Pages/Static/About';
 import RefundPolicy from './Pages/Static/RefundPolicy';
 import Statute from './Pages/Static/Statute';
 import { useSelector } from 'react-redux';
-import Payment from './Pages/Cart/Payment';
+import Payment from './Pages/Payment/Payment';
+import StationaryShop from './Pages/Static/StationaryShop';
+import OrderDetails from './Pages/OrderDetails/OrderDetails';
 
 const Main = () => {
   const interfaceState = useSelector((state) => state.interface);
@@ -44,6 +46,9 @@ const Main = () => {
         <Route path='/payment'>
           <Payment />
         </Route>
+        <Route path='/order/details'>
+          <OrderDetails />
+        </Route>
         <Route path='/sign/in'>
           <SignIn />
         </Route>
@@ -61,6 +66,9 @@ const Main = () => {
         </Route>
         <Route path='/statute'>
           <Statute />
+        </Route>
+        <Route path='/stationary/shop'>
+          <StationaryShop />
         </Route>
         <Route path='/category/:id' children={<ProductsCategory />} />
         <Route path='*'>

@@ -39,7 +39,9 @@ const ProductsViewProduct = ({ product, viewType }) => {
               </span>
             </>
           ) : (
-            <>{`${product.grossPrice.toFixed(2)} PLN`}</>
+            <>{`${(product.minimalOrderedAmount * product.grossPrice).toFixed(
+              2
+            )} PLN`}</>
           )}
           {product.minimalOrderedAmount > 1 && (
             <span className='product__price-after-sale'>

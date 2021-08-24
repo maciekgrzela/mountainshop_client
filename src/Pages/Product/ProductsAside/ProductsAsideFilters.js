@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FiFilter } from 'react-icons/fi';
 import { useDispatch } from 'react-redux';
 import { setProductsFilterProperties } from '../../../Actions/ActionCreators/Products';

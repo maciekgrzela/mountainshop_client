@@ -700,6 +700,7 @@ img {
   border: 0;
   padding-left: 10px;
   padding-right: 10px;
+  position: relative;
   background-color: #012454;
   color: #ffffff;
 }
@@ -709,15 +710,34 @@ img {
   color: #ffffff;
 }
 
+.option-info__notification {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #dc3545;
+  width: 20px;
+  height: 20px;
+  bottom: -10px;
+  right: -10px;
+}
+
 .footer {
   padding-top: 100px;
-  padding-left: 30px;
-  padding-right: 30px;
   min-height: 250px;
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.8)), to(rgba(0, 0, 0, 0.8))), url("https://img.wallpapersafari.com/desktop/1920/1080/44/22/REgNxl.jpg");
   background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("https://img.wallpapersafari.com/desktop/1920/1080/44/22/REgNxl.jpg");
   background-size: cover;
   width: 100%;
+}
+
+.footer__container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -726,6 +746,8 @@ img {
           align-items: stretch;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 .footer__contact, .footer__shortcut, .footer__socials {
@@ -860,6 +882,14 @@ img {
       flex-wrap: nowrap;
   padding-left: 10px;
   padding-right: 10px;
+}
+
+.shortcuts a {
+  color: #ffffff;
+}
+
+.shortcuts a:hover {
+  text-decoration: underline;
 }
 
 .shortcuts__title {
@@ -2653,10 +2683,280 @@ img {
   border: 2px solid #012454;
 }
 
-.cart-actions__go-to-payment {
+.cart-actions__go-forward {
   background-color: #ffffff;
   color: #012454;
   border: 2px solid #012454;
+}
+
+.order-details-page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 20px 40px;
+}
+
+.order-details-page__title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 30px;
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  font-size: 2rem;
+}
+
+.order-details-page__title::after {
+  content: '';
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #dc3545;
+  margin-left: 10px;
+  margin-right: 20px;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  height: 2px;
+}
+
+.order-details-page__form {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.order-details-form__form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.order-details-form__delivery {
+  -ms-flex-preferred-size: 40%;
+      flex-basis: 40%;
+}
+
+.order-details-form__invoice {
+  -ms-flex-preferred-size: 40%;
+      flex-basis: 40%;
+}
+
+.order-details-form__save-order-details {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+}
+
+.delivery-form,
+.invoice-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: rgba(0, 0, 0, 0.05);
+  padding-bottom: 30px;
+}
+
+.delivery-form__title,
+.invoice-form__title {
+  font-size: 1.6rem;
+  margin-top: 40px;
+  margin-bottom: 50px;
+}
+
+.delivery-form > div.text-input,
+.invoice-form > div.text-input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.delivery-form > div.text-input .text-input__top-label,
+.invoice-form > div.text-input .text-input__top-label {
+  margin-left: 10px;
+  font-size: 0.9rem;
+}
+
+.delivery-form > div.text-input .text-input__input,
+.invoice-form > div.text-input .text-input__input {
+  width: 350px;
+  margin: 10px 0;
+  padding: 10px 15px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 0;
+  color: #012454;
+}
+
+.delivery-form > div.text-input .text-input__text-input::-webkit-input-placeholder,
+.invoice-form > div.text-input .text-input__text-input::-webkit-input-placeholder {
+  color: #012454;
+  opacity: 1;
+}
+
+.delivery-form > div.text-input .text-input__text-input:-ms-input-placeholder,
+.invoice-form > div.text-input .text-input__text-input:-ms-input-placeholder {
+  color: #012454;
+  opacity: 1;
+}
+
+.delivery-form > div.text-input .text-input__text-input::-ms-input-placeholder,
+.invoice-form > div.text-input .text-input__text-input::-ms-input-placeholder {
+  color: #012454;
+  opacity: 1;
+}
+
+.delivery-form > div.text-input .text-input__text-input::placeholder,
+.invoice-form > div.text-input .text-input__text-input::placeholder {
+  color: #012454;
+  opacity: 1;
+}
+
+.delivery-form > div.text-input .text-input__text-input:-ms-input-placeholder,
+.invoice-form > div.text-input .text-input__text-input:-ms-input-placeholder {
+  color: #012454;
+}
+
+.delivery-form > div.text-input .text-input__text-input::-ms-input-placeholder,
+.invoice-form > div.text-input .text-input__text-input::-ms-input-placeholder {
+  color: #012454;
+}
+
+.delivery-form__address,
+.invoice-form__address {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 380px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.delivery-form__address .text-input,
+.invoice-form__address .text-input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.delivery-form__address .text-input__top-label,
+.invoice-form__address .text-input__top-label {
+  margin-left: 10px;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.delivery-form__address .text-input__input,
+.invoice-form__address .text-input__input {
+  margin: 2px 0;
+  padding: 10px 10px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 0;
+  color: #012454;
+}
+
+.delivery-form__address .text-input:nth-child(1),
+.invoice-form__address .text-input:nth-child(1) {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+}
+
+.delivery-form__address .text-input:nth-child(2),
+.invoice-form__address .text-input:nth-child(2) {
+  -ms-flex-preferred-size: 10%;
+      flex-basis: 10%;
+}
+
+.delivery-form__address .text-input:nth-child(3),
+.invoice-form__address .text-input:nth-child(3) {
+  -ms-flex-preferred-size: 20%;
+      flex-basis: 20%;
+}
+
+.statute-page,
+.refund-policy-page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 20px 40px;
+}
+
+.statute-page__title,
+.refund-policy-page__title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 30px;
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  font-size: 2rem;
+}
+
+.statute-page__title::after,
+.refund-policy-page__title::after {
+  content: '';
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #dc3545;
+  margin-left: 10px;
+  margin-right: 20px;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  height: 2px;
 }
 
 .dv-star-rating label {

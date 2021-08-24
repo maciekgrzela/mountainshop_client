@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  fetchProductsSlice,
-  setProductsFilterProperty,
-} from '../../../Actions/ActionCreators/Products';
+import { fetchProductsSlice } from '../../../Actions/ActionCreators/Products';
 import { fetchProducersSlice } from '../../../Actions/ActionCreators/Producers';
 
 import ProductsViewHeading from './ProductsViewHeading';
 import ProductsViewProducts from './ProductsViewProducts';
-import InfiniteScroll from 'react-infinite-scroller';
 
 const ProductsView = () => {
   const dispatch = useDispatch();

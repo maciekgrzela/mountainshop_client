@@ -123,6 +123,7 @@
     border: 0;
     padding-left: 10px;
     padding-right: 10px;
+    position: relative;
 
     background-color: $primary-color;
     color: $white-color;
@@ -131,5 +132,17 @@
       background-color: $secondary-color;
       color: $white-color;
     }
+  }
+
+  &__notification {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $secondary-color;
+    width: 20px;
+    height: 20px;
+    bottom: -10px;
+    right: -10px;
   }
 }

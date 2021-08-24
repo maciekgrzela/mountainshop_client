@@ -6,11 +6,10 @@ import Topbar from './Topbar';
 
 const Header = () => {
   const interfaceState = useSelector((state) => state.interface);
-  const cart = useSelector((state) => state.cart);
 
   return (
     <header className='page-wrapper__header header'>
-      <Topbar cart={cart.cart} skipped={interfaceState.welcomeSkipped} />
+      <Topbar />
       {interfaceState.welcomeSkipped === false && <Navbar />}
       {interfaceState.welcomeSkipped === true &&
         interfaceState.singleProductScrolling === true && (

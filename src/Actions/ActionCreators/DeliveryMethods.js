@@ -21,3 +21,7 @@ export const fetchDeliveryMethodsSlice = async (dispatch, getState) => {
     console.log(e);
   }
 };
+
+export const changeDeliveryMethod = (deliveryId) => {
+  return setPaymentMethods(deliveryId);
+};

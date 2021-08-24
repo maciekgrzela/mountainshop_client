@@ -1,4 +1,6 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { changePaymentMethod } from '../../Actions/ActionCreators/PaymentMethods';
 
 const somePaymentMethods = [
   {
@@ -19,6 +21,12 @@ const somePaymentMethods = [
 ];
 
 const CartPayment = ({ selectedPayment, payment }) => {
+  const dispatch = useDispatch();
+
+  const handleChangePayment = (id) => {
+    dispatch(changePaymentMethod(id));
+  };
+
   return (
     <div className='payment-and-delivery__payment payment-methods'>
       <h3>Wybierz metodę płatności:</h3>
@@ -30,7 +38,7 @@ const CartPayment = ({ selectedPayment, payment }) => {
                 type='radio'
                 id={paymentMethod.id}
                 checked={paymentMethod.id === selectedPayment.id}
-                onChange={(e) => e.preventDefault()}
+                onChange={(e) => handleChangePayment(paymentMethod.id)}
                 name='payment'
                 value={paymentMethod.name}
               />

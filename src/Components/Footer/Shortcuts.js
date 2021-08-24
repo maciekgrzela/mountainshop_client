@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Shortcuts = () => {
   return (
@@ -7,13 +8,21 @@ const Shortcuts = () => {
       <hr className='shortcuts__line' />
       <div className='shortcuts__container'>
         <ul className='shortcuts__list'>
-          <li className='shortcuts__item'>Strona Główna</li>
-          <li className='shortcuts__item'>Koszyk</li>
-          <li className='shortcuts__item'>Promocje</li>
-          <li className='shortcuts__item'>Regulamin sklepu</li>
-          <li className='shortcuts__item'>Zwroty i reklamacje</li>
-          <li className='shortcuts__item'>Polityka prywatności</li>
-          <li className='shortcuts__item'>Sklep stacjonarny</li>
+          <li className='shortcuts__item'>
+            <Link to='/'>Strona Główna</Link>
+          </li>
+          <li className='shortcuts__item'>
+            <Link to='/cart'>Koszyk</Link>
+          </li>
+          <li className='shortcuts__item'>
+            <Link to='/statute'>Regulamin sklepu</Link>
+          </li>
+          <li className='shortcuts__item'>
+            <Link to='/refund/policy'>Zwroty i reklamacje</Link>
+          </li>
+          <li className='shortcuts__item'>
+            <Link to='/stationary/shop'>Sklep stacjonarny</Link>
+          </li>
         </ul>
       </div>
     </div>

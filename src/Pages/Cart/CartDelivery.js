@@ -1,6 +1,14 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { changeDeliveryMethod } from '../../Actions/ActionCreators/DeliveryMethods';
 
 const CartDelivery = ({ selectedDelivery, delivery }) => {
+  const dispatch = useDispatch();
+
+  const handleChangeDelivery = (id) => {
+    dispatch(changeDeliveryMethod(id));
+  };
+
   return (
     <div className='payment-and-delivery__delivery delivery-methods'>
       <h3>Wybierz metodę dostawy:</h3>
@@ -12,7 +20,7 @@ const CartDelivery = ({ selectedDelivery, delivery }) => {
                 type='radio'
                 id={method.id}
                 checked={method.id === selectedDelivery.id}
-                onChange={(e) => e.preventDefault()}
+                onChange={(e) => handleChangeDelivery(method.id)}
                 name='delivery'
                 value={method.name}
               />

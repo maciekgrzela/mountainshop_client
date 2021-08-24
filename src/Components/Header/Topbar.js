@@ -4,26 +4,30 @@ import Searchbar from './Searchbar';
 import { Link } from 'react-router-dom';
 import TopbarOption from './TopbarOption';
 import { FiUser, FiShoppingCart, FiPercent, FiTag } from 'react-icons/fi';
+import { useSelector } from 'react-redux';
 
-const Topbar = ({ cart, skipped }) => {
+const Topbar = () => {
+  const cart = useSelector((state) => state.cart);
   const [cartSummary, setCartSummary] = useState(0);
+  const [itemsSummary, setItemsSummary] = useState(0);
 
   useEffect(() => {
-    // console.log('CART');
-    // console.log(cart);
-    // let cartSum = 0;
-    // cart.forEach((item) => {
-    //   if (item.percentageSale !== null) {
-    //     cartSum +=
-    //       item.orderedAmount *
-    //       (item.grossPrice - item.grossPrice * (item.percentageSale / 100));
-    //   } else {
-    //     cartSum += item.orderedAmount * item.grossPrice;
-    //   }
-    // });
+    let cartSum = 0;
+    let itemsSum = 0;
+    cart.cart.forEach((item) => {
+      itemsSum += item.orderedAmount;
+      if (item.percentageSale !== null) {
+        cartSum +=
+          item.orderedAmount *
+          (item.grossPrice - item.grossPrice * (item.percentageSale / 100));
+      } else {
+        cartSum += item.orderedAmount * item.grossPrice;
+      }
+    });
 
-    // setCartSummary(cartSum);
-  }, [cart]);
+    setCartSummary(cartSum);
+    setItemsSummary(itemsSum);
+  }, [cart.cart]);
 
   return (
     <div className='header__topbar topbar'>
@@ -37,6 +41,7 @@ const Topbar = ({ cart, skipped }) => {
           path='/cart'
           label={`${cartSummary.toFixed(2)} PLN`}
           Icon={<FiShoppingCart />}
+          notification={itemsSummary > 0 ? `${itemsSummary}` : undefined}
         />
       </div>
     </div>

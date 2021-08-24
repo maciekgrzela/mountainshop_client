@@ -1,0 +1,142 @@
+.order-details-page {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 20px 40px;
+
+  &__title {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+    flex-basis: 100%;
+    font-size: 2rem;
+  }
+
+  &__title::after {
+    content: '';
+    display: flex;
+    background-color: $secondary-color;
+    margin-left: 10px;
+    margin-right: 20px;
+    flex-grow: 1;
+    height: 2px;
+  }
+
+  &__form {
+    flex-basis: 100%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+}
+
+.order-details-form {
+  &__form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  &__delivery {
+    flex-basis: 40%;
+  }
+
+  &__invoice {
+    flex-basis: 40%;
+  }
+
+  &__save-order-details {
+    flex-basis: 100%;
+  }
+}
+
+.delivery-form,
+.invoice-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.05);
+  padding-bottom: 30px;
+
+  &__title {
+    font-size: 1.6rem;
+    margin-top: 40px;
+    margin-bottom: 50px;
+  }
+
+  & > div.text-input {
+    $this: &;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    .text-input__top-label {
+      margin-left: 10px;
+      font-size: 0.9rem;
+    }
+
+    .text-input__input {
+      width: 350px;
+      margin: 10px 0;
+      padding: 10px 15px;
+      background-color: rgba(0, 0, 0, 0.1);
+      border: 0;
+      color: $primary-color;
+    }
+
+    .text-input__text-input::placeholder {
+      color: $primary-color;
+      opacity: 1;
+    }
+
+    .text-input__text-input:-ms-input-placeholder {
+      color: $primary-color;
+    }
+
+    .text-input__text-input::-ms-input-placeholder {
+      color: $primary-color;
+    }
+  }
+
+  &__address {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 380px;
+    justify-content: space-between;
+
+    & .text-input {
+      display: flex;
+      flex-direction: column;
+      margin-top: 2px;
+      margin-bottom: 2px;
+
+      &__top-label {
+        margin-left: 10px;
+        margin-bottom: 10px;
+        font-size: 0.9rem;
+      }
+
+      &__input {
+        margin: 2px 0;
+        padding: 10px 10px;
+        background-color: rgba(0, 0, 0, 0.1);
+        border: 0;
+        color: $primary-color;
+      }
+    }
+
+    & .text-input:nth-child(1) {
+      flex-basis: 100%;
+    }
+
+    & .text-input:nth-child(2) {
+      flex-basis: 10%;
+    }
+
+    & .text-input:nth-child(3) {
+      flex-basis: 20%;
+    }
+  }
+}

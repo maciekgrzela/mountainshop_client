@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import ProductsAside from './ProductsAside/ProductsAside';
 import ProductsView from './ProductsView/ProductsView';
 
