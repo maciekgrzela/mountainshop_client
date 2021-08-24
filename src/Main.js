@@ -16,12 +16,14 @@ import { useSelector } from 'react-redux';
 import Payment from './Pages/Payment/Payment';
 import StationaryShop from './Pages/Static/StationaryShop';
 import OrderDetails from './Pages/OrderDetails/OrderDetails';
+import ScrollToTop from './ScrollToTop';
 
 const Main = () => {
   const interfaceState = useSelector((state) => state.interface);
 
   return (
     <main className='page-wrapper__main main'>
+      <ScrollToTop />
       <Switch>
         {interfaceState.welcomeSkipped === false ? (
           <Route exact path='/'>
