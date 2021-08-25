@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const Shortcuts = () => {
   return (
@@ -9,19 +9,37 @@ const Shortcuts = () => {
       <div className='shortcuts__container'>
         <ul className='shortcuts__list'>
           <li className='shortcuts__item'>
-            <Link to='/'>Strona Główna</Link>
+            <NavLink exact activeStyle={{ fontWeight: 900 }} to='/'>
+              Strona Główna
+            </NavLink>
           </li>
           <li className='shortcuts__item'>
-            <Link to='/cart'>Koszyk</Link>
+            <NavLink exact activeStyle={{ fontWeight: 900 }} to='/cart'>
+              Koszyk
+            </NavLink>
           </li>
           <li className='shortcuts__item'>
-            <Link to='/statute'>Regulamin sklepu</Link>
+            <NavLink exact activeStyle={{ fontWeight: 900 }} to='/statute'>
+              Regulamin sklepu
+            </NavLink>
           </li>
           <li className='shortcuts__item'>
-            <Link to='/refund/policy'>Zwroty i reklamacje</Link>
+            <NavLink
+              exact
+              activeStyle={{ fontWeight: 900 }}
+              to='/refund/policy'
+            >
+              Zwroty i reklamacje
+            </NavLink>
           </li>
           <li className='shortcuts__item'>
-            <Link to='/stationary/shop'>Sklep stacjonarny</Link>
+            <NavLink
+              exact
+              activeStyle={{ fontWeight: 900 }}
+              to='/stationary/shop'
+            >
+              Sklep stacjonarny
+            </NavLink>
           </li>
         </ul>
       </div>

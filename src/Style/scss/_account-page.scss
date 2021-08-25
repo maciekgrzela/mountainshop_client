@@ -1,5 +1,24 @@
 .account-page {
   display: flex;
-  margin-top: 20px;
-  height: calc(100vh - 110px);
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 20px 40px;
+
+  &__title {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+    flex-basis: 100%;
+    font-size: 2rem;
+  }
+
+  &__title::after {
+    content: '';
+    display: flex;
+    background-color: $secondary-color;
+    margin-left: 10px;
+    margin-right: 20px;
+    flex-grow: 1;
+    height: 2px;
+  }
 }

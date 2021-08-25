@@ -3,7 +3,6 @@ import OrderDetailsForm from './OrderDetailsForm';
 
 const OrderDetails = () => {
   const [invoiceSelected, setInvoiceSelected] = useState(false);
-  const [orderDetails, setOrderDetails] = useState({});
 
   return (
     <div className='order-details-page'>
@@ -11,7 +10,10 @@ const OrderDetails = () => {
         Wprowadź szczegóły dotyczące zamówienia
       </h2>
       <div className='order-details-page__form'>
-        <OrderDetailsForm />
+        <OrderDetailsForm
+          invoiceSelected={invoiceSelected}
+          setInvoiceSelected={setInvoiceSelected}
+        />
       </div>
     </div>
   );

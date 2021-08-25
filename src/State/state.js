@@ -20,7 +20,7 @@ export const initialProducersState = {
 
 export const initialUserState = {
   isLogged: false,
-  user: [],
+  user: {},
 };
 
 export const initialInterfaceState = {

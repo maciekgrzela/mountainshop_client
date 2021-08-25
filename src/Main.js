@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import ProductsCategory from './Pages/Product/ProductsCategory';
 import ProductsDetails from './Pages/Product/ProductsDetails/ProductsDetails';
@@ -20,6 +20,7 @@ import ScrollToTop from './ScrollToTop';
 
 const Main = () => {
   const interfaceState = useSelector((state) => state.interface);
+  const user = useSelector((state) => state.user);
 
   return (
     <main className='page-wrapper__main main'>
@@ -52,13 +53,13 @@ const Main = () => {
           <OrderDetails />
         </Route>
         <Route path='/sign/in'>
-          <SignIn />
+          {user.isLogged === true ? <Redirect to='/account' /> : <SignIn />}
         </Route>
         <Route path='/sign/up'>
           <SignUp />
         </Route>
         <Route path='/account'>
-          <Account />
+          {user.isLogged === true ? <Account /> : <Redirect to='/sign/in' />}
         </Route>
         <Route path='/about'>
           <About />

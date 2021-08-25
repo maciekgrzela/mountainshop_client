@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
+  const user = useSelector((state) => state.user);
   const [grossSum, setGrossSum] = useState(0);
   const [deliveryAndPaymentSum, setDeliveryAndPaymentSum] = useState(0);
 
@@ -58,12 +59,21 @@ const Cart = () => {
             <FiArrowLeft /> Wróć do sklepu
           </button>
         </Link>
-        <Link to='/order/details'>
-          <button className='cart-actions__go-forward'>
-            Przejdź dalej
-            <FiArrowRight />
-          </button>
-        </Link>
+        {user.isLogged ? (
+          <Link to='/order/details'>
+            <button className='cart-actions__go-forward'>
+              Przejdź dalej
+              <FiArrowRight />
+            </button>
+          </Link>
+        ) : (
+          <Link to='/order/not/signed/in'>
+            <button className='cart-actions__go-forward'>
+              Przejdź dalej
+              <FiArrowRight />
+            </button>
+          </Link>
+        )}
       </div>
     </div>
   );

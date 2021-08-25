@@ -4,6 +4,9 @@ import './Style/css/style.css';
 import React from 'react';
 import Main from './Main';
 import { useSelector } from 'react-redux';
+import { createBrowserHistory } from 'history';
+
+export const history = createBrowserHistory();
 
 const App = () => {
   const interfaceState = useSelector((state) => state.interface);

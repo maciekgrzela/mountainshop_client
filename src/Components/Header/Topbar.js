@@ -8,6 +8,8 @@ import { useSelector } from 'react-redux';
 
 const Topbar = () => {
   const cart = useSelector((state) => state.cart);
+  const user = useSelector((state) => state.user);
+
   const [cartSummary, setCartSummary] = useState(0);
   const [itemsSummary, setItemsSummary] = useState(0);
 
@@ -36,7 +38,11 @@ const Topbar = () => {
       </Link>
       <Searchbar />
       <div className='topbar__aside'>
-        <TopbarOption path='/account' label='Moje konto' Icon={<FiUser />} />
+        <TopbarOption
+          path='/account'
+          label={user.isLogged ? `Witaj ${user.user.firstName}` : `Moje konto`}
+          Icon={<FiUser />}
+        />
         <TopbarOption
           path='/cart'
           label={`${cartSummary.toFixed(2)} PLN`}

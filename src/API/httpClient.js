@@ -84,7 +84,12 @@ const deliveryMethods = {
   list: () => requests.get('/delivery'),
 };
 
+const auth = {
+  login: (body) => requests.post('/auth/login', body),
+};
+
 export default {
+  auth,
   products,
   categories,
   producers,
