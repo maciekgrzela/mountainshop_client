@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Form as FinalForm, Field } from 'react-final-form';
 import { useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { userSignInSlice } from '../../Actions/ActionCreators/User';
 import TextInput from '../../Components/Common/TextInput';
+import { history } from '../../App';
+import { redirectToOrderAfterLogin } from '../../Actions/ActionCreators/Interface';
 
 const SignIn = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const userSignIn = (data) => {
     dispatch(userSignInSlice(data.email, data.password));
+    if (location.state.redirectToOrder) {
+      dispatch(redirectToOrderAfterLogin());
+    }
   };
 
   return (

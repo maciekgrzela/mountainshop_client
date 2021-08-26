@@ -21,12 +21,14 @@ export const initialProducersState = {
 export const initialUserState = {
   isLogged: false,
   user: {},
+  lastOrder: null,
 };
 
 export const initialInterfaceState = {
   welcomeSkipped: false,
   productsViewType: 'grid',
   singleProductScrolling: null,
+  redirectToOrderAfterLogin: false,
 };
 
 export const initialCategoriesState = {

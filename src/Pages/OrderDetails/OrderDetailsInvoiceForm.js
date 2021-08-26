@@ -29,7 +29,7 @@ const OrderDetailsInvoiceForm = ({ invoiceSelected, setInvoiceSelected }) => {
             name='companyName'
             component={TextInput}
             type='text'
-            validate={invoiceSelected ? required : () => undefined}
+            validate={required}
             disabled={!invoiceSelected}
             placeholder='Wprowadź nazwę firmy'
           />
@@ -38,7 +38,7 @@ const OrderDetailsInvoiceForm = ({ invoiceSelected, setInvoiceSelected }) => {
             name='companyNip'
             component={TextInput}
             type='text'
-            validate={invoiceSelected ? required : () => undefined}
+            validate={required}
             disabled={!invoiceSelected}
             mask={'999-999-99-99'}
             placeholder='Wprowadź NIP firmy'
@@ -50,7 +50,7 @@ const OrderDetailsInvoiceForm = ({ invoiceSelected, setInvoiceSelected }) => {
               component={TextInput}
               type='text'
               disabled={!invoiceSelected}
-              validate={invoiceSelected ? required : () => undefined}
+              validate={required}
               placeholder='Wprowadź dane adresowe'
             />
             <Field
@@ -58,7 +58,7 @@ const OrderDetailsInvoiceForm = ({ invoiceSelected, setInvoiceSelected }) => {
               component={TextInput}
               type='text'
               disabled={!invoiceSelected}
-              validate={invoiceSelected ? required : () => undefined}
+              validate={required}
               mask={'99-999'}
               placeholder='Wprowadź kod pocztowy'
             />
@@ -67,7 +67,7 @@ const OrderDetailsInvoiceForm = ({ invoiceSelected, setInvoiceSelected }) => {
               component={TextInput}
               type='text'
               disabled={!invoiceSelected}
-              validate={invoiceSelected ? required : () => undefined}
+              validate={required}
               placeholder='Wprowadź nazwę miejscowości'
             />
           </div>
@@ -77,7 +77,7 @@ const OrderDetailsInvoiceForm = ({ invoiceSelected, setInvoiceSelected }) => {
             component={TextInput}
             type='text'
             disabled={!invoiceSelected}
-            validate={invoiceSelected ? required : () => undefined}
+            validate={required}
             placeholder='Wprowadź kraj'
           />
           <Field
@@ -86,8 +86,8 @@ const OrderDetailsInvoiceForm = ({ invoiceSelected, setInvoiceSelected }) => {
             component={TextInput}
             type='text'
             disabled={!invoiceSelected}
-            validate={invoiceSelected ? required : () => undefined}
-            mask={'+48 999-999-999'}
+            validate={required}
+            mask={'+48999-999-999'}
             placeholder='Wprowadź numer telefonu'
           />
         </>

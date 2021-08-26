@@ -1,5 +1,6 @@
 import {
   PRODUCTS_VIEW_TYPE_CHANGED,
+  REDIRECT_TO_ODER_AFTER_LOGIN,
   SET_SINGLE_PRODUCT_SCROLLING,
   WELCOME_SKIPPED,
 } from '../Actions/ActionTypes/Interface';
@@ -21,6 +22,11 @@ export const interfaceReducer = (state = initialInterfaceState, action) => {
       return {
         ...state,
         singleProductScrolling: action.payload.value,
+      };
+    case REDIRECT_TO_ODER_AFTER_LOGIN:
+      return {
+        ...state,
+        redirectToOrderAfterLogin: true,
       };
     default:
       return state;

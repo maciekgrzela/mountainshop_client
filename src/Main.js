@@ -17,6 +17,9 @@ import Payment from './Pages/Payment/Payment';
 import StationaryShop from './Pages/Static/StationaryShop';
 import OrderDetails from './Pages/OrderDetails/OrderDetails';
 import ScrollToTop from './ScrollToTop';
+import OrderDetailsSuccess from './Pages/OrderDetails/OrderDetailsSuccess';
+import CheckoutRedirect from './Pages/Checkout/CheckoutRedirect';
+import UserNotSignedIn from './Pages/Access/UserNotSignedIn';
 
 const Main = () => {
   const interfaceState = useSelector((state) => state.interface);
@@ -52,8 +55,20 @@ const Main = () => {
         <Route path='/order/details'>
           <OrderDetails />
         </Route>
+        <Route path='/order/success'>
+          <OrderDetailsSuccess />
+        </Route>
+        <Route path='/checkout/redirect' children={<CheckoutRedirect />} />
         <Route path='/sign/in'>
-          {user.isLogged === true ? <Redirect to='/account' /> : <SignIn />}
+          {user.isLogged === true ? (
+            interfaceState.redirectToOrderAfterLogin ? (
+              <Redirect to='/order/details' />
+            ) : (
+              <Redirect to='/account' />
+            )
+          ) : (
+            <SignIn />
+          )}
         </Route>
         <Route path='/sign/up'>
           <SignUp />
@@ -72,6 +87,9 @@ const Main = () => {
         </Route>
         <Route path='/stationary/shop'>
           <StationaryShop />
+        </Route>
+        <Route path='/user/not/signed/in'>
+          <UserNotSignedIn />
         </Route>
         <Route path='/category/:id' children={<ProductsCategory />} />
         <Route path='*'>

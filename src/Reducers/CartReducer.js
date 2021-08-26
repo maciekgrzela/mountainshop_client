@@ -1,7 +1,15 @@
-import { ADD_TO_CART, REMOVE_FROM_CART } from '../Actions/ActionTypes/Cart';
-import { FETCH_DELIVERY_METHODS } from '../Actions/ActionTypes/DeliveryMethods';
+import {
+  ADD_TO_CART,
+  CLEAR_CART,
+  REMOVE_FROM_CART,
+} from '../Actions/ActionTypes/Cart';
+import {
+  CLEAR_SELECTED_DELIVERY,
+  FETCH_DELIVERY_METHODS,
+} from '../Actions/ActionTypes/DeliveryMethods';
 import {
   CHANGE_PAYMENT_METHOD,
+  CLEAR_SELECTED_PAYMENT,
   SET_PAYMENT_METHODS,
 } from '../Actions/ActionTypes/PaymentMethods';
 import { initialCartState } from '../State/state';
@@ -92,6 +100,21 @@ export const cartReducer = (state = initialCartState, action) => {
       } else {
         return state;
       }
+    case CLEAR_CART:
+      return {
+        ...state,
+        cart: [],
+      };
+    case CLEAR_SELECTED_DELIVERY:
+      return {
+        ...state,
+        selectedDeliveryMethod: null,
+      };
+    case CLEAR_SELECTED_PAYMENT:
+      return {
+        ...state,
+        selectedPaymentMethod: null,
+      };
     default:
       return state;
   }

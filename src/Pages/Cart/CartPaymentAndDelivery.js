@@ -9,7 +9,12 @@ const CartPaymentAndDelivery = () => {
   const cart = useSelector((state) => state.cart);
 
   useEffect(() => {
-    dispatch(fetchDeliveryMethodsSlice);
+    if (
+      cart.selectedDeliveryMethod === null ||
+      cart.selectedPaymentMethod === null
+    ) {
+      dispatch(fetchDeliveryMethodsSlice);
+    }
   }, []);
 
   return (

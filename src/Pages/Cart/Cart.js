@@ -35,6 +35,7 @@ const Cart = () => {
 
   useEffect(() => {
     if (
+      cart.cart.length > 0 &&
       cart.selectedDeliveryMethod !== null &&
       cart.selectedPaymentMethod !== null
     ) {
@@ -67,7 +68,14 @@ const Cart = () => {
             </button>
           </Link>
         ) : (
-          <Link to='/order/not/signed/in'>
+          <Link
+            to={{
+              pathname: '/user/not/signed/in',
+              state: {
+                redirectToOrder: true,
+              },
+            }}
+          >
             <button className='cart-actions__go-forward'>
               Przejdź dalej
               <FiArrowRight />

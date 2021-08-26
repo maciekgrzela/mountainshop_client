@@ -14,6 +14,8 @@ const Topbar = () => {
   const [itemsSummary, setItemsSummary] = useState(0);
 
   useEffect(() => {
+    console.log('WYCZYŚCIŁEM CART');
+
     let cartSum = 0;
     let itemsSum = 0;
     cart.cart.forEach((item) => {

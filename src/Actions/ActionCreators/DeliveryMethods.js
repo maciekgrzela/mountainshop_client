@@ -1,5 +1,8 @@
 import httpClient from '../../API/httpClient';
-import { FETCH_DELIVERY_METHODS } from '../ActionTypes/DeliveryMethods';
+import {
+  FETCH_DELIVERY_METHODS,
+  CLEAR_SELECTED_DELIVERY,
+} from '../ActionTypes/DeliveryMethods';
 import { setPaymentMethods } from './PaymentMethods';
 
 const fetchDeliveryMethods = (data) => ({
@@ -25,3 +28,7 @@ export const fetchDeliveryMethodsSlice = async (dispatch, getState) => {
 export const changeDeliveryMethod = (deliveryId) => {
   return setPaymentMethods(deliveryId);
 };
+
+export const clearSelectedDelivery = () => ({
+  type: CLEAR_SELECTED_DELIVERY,
+});

@@ -88,6 +88,12 @@ const auth = {
   login: (body) => requests.post('/auth/login', body),
 };
 
+const orders = {
+  create: (body) => requests.post('/orders', body),
+  getLastForUser: (id) => requests.get(`/orders/last/for/user/${id}`),
+  setPaid: (id) => requests.patch(`/orders/${id}/paid`),
+};
+
 export default {
   auth,
   products,
@@ -96,4 +102,5 @@ export default {
   comments,
   paymentMethods,
   deliveryMethods,
+  orders,
 };

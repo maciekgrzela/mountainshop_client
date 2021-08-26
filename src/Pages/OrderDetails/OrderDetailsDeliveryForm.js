@@ -65,7 +65,7 @@ const OrderDetailsDeliveryForm = () => {
         component={TextInput}
         type='text'
         validate={required}
-        mask={'+48 999 999 999'}
+        mask={'+48999-999-999'}
         placeholder='Wprowadź numer telefonu'
       />
     </div>
