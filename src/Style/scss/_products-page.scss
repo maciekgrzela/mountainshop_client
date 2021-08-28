@@ -113,6 +113,27 @@
     flex-basis: 30%;
   }
 
+  &__products-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__selected-category {
+    display: flex;
+    margin: 20px 0;
+    justify-content: space-evenly;
+    align-items: center;
+
+    & img {
+      width: 250px;
+    }
+
+    & p {
+      flex-basis: 50%;
+      text-align: justify;
+    }
+  }
+
   &__products {
     display: grid;
     grid-template-rows: auto;
@@ -131,6 +152,30 @@
 
   &__product {
     border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+}
+
+.load-more {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  background: linear-gradient(rgba(1, 36, 84, 0.8), rgba(1, 36, 84, 0.8)),
+    url('https://upload.wikimedia.org/wikipedia/commons/0/0b/Mountains-1412683.svg');
+  background-size: cover;
+  background-position: center;
+
+  &__icon {
+    font-size: 6rem;
+    margin: 20px 0;
+  }
+
+  &__text {
+    margin: 5px 0;
+    font-size: 1.1rem;
+    font-weight: 300;
   }
 }
 

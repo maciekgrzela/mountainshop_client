@@ -11,7 +11,7 @@ export const interfaceReducer = (state = initialInterfaceState, action) => {
     case WELCOME_SKIPPED:
       return {
         ...state,
-        welcomeSkipped: !state.welcomeSkipped,
+        welcomeSkipped: true,
       };
     case PRODUCTS_VIEW_TYPE_CHANGED:
       return {

@@ -482,6 +482,10 @@ a:hover {
   color: initial;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 h1,
 h2,
 h3,
@@ -1243,6 +1247,39 @@ img {
       flex-basis: 30%;
 }
 
+.products-view__products-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.products-view__selected-category {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 20px 0;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.products-view__selected-category img {
+  width: 250px;
+}
+
+.products-view__selected-category p {
+  -ms-flex-preferred-size: 50%;
+      flex-basis: 50%;
+  text-align: justify;
+}
+
 .products-view__products {
   display: -ms-grid;
   display: grid;
@@ -1265,6 +1302,40 @@ img {
 
 .products-view__product {
   border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.load-more {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px 0;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(1, 36, 84, 0.8)), to(rgba(1, 36, 84, 0.8))), url("https://upload.wikimedia.org/wikipedia/commons/0/0b/Mountains-1412683.svg");
+  background: linear-gradient(rgba(1, 36, 84, 0.8), rgba(1, 36, 84, 0.8)), url("https://upload.wikimedia.org/wikipedia/commons/0/0b/Mountains-1412683.svg");
+  background-size: cover;
+  background-position: center;
+}
+
+.load-more__icon {
+  font-size: 6rem;
+  margin: 20px 0;
+}
+
+.load-more__text {
+  margin: 5px 0;
+  font-size: 1.1rem;
+  font-weight: 300;
 }
 
 .product {
@@ -2394,6 +2465,22 @@ img {
   height: 2px;
 }
 
+.cart-page__empty {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
 .cart-page__table {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2456,6 +2543,14 @@ img {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+.cart-empty {
+  margin: 100px 0;
+}
+
+.cart-empty__icon {
+  font-size: 5rem;
 }
 
 .cart-products-table {

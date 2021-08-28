@@ -4,9 +4,11 @@ import Searchbar from './Searchbar';
 import { Link } from 'react-router-dom';
 import TopbarOption from './TopbarOption';
 import { FiUser, FiShoppingCart, FiPercent, FiTag } from 'react-icons/fi';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { skipWelcome } from '../../Actions/ActionCreators/Interface';
 
 const Topbar = () => {
+  const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const user = useSelector((state) => state.user);
 
@@ -14,8 +16,6 @@ const Topbar = () => {
   const [itemsSummary, setItemsSummary] = useState(0);
 
   useEffect(() => {
-    console.log('WYCZYŚCIŁEM CART');
-
     let cartSum = 0;
     let itemsSum = 0;
     cart.cart.forEach((item) => {
@@ -42,12 +42,14 @@ const Topbar = () => {
       <div className='topbar__aside'>
         <TopbarOption
           path='/account'
+          onClick={() => dispatch(skipWelcome())}
           label={user.isLogged ? `Witaj ${user.user.firstName}` : `Moje konto`}
           Icon={<FiUser />}
         />
         <TopbarOption
           path='/cart'
           label={`${cartSummary.toFixed(2)} PLN`}
+          onClick={() => dispatch(skipWelcome())}
           Icon={<FiShoppingCart />}
           notification={itemsSummary > 0 ? `${itemsSummary}` : undefined}
         />

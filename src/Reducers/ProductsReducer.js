@@ -60,6 +60,7 @@ export const productsReducer = (state = initialProductsState, action) => {
           ...state.filterForDisplayedProducts,
           [action.payload.propertyName]: action.payload.propertyValue,
         },
+        appendProductsToList: false,
       };
     case SET_PRODUCTS_FILTER_PROPS:
       return {
@@ -68,6 +69,7 @@ export const productsReducer = (state = initialProductsState, action) => {
           ...state.filterForDisplayedProducts,
           ...action.payload.properties,
         },
+        appendProductsToList: false,
       };
     case SET_DISPLAYED_PRODUCT:
       return {
