@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, NavLink } from 'react-router-dom';
 
 const Shortcuts = () => {
   return (
@@ -7,13 +8,39 @@ const Shortcuts = () => {
       <hr className='shortcuts__line' />
       <div className='shortcuts__container'>
         <ul className='shortcuts__list'>
-          <li className='shortcuts__item'>Strona Główna</li>
-          <li className='shortcuts__item'>Koszyk</li>
-          <li className='shortcuts__item'>Promocje</li>
-          <li className='shortcuts__item'>Regulamin sklepu</li>
-          <li className='shortcuts__item'>Zwroty i reklamacje</li>
-          <li className='shortcuts__item'>Polityka prywatności</li>
-          <li className='shortcuts__item'>Sklep stacjonarny</li>
+          <li className='shortcuts__item'>
+            <NavLink exact activeStyle={{ fontWeight: 900 }} to='/'>
+              Strona Główna
+            </NavLink>
+          </li>
+          <li className='shortcuts__item'>
+            <NavLink exact activeStyle={{ fontWeight: 900 }} to='/cart'>
+              Koszyk
+            </NavLink>
+          </li>
+          <li className='shortcuts__item'>
+            <NavLink exact activeStyle={{ fontWeight: 900 }} to='/statute'>
+              Regulamin sklepu
+            </NavLink>
+          </li>
+          <li className='shortcuts__item'>
+            <NavLink
+              exact
+              activeStyle={{ fontWeight: 900 }}
+              to='/refund/policy'
+            >
+              Zwroty i reklamacje
+            </NavLink>
+          </li>
+          <li className='shortcuts__item'>
+            <NavLink
+              exact
+              activeStyle={{ fontWeight: 900 }}
+              to='/stationary/shop'
+            >
+              Sklep stacjonarny
+            </NavLink>
+          </li>
         </ul>
       </div>
     </div>

@@ -113,6 +113,27 @@
     flex-basis: 30%;
   }
 
+  &__products-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__selected-category {
+    display: flex;
+    margin: 20px 0;
+    justify-content: space-evenly;
+    align-items: center;
+
+    & img {
+      width: 250px;
+    }
+
+    & p {
+      flex-basis: 50%;
+      text-align: justify;
+    }
+  }
+
   &__products {
     display: grid;
     grid-template-rows: auto;
@@ -134,14 +155,61 @@
   }
 }
 
+.load-more {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  background: linear-gradient(rgba(1, 36, 84, 0.8), rgba(1, 36, 84, 0.8)),
+    url('https://upload.wikimedia.org/wikipedia/commons/0/0b/Mountains-1412683.svg');
+  background-size: cover;
+  background-position: center;
+
+  &__icon {
+    font-size: 6rem;
+    margin: 20px 0;
+  }
+
+  &__text {
+    margin: 5px 0;
+    font-size: 1.1rem;
+    font-weight: 300;
+  }
+}
+
 .product {
   $this: &;
   display: flex;
+  position: relative;
 
   &--grid {
     padding-left: 5px;
     padding-right: 5px;
     flex-direction: column;
+
+    #{$this}__sale {
+      background-color: $secondary-color;
+      color: $white-color;
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      padding: 10px;
+      z-index: 1;
+    }
+
+    #{$this}__the-new {
+      background-color: rgba(0, 0, 0, 0.1);
+      color: $primary-color;
+      position: absolute;
+      top: 15px;
+      left: 20px;
+      padding: 10px;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+    }
 
     #{$this}__image {
       max-width: 250px;
@@ -151,6 +219,10 @@
     #{$this}__info {
       padding-left: 10px;
       padding-right: 10px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
     }
 
     #{$this}__name {
@@ -161,11 +233,28 @@
     }
 
     #{$this}__price {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       color: $secondary-color;
       margin-top: 0;
       margin-bottom: 10px;
+      font-weight: 600;
+      padding: 10px;
+      padding-left: 0;
+    }
+
+    #{$this}__price-after-sale {
+      font-size: 1.5rem;
+      font-weight: 800;
+    }
+
+    #{$this}__price-before-sale {
+      font-size: 1.2rem;
+      margin-left: 10px;
+      text-decoration: line-through;
       font-weight: 400;
+      background-color: rgba(0, 0, 0, 0.05);
+      color: rgba(0, 0, 0, 0.4);
+      padding: 5px;
     }
 
     #{$this}__desc {
@@ -188,8 +277,46 @@
     flex-direction: row;
 
     #{$this}__image {
+      position: relative;
       max-width: 200px;
       padding: 20px;
+    }
+
+    #{$this}__sale {
+      background-color: $secondary-color;
+      color: $white-color;
+      position: absolute;
+      top: 60px;
+      left: 20px;
+      padding: 10px;
+      z-index: 1;
+    }
+
+    #{$this}__price-after-sale {
+      font-size: 1.5rem;
+      font-weight: 800;
+    }
+
+    #{$this}__price-before-sale {
+      font-size: 1.2rem;
+      margin-left: 10px;
+      text-decoration: line-through;
+      font-weight: 400;
+      background-color: rgba(0, 0, 0, 0.05);
+      color: rgba(0, 0, 0, 0.4);
+      padding: 5px;
+    }
+
+    #{$this}__the-new {
+      background-color: rgba(0, 0, 0, 0.1);
+      color: $primary-color;
+      position: absolute;
+      top: 15px;
+      left: 20px;
+      padding: 10px;
+      z-index: 1;
+      display: flex;
+      align-items: center;
     }
 
     #{$this}__name {
@@ -240,6 +367,60 @@
 
     & input {
       width: 100px;
+      border: none;
+      background-color: rgba(0, 0, 0, 0.05);
+      margin: 5px;
+      padding: 10px;
+    }
+  }
+
+  &__sale {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    & input {
+      border: none;
+      background-color: rgba(0, 0, 0, 0.05);
+      margin: 5px;
+      padding: 10px;
+    }
+  }
+
+  &__name {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    & input {
+      width: 230px;
+      border: none;
+      background-color: rgba(0, 0, 0, 0.05);
+      margin: 5px;
+      padding: 10px;
+    }
+  }
+
+  &__storage {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    & input {
+      width: 130px;
       border: none;
       background-color: rgba(0, 0, 0, 0.05);
       margin: 5px;

@@ -1,24 +1,65 @@
 import React from 'react';
-import plecakMock from '../../../Assets/images/plecak_mock.jpg';
-import { FiShoppingCart } from 'react-icons/fi';
+import { FiPercent, FiShoppingCart, FiTag } from 'react-icons/fi';
 import Magnifier from 'react-magnifier';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { addToCart } from '../../../Actions/ActionCreators/Cart';
 
-const ProductsViewProduct = ({ viewType }) => {
+const ProductsViewProduct = ({ product, viewType }) => {
+  const dispatch = useDispatch();
+
   return (
     <div className={`products-view__product product product--${viewType}`}>
-      <Magnifier src={plecakMock} className='product__image' />
+      {product.percentageSale !== null && (
+        <div className='product__sale'>{`-${product.percentageSale}%`}</div>
+      )}
+      {new Date().toISOString().substr(0, 7) ===
+        product.created.substr(0, 7) && (
+        <div className='product__the-new'>
+          <FiTag /> NEW
+        </div>
+      )}
+      <Magnifier src={product.image} className='product__image' />
       <div className='product__info'>
-        <Link to='/products/12345'>
-          <h3 className='product__name'>Nazwa Produktu</h3>
+        <Link to={`/products/${product.id}`}>
+          <h3 className='product__name'>{product.name}</h3>
         </Link>
-        <h5 className='product__price'>290.99PLN</h5>
-        <p className='product__desc'>
-          Cupidatat eu exercitation anim ex nulla duis aliqua minim nisi aliquip
-          excepteur enim.Laboris commodo commodo exercitation et elit.
-        </p>
+        <h5 className='product__price'>
+          {product.percentageSale ? (
+            <>
+              <span className='product__price-after-sale'>
+                {`${(
+                  product.minimalOrderedAmount *
+                  (product.grossPrice -
+                    product.grossPrice * (product.percentageSale / 100))
+                ).toFixed(2)} PLN`}
+              </span>
+              <span className='product__price-before-sale'>
+                {`${product.minimalOrderedAmount * product.grossPrice} PLN`}
+              </span>
+            </>
+          ) : (
+            <>{`${(product.minimalOrderedAmount * product.grossPrice).toFixed(
+              2
+            )} PLN`}</>
+          )}
+          {product.minimalOrderedAmount > 1 && (
+            <span className='product__price-after-sale'>
+              Za {product.minimalOrderedAmount} SZT
+            </span>
+          )}
+        </h5>
+        <p className='product__desc'>{`${product.description.substr(
+          0,
+          150
+        )}...`}</p>
       </div>
-      <button className='product__add-to-cart'>
+      <button
+        onClick={() =>
+          dispatch(addToCart(product, product.minimalOrderedAmount))
+        }
+        className='product__add-to-cart'
+      >
         Dodaj do koszyka <FiShoppingCart />
       </button>
     </div>

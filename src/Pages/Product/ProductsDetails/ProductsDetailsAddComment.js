@@ -1,22 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactStars from 'react-rating-stars-component';
 import { BsStar, BsStarHalf, BsStarFill } from 'react-icons/bs';
+import StarRatingComponent from 'react-star-rating-component';
 
 const ProductsDetailsAddComment = () => {
+  const [selectedRating, setSelectedRating] = useState(0);
+
   return (
     <div className='comments-list__add-comment add-comment'>
       <div className='add-comment__heading'>
-        <ReactStars
-          count={5}
-          size={30}
-          value={0}
-          isHalf={true}
-          edit={false}
-          activeColor='#283b56'
-          color='#283b56'
-          emptyIcon={<BsStar />}
-          halfIcon={<BsStarHalf />}
-          filledIcon={<BsStarFill />}
+        <StarRatingComponent
+          name='addCommentRating'
+          value={selectedRating}
+          editing={true}
+          onStarClick={(nextValue, prevValue, name) =>
+            setSelectedRating(nextValue)
+          }
+          renderStarIcon={() => (
+            <BsStarFill style={{ paddingTop: 5, fontSize: '1.5rem' }} />
+          )}
+          renderStarIconHalf={() => <BsStarHalf />}
         />
         <input type='text' placeholder='Wprowadź tytuł oceny' />
       </div>

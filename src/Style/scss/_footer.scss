@@ -1,15 +1,18 @@
 .footer {
   padding-top: 100px;
-  padding-left: 30px;
-  padding-right: 30px;
   min-height: 250px;
   background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url('https://img.wallpapersafari.com/desktop/1920/1080/44/22/REgNxl.jpg');
   background-size: cover;
   width: 100%;
-  display: flex;
-  align-items: stretch;
-  flex-wrap: wrap;
+
+  &__container {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
 
   &__contact,
   &__shortcut,
@@ -107,6 +110,14 @@
   flex-wrap: nowrap;
   padding-left: 10px;
   padding-right: 10px;
+
+  & a {
+    color: $white-color;
+  }
+
+  & a:hover {
+    text-decoration: underline;
+  }
 
   &__title {
     color: $white-color;

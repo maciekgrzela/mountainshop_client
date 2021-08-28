@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Payment = () => {
+const PaymentCheckout = () => {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
@@ -14,10 +14,14 @@ const Payment = () => {
       );
     }
   }, []);
-  return message ? <Message message={message} /> : <PaymentForm />;
+  return message ? (
+    <MessageCheckout message={message} />
+  ) : (
+    <PaymentFormCheckout />
+  );
 };
 
-const Message = ({ message }) => {
+const MessageCheckout = ({ message }) => {
   return (
     <section>
       <p>{message}</p>
@@ -25,7 +29,7 @@ const Message = ({ message }) => {
   );
 };
 
-const PaymentForm = () => {
+const PaymentFormCheckout = () => {
   return (
     <section>
       <div className='product'>
@@ -48,4 +52,4 @@ const PaymentForm = () => {
   );
 };
 
-export default Payment;
+export default PaymentFormCheckout;

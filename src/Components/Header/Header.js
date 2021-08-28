@@ -9,10 +9,12 @@ const Header = () => {
 
   return (
     <header className='page-wrapper__header header'>
-      <Topbar skipped={interfaceState.welcomeSkipped} />
+      <Topbar />
       {interfaceState.welcomeSkipped === false && <Navbar />}
       {interfaceState.welcomeSkipped === true &&
-        interfaceState.singleProductScrolling && <ProductsDetailsBar />}
+        interfaceState.singleProductScrolling === true && (
+          <ProductsDetailsBar />
+        )}
     </header>
   );
 };

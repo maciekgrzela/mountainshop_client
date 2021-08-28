@@ -1,30 +1,45 @@
 export const initialProductsState = {
-  products: [
-    {
-      name: 'Produkt',
-      price: 9.9,
-      description: 'Opis jakiegoś super produktu',
-    },
-  ],
+  products: [],
+  displayedProducts: [],
+  filterForDisplayedProducts: {
+    pageSize: 5,
+    pageNumber: 1,
+  },
+  displayedProduct: null,
+  displayedComments: null,
+  displayedProperties: null,
+  appendProductsToList: false,
+  totalPages: null,
+  totalItems: null,
+};
+
+export const initialProducersState = {
+  producers: [],
+  filterForProducers: {},
 };
 
 export const initialUserState = {
   isLogged: false,
-  user: [],
+  user: {},
+  lastOrder: null,
 };
 
 export const initialInterfaceState = {
   welcomeSkipped: false,
   productsViewType: 'grid',
   singleProductScrolling: null,
+  redirectToOrderAfterLogin: false,
 };
 
 export const initialCategoriesState = {
   categories: [],
+  selectedCategory: null,
 };
 
 export const initialCartState = {
   cart: [],
   paymentMethods: [],
+  selectedPaymentMethod: null,
   deliveryMethods: [],
+  selectedDeliveryMethod: null,
 };
