@@ -44,7 +44,7 @@ const ProductsViewProduct = ({ product, viewType }) => {
             )} PLN`}</>
           )}
           {product.minimalOrderedAmount > 1 && (
-            <span className='product__price-after-sale'>
+            <span className='product__minimal-amount'>
               Za {product.minimalOrderedAmount} SZT
             </span>
           )}

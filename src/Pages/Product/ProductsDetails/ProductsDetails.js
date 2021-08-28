@@ -9,6 +9,7 @@ import {
   removeDisplayedProduct,
   fetchCommentsForDisplayedProductSlice,
   fetchPropertiesForDisplayedProductSlice,
+  fetchProductsSlice,
 } from '../../../Actions/ActionCreators/Products';
 import { setSingleProductScrolling } from '../../../Actions/ActionCreators/Interface';
 
@@ -29,6 +30,10 @@ const ProductsDetails = () => {
 
   useEffect(() => {
     window.addEventListener('scroll', onScroll);
+    if (products.displayedProducts.length === 0) {
+      console.log('LENGTH ZERO');
+      dispatch(fetchProductsSlice(false));
+    }
     dispatch(setDisplayedProductSlice(id));
     dispatch(fetchPropertiesForDisplayedProductSlice(id));
     dispatch(fetchCommentsForDisplayedProductSlice(id));
@@ -42,6 +47,7 @@ const ProductsDetails = () => {
   return (
     <main className='products-details'>
       {products.displayedProduct !== null &&
+        products.displayedProducts !== null &&
         products.displayedProperties !== null &&
         products.displayedComments !== null && (
           <>

@@ -1,11 +1,14 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setSelectedCategory } from '../../../Actions/ActionCreators/Categories';
 import { setProductsFilterProperty } from '../../../Actions/ActionCreators/Products';
 
 const ProductsCategoriesListItem = ({ category, clearSelectedCategory }) => {
   const dispatch = useDispatch();
+  const selectedCategory = useSelector(
+    (state) => state.categories.selectedCategory
+  );
 
   const handleSetSelectedCategory = () => {
     dispatch(setSelectedCategory(category));
@@ -20,7 +23,9 @@ const ProductsCategoriesListItem = ({ category, clearSelectedCategory }) => {
   if (clearSelectedCategory) {
     return (
       <li
-        className='categories-list__item'
+        className={`categories-list__item ${
+          selectedCategory === null ? 'categories-list__item--selected' : ''
+        }`}
         onClick={handleClearSelectedCategory}
       >
         <span>Wszystkie kategorie</span>
@@ -28,8 +33,23 @@ const ProductsCategoriesListItem = ({ category, clearSelectedCategory }) => {
     );
   } else {
     return (
-      <li className='categories-list__item' onClick={handleSetSelectedCategory}>
-        <span>{category.name}</span>
+      <li
+        className={`categories-list__item ${
+          selectedCategory !== null && selectedCategory.id === category.id
+            ? 'categories-list__item--selected'
+            : ''
+        }`}
+        onClick={handleSetSelectedCategory}
+      >
+        <span
+          className={`${
+            selectedCategory !== null && selectedCategory.id === category.id
+              ? 'text-weight-800'
+              : ''
+          }`}
+        >
+          {category.name}
+        </span>
       </li>
     );
   }

@@ -1,15 +1,28 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCategoriesSlice } from '../../Actions/ActionCreators/Categories';
+import { Link } from 'react-router-dom';
+import { skipWelcome } from '../../Actions/ActionCreators/Interface';
 
 const Navbar = () => {
-  const interfaceState = useSelector((state) => state.interface);
+  const dispatch = useDispatch();
+  const categories = useSelector((state) => state.categories.categories);
+
+  useEffect(() => {
+    dispatch(fetchCategoriesSlice);
+  }, []);
 
   return (
     <nav className='header__navbar navbar'>
       <ul className='navbar__categories'>
-        {[1, 2, 3, 4, 5, 6, 7].map((item) => (
+        {categories.map((item) => (
           <li key={item} className='navbar__category'>
-            Kategoria {item}
+            <Link
+              onClick={() => dispatch(skipWelcome())}
+              to={`/products?category=${item.id}`}
+            >
+              {item.name}
+            </Link>
           </li>
         ))}
       </ul>

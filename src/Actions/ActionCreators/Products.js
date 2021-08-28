@@ -13,6 +13,9 @@ import {
   DISLIKE_DISPLAYED_COMMENT,
   REMOVE_LIKE,
   REMOVE_DISLIKE,
+  SET_SEARCH_PRODUCTS_FILTER,
+  SET_SEARCH_PRODUCTS,
+  CLEAR_SEARCH_PRODUCTS,
 } from '../ActionTypes/Products';
 import qs from 'query-string';
 
@@ -152,6 +155,44 @@ export const setProductsFilterProperties = (properties) => ({
     properties: { ...properties, pageNumber: 1 },
   },
 });
+
+export const setSearchFilter = (value) => ({
+  type: SET_SEARCH_PRODUCTS_FILTER,
+  payload: {
+    value: value,
+  },
+});
+
+const setSearchProducts = (products) => ({
+  type: SET_SEARCH_PRODUCTS,
+  payload: {
+    products: products,
+  },
+});
+
+export const clearSearchProducts = () => ({
+  type: CLEAR_SEARCH_PRODUCTS,
+});
+
+export const fetchSearchProducts = () => async (dispatch, getState) => {
+  try {
+    const currentState = getState();
+    let filter = {
+      nameFilter: currentState.products.filterForSearchedProducts,
+      pageSize: 5,
+    };
+    let queryString = qs.stringify(filter, {
+      skipNull: true,
+      encode: false,
+    });
+    const products = await httpClient.products.list(queryString);
+    if (products.status === 200) {
+      return dispatch(setSearchProducts(products.data));
+    }
+  } catch (e) {
+    console.log(e);
+  }
+};
 
 export const setProductsFilterProperty = (name, value) => {
   if (name === 'pageNumber') {
