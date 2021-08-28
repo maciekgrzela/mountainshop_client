@@ -1,6 +1,8 @@
 export const initialProductsState = {
   products: [],
   displayedProducts: [],
+  searchedProducts: [],
+  filterForSearchedProducts: null,
   filterForDisplayedProducts: {
     pageSize: 5,
     pageNumber: 1,

@@ -11,6 +11,9 @@ import {
   DISLIKE_DISPLAYED_COMMENT,
   REMOVE_LIKE,
   REMOVE_DISLIKE,
+  SET_SEARCH_PRODUCTS_FILTER,
+  SET_SEARCH_PRODUCTS,
+  CLEAR_SEARCH_PRODUCTS,
 } from '../Actions/ActionTypes/Products';
 
 import { initialProductsState } from '../State/state';
@@ -127,6 +130,22 @@ export const productsReducer = (state = initialProductsState, action) => {
     case DELETE_PRODUCT:
       return {
         products: state.products.slice(0, -1),
+      };
+    case SET_SEARCH_PRODUCTS_FILTER:
+      return {
+        ...state,
+        filterForSearchedProducts: action.payload.value,
+      };
+    case SET_SEARCH_PRODUCTS:
+      return {
+        ...state,
+        searchedProducts: action.payload.products,
+      };
+    case CLEAR_SEARCH_PRODUCTS:
+      return {
+        ...state,
+        searchedProducts: [],
+        filterForSearchedProducts: null,
       };
     default:
       return state;
