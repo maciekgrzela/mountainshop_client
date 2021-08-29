@@ -23,7 +23,7 @@ const contactFormValidator = combineValidators({
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
     )({ message: 'Pole e-mail ma nieprawidłową strukturę' })
   )('Pole e-mail ma nieprawidłową strukturę'),
-  body: isRequired({
+  content: isRequired({
     message: 'Pole treść nie może być puste',
   }),
 });
@@ -41,7 +41,7 @@ const Contact = () => {
       form.resetFieldState('firstName');
       form.resetFieldState('lastName');
       form.resetFieldState('email');
-      form.resetFieldState('body');
+      form.resetFieldState('content');
       form.reset();
     } catch (e) {
       console.log(e);
@@ -98,8 +98,8 @@ const Contact = () => {
                 component={TextInput}
               />
               <Field
-                key='body'
-                name='body'
+                key='content'
+                name='content'
                 placeholder='Wprowadź swoje imię'
                 className='contact__text-area'
                 type='text'
@@ -118,7 +118,7 @@ const Contact = () => {
                   form.resetFieldState('firstName');
                   form.resetFieldState('lastName');
                   form.resetFieldState('email');
-                  form.resetFieldState('body');
+                  form.resetFieldState('content');
                   form.reset();
                 }}
                 className='contact__clear-form'
