@@ -2528,6 +2528,7 @@ img {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  font-weight: 500;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -2549,6 +2550,44 @@ img {
       -ms-flex-positive: 1;
           flex-grow: 1;
   height: 2px;
+}
+
+.account-page__actions {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.account-page__action {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 200px;
+  height: 100px;
+  margin: 10px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.account-page__action svg {
+  font-size: 2rem;
 }
 
 .cart-page {
@@ -3239,6 +3278,31 @@ img {
           align-items: center;
 }
 
+.order-success-page__payment-error {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  width: 100%;
+  height: 50px;
+  background-color: #bd2130;
+  color: #ffffff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 40px 0;
+  padding: 30px 0;
+  font-size: 1.5rem;
+}
+
+.order-success-page__payment-error svg {
+  margin: 0 5px;
+}
+
 .order-success-page__title {
   font-size: 2rem;
   font-weight: 400;
@@ -3493,6 +3557,26 @@ img {
 
 .user-not-signed-in-page__login-fb-btn svg, .user-not-signed-in-page__login-g-btn svg {
   font-size: 1.5rem;
+}
+
+.checkout-page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.checkout-page__icon {
+  font-size: 5rem;
 }
 
 .statute-page,

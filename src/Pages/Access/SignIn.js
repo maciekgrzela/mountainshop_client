@@ -13,7 +13,7 @@ const SignIn = () => {
 
   const userSignIn = (data) => {
     dispatch(userSignInSlice(data.email, data.password));
-    if (location.state.redirectToOrder) {
+    if (location.state?.redirectToOrder) {
       dispatch(redirectToOrderAfterLogin());
     }
   };

@@ -1,6 +1,30 @@
 import httpClient from '../../API/httpClient';
-import { SIGN_IN, SET_LAST_USERS_ORDER } from '../ActionTypes/User';
-import { history } from '../../App';
+import { SIGN_IN, SIGN_OUT, SET_LAST_USERS_ORDER } from '../ActionTypes/User';
+
+export const userSignOut = () => (dispatch, getState) => {
+  dispatch(signOut());
+  window.localStorage.removeItem('jwt');
+};
+
+const signOut = () => ({
+  type: SIGN_OUT,
+});
+
+export const signInCurrentUser = () => async (dispatch, getState) => {
+  try {
+    const token = window.localStorage.getItem('jwt');
+    if (token) {
+      const user = await httpClient.auth.current();
+      if (user.status === 200) {
+        let data = user.data;
+        data.token = token;
+        dispatch(userSignIn(data));
+      }
+    }
+  } catch (e) {
+    console.log(e);
+  }
+};
 
 export const userSignInSlice =
   (email, password) => async (dispatch, getState) => {
@@ -30,7 +54,6 @@ export const fetchLastUsersOrder = () => async (dispatch, getState) => {
     );
     if (order.status === 200) {
       dispatch(setLastUsersOrder(order.data));
-      console.log('ORDER DATA', order.data);
     }
   } catch (e) {
     console.log(e);

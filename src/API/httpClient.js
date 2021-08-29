@@ -70,6 +70,7 @@ const producers = {
 };
 
 const comments = {
+  add: (body) => requests.post('/comments', body),
   like: (id) => requests.patch(`/comments/${id}/like`),
   removeLike: (id) => requests.patch(`/comments/${id}/like/cancel`),
   dislike: (id) => requests.patch(`/comments/${id}/dislike`),
@@ -86,6 +87,7 @@ const deliveryMethods = {
 
 const auth = {
   login: (body) => requests.post('/auth/login', body),
+  current: () => requests.get('/auth/login/current'),
 };
 
 const orders = {

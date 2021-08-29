@@ -55,7 +55,7 @@ const Main = () => {
         <Route path='/order/details'>
           <OrderDetails />
         </Route>
-        <Route path='/order/success'>
+        <Route path='/order/created'>
           <OrderDetailsSuccess />
         </Route>
         <Route path='/checkout/redirect' children={<CheckoutRedirect />} />

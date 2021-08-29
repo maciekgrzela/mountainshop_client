@@ -6,6 +6,7 @@
 
   &__title {
     display: flex;
+    font-weight: 500;
     align-items: center;
     margin-top: 30px;
     flex-basis: 100%;
@@ -20,5 +21,27 @@
     margin-right: 20px;
     flex-grow: 1;
     height: 2px;
+  }
+
+  &__actions {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__action {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 100px;
+    margin: 10px;
+    background-color: rgba(0, 0, 0, 0.1);
+
+    & svg {
+      font-size: 2rem;
+    }
   }
 }
