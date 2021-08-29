@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form as FinalForm, Field } from 'react-final-form';
 import {
   combineValidators,
@@ -8,6 +8,7 @@ import {
 } from 'revalidate';
 import TextInput from '../Common/TextInput';
 import TextArea from '../Common/TextArea';
+import httpClient from '../../API/httpClient';
 
 const contactFormValidator = combineValidators({
   firstName: isRequired({
@@ -28,8 +29,27 @@ const contactFormValidator = combineValidators({
 });
 
 const Contact = () => {
-  const handleSubmitContactForm = async (values) => {
-    console.log(values);
+  const [formSendInfo, setFormSendInfo] = useState(null);
+
+  const handleSubmitContactForm = async (values, form) => {
+    try {
+      await httpClient.contactRequests.send(values);
+      setFormSendInfo({
+        status: 'ok',
+        message: 'Wiadomość została wysłana poprawnie',
+      });
+      form.resetFieldState('firstName');
+      form.resetFieldState('lastName');
+      form.resetFieldState('email');
+      form.resetFieldState('body');
+      form.reset();
+    } catch (e) {
+      console.log(e);
+      setFormSendInfo({
+        status: 'error',
+        message: 'Wystąpił błąd podczas wysyłania wiadomości',
+      });
+    }
   };
 
   return (
@@ -37,47 +57,72 @@ const Contact = () => {
       <h4 className='contact__title'>Kontakt z nami</h4>
       <hr className='contact__line' />
       <div className='contact__container'>
+        {formSendInfo !== null && (
+          <div
+            className={`contact__info ${
+              formSendInfo.status === 'error'
+                ? 'contact__info-error'
+                : 'contact__info--success'
+            }`}
+          >
+            {formSendInfo.message}
+          </div>
+        )}
         <FinalForm
           validate={contactFormValidator}
           onSubmit={handleSubmitContactForm}
-          render={({ handleSubmit, invalid, pristine, submitting }) => (
+          render={({ handleSubmit, invalid, pristine, submitting, form }) => (
             <form className='contact__form' onSubmit={handleSubmit}>
               <Field
+                key='firstName'
                 name='firstName'
                 className='contact__text-input'
                 placeholder='Wprowadź swoje imię'
                 type='text'
-                required
                 component={TextInput}
               />
               <Field
+                key='lastName'
                 name='lastName'
                 placeholder='Wprowadź swoje nazwisko'
                 className='contact__text-input'
                 type='text'
                 component={TextInput}
-                required
               />
               <Field
+                key='email'
                 name='email'
                 placeholder='Wprowadź adres email'
                 className='contact__text-input'
                 type='text'
                 component={TextInput}
-                required
               />
               <Field
+                key='body'
                 name='body'
                 placeholder='Wprowadź swoje imię'
                 className='contact__text-area'
                 type='text'
                 component={TextArea}
-                required
               />
-              <button type='submit' className='contact__send-form'>
+              <button
+                type='submit'
+                disabled={invalid}
+                className='contact__send-form'
+              >
                 Wyślij
               </button>
-              <button type='reset' className='contact__clear-form'>
+              <button
+                type='reset'
+                onClick={() => {
+                  form.resetFieldState('firstName');
+                  form.resetFieldState('lastName');
+                  form.resetFieldState('email');
+                  form.resetFieldState('body');
+                  form.reset();
+                }}
+                className='contact__clear-form'
+              >
                 Wyczyść
               </button>
             </form>

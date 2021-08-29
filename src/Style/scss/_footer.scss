@@ -45,6 +45,25 @@
     margin-bottom: 15px;
   }
 
+  &__info {
+    width: 100%;
+    height: 30px;
+    color: $white-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: 400;
+
+    &--error {
+      background-color: $error-color;
+    }
+
+    &--success {
+      background-color: $success-color;
+    }
+  }
+
   &__line {
     margin-right: 30px;
     margin-bottom: 30px;
@@ -64,7 +83,7 @@
   &__text-input,
   &__text-area {
     display: flex;
-    flex-basis: 90%;
+    flex-basis: 100%;
     margin: 10px 0;
     padding: 10px 5px;
     background-color: rgba(0, 0, 0, 0.3);
@@ -101,6 +120,13 @@
     margin-right: 10px;
     padding: 10px 15px;
     border: 2px solid $white-color;
+
+    &:disabled {
+      cursor: auto;
+      background-color: rgba(0, 0, 0, 0.3);
+      border: 2px solid rgba(0, 0, 0, 0.3);
+      color: #000;
+    }
   }
 }
 

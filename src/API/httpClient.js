@@ -94,6 +94,10 @@ const orders = {
   setPaid: (id) => requests.patch(`/orders/${id}/paid`),
 };
 
+const contactRequests = {
+  send: (body) => requests.post('/contact/requests/send', body),
+};
+
 export default {
   auth,
   products,
@@ -103,4 +107,5 @@ export default {
   paymentMethods,
   deliveryMethods,
   orders,
+  contactRequests,
 };
