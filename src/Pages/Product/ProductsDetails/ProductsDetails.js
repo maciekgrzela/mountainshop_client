@@ -31,7 +31,6 @@ const ProductsDetails = () => {
   useEffect(() => {
     window.addEventListener('scroll', onScroll);
     if (products.displayedProducts.length === 0) {
-      console.log('LENGTH ZERO');
       dispatch(fetchProductsSlice(false));
     }
     dispatch(setDisplayedProductSlice(id));
@@ -42,7 +41,7 @@ const ProductsDetails = () => {
       dispatch(removeDisplayedProduct);
       window.removeEventListener('scroll', onScroll);
     };
-  }, []);
+  }, [id]);
 
   return (
     <main className='products-details'>

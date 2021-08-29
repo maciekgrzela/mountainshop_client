@@ -64,7 +64,7 @@ const ProductsDetailsImages = ({ products, mainId }) => {
             .filter((p) => p.id !== mainId)
             .map((product) => (
               <div className='tooltip'>
-                <Link to={`/products/${product.id}`}>
+                <Link to={`/products/${product.id}`} replace={true}>
                   <img
                     src={product.image}
                     alt={product.name}

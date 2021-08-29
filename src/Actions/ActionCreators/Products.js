@@ -143,6 +143,22 @@ const removeDislike = (id) => ({
   },
 });
 
+export const addProductsComment = (body) => async (dispatch, getState) => {
+  try {
+    const currentState = getState();
+    const commentAdded = await httpClient.comments.add(body);
+    if (commentAdded.status === 204) {
+      return dispatch(
+        fetchCommentsForDisplayedProductSlice(
+          currentState.products.displayedProduct.id
+        )
+      );
+    }
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 export const removeDisplayedProduct = () => {
   setPropertiesForDisplayedProduct(null);
   setCommentsForDisplayedProduct(null);
