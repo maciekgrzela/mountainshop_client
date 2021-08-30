@@ -87,6 +87,8 @@ const deliveryMethods = {
 
 const auth = {
   login: (body) => requests.post('/auth/login', body),
+  loginFacebook: (body) => requests.post('/auth/register/facebook', body),
+  loginGoogle: (body) => requests.post('/auth/register/google', body),
   current: () => requests.get('/auth/login/current'),
 };
 

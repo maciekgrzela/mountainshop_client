@@ -39,6 +39,31 @@ export const userSignInSlice =
     }
   };
 
+export const userFacebookSignIn = (body) => async (dispatch, getState) => {
+  try {
+    const user = await httpClient.auth.loginFacebook(body);
+    if (user.status === 200) {
+      dispatch(userSignIn(user.data));
+      window.localStorage.setItem('jwt', user.data.token);
+    }
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const userGoogleSignIn = (body) => async (dispatch, getState) => {
+  try {
+    const user = await httpClient.auth.loginGoogle(body);
+    if (user.status === 200) {
+      console.log(user.data);
+      dispatch(userSignIn(user.data));
+      window.localStorage.setItem('jwt', user.data.token);
+    }
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 const userSignIn = (data) => ({
   type: SIGN_IN,
   payload: {

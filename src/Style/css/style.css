@@ -1469,6 +1469,9 @@ img {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .product--grid .product__sale {
@@ -1574,6 +1577,9 @@ img {
   background-color: rgba(0, 0, 0, 0.05);
   color: #012454;
   cursor: pointer;
+  -ms-flex-item-align: stretch;
+      -ms-grid-row-align: stretch;
+      align-self: stretch;
 }
 
 .product--list {
@@ -3455,6 +3461,13 @@ img {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -3468,7 +3481,8 @@ img {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin: 100px 0;
+  margin-top: 100px;
+  margin-bottom: 20px;
   width: 400px;
   background-color: rgba(0, 0, 0, 0.05);
 }

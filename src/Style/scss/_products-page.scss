@@ -193,6 +193,7 @@
     padding-left: 5px;
     padding-right: 5px;
     flex-direction: column;
+    align-items: center;
 
     #{$this}__sale {
       background-color: $secondary-color;
@@ -284,6 +285,7 @@
       background-color: rgba(0, 0, 0, 0.05);
       color: $primary-color;
       cursor: pointer;
+      align-self: stretch;
     }
   }
 
