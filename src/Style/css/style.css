@@ -1469,6 +1469,9 @@ img {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .product--grid .product__sale {
@@ -1574,6 +1577,9 @@ img {
   background-color: rgba(0, 0, 0, 0.05);
   color: #012454;
   cursor: pointer;
+  -ms-flex-item-align: stretch;
+      -ms-grid-row-align: stretch;
+      align-self: stretch;
 }
 
 .product--list {
@@ -3419,7 +3425,11 @@ img {
           flex-direction: row;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  margin: 20px 40px;
+  height: calc(100vh - 110px);
+  background: url("https://res.cloudinary.com/mountainshop/image/upload/v1630331334/login_banner_batkgf.png");
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-position-y: bottom;
 }
 
 .sign-in-page__title {
@@ -3450,14 +3460,24 @@ img {
 }
 
 .sign-in-page__form-container {
+  margin-left: 100px;
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.sign-in-page__form-container > div > div > h2 {
+  font-weight: 400;
+  margin-left: 10px;
 }
 
 .sign-in-form {
@@ -3468,9 +3488,11 @@ img {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin: 100px 0;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 20px;
   width: 400px;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(0, 0, 0, 0.02);
 }
 
 .sign-in-form .text-input {
@@ -3483,7 +3505,7 @@ img {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin: 15px 0;
+  margin: 5px 0;
 }
 
 .sign-in-form .text-input__top-label {
@@ -3499,18 +3521,37 @@ img {
   border: 0;
 }
 
+.sign-in-form .text-input__label {
+  margin-left: 20px;
+}
+
 .sign-in-form .text-input:nth-child(1) {
   margin-top: 40px;
 }
 
-.sign-in-form__send {
+.sign-in-form__send, .sign-in-form__facebook, .sign-in-form__google {
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   margin-left: 15px;
   margin-right: 15px;
   padding: 10px 20px;
+}
+
+.sign-in-form__send {
+  margin-top: 50px;
+  margin-bottom: 5px;
+}
+
+.sign-in-form__send--disabled {
+  background-color: #acacac;
+}
+
+.sign-in-form__facebook, .sign-in-form__google {
+  background-color: transparent;
+  border: 2px solid #012454;
+  color: #012454;
 }
 
 .user-not-signed-in-page {
@@ -3577,6 +3618,242 @@ img {
 
 .checkout-page__icon {
   font-size: 5rem;
+}
+
+.update-data-page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 20px 40px;
+}
+
+.update-data-page__title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 30px;
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  font-size: 2rem;
+}
+
+.update-data-page__title::after {
+  content: '';
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #dc3545;
+  margin-left: 10px;
+  margin-right: 20px;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  height: 2px;
+}
+
+.users-orders {
+  padding: 20px;
+}
+
+.users-orders__table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+  vertical-align: top;
+  border-color: #dee2e6;
+  caption-side: bottom;
+  border-collapse: collapse;
+}
+
+.users-orders__table span {
+  text-decoration: underline;
+}
+
+.users-orders__table thead {
+  vertical-align: middle;
+}
+
+.users-orders__table tbody {
+  vertical-align: middle;
+}
+
+.users-orders__table td {
+  text-align: center;
+}
+
+.users-orders__table tbody,
+.users-orders__table td,
+.users-orders__table tfoot,
+.users-orders__table th,
+.users-orders__table thead,
+.users-orders__table tr {
+  border: 0 solid;
+  border-color: inherit;
+}
+
+.users-orders__table > :not(caption) > * {
+  border-width: 1px 0;
+  padding: 0.5rem;
+}
+
+.users-orders__table > :not(caption) > * > * {
+  border-width: 0 1px;
+}
+
+.users-orders__table > thead > tr > th {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.account-orders-delivery-address,
+.account-orders-invoice-address {
+  list-style-type: none;
+}
+
+.account-orders-products {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  max-height: 350px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.account-orders-products__product {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 20px 0;
+}
+
+.account-orders-products__image {
+  width: 50px;
+  padding: 10px;
+  border: 2px solid rgba(0, 0, 0, 0.02);
+}
+
+.account-orders-products__name {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+.account-orders-products__price {
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.4);
+  margin: 5px 0;
+}
+
+.account-orders-products__description {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  margin-left: 5px;
+}
+
+.account-orders-products__amount {
+  margin: 5px 0;
+}
+
+.modal {
+  position: fixed;
+  z-index: 1000000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.7);
+  display: none;
+}
+
+.modal--open {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal__window {
+  width: 500px;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.modal__title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  margin: 20px 30px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal__content {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  margin: 10px 30px;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+.modal__actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  height: 50px;
+  margin: 10px 30px;
 }
 
 .statute-page,

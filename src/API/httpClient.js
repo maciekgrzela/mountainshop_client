@@ -87,13 +87,18 @@ const deliveryMethods = {
 
 const auth = {
   login: (body) => requests.post('/auth/login', body),
+  loginFacebook: (body) => requests.post('/auth/register/facebook', body),
+  loginGoogle: (body) => requests.post('/auth/register/google', body),
   current: () => requests.get('/auth/login/current'),
+  register: (body) => requests.post('/auth/register/customer', body),
+  updateData: (body) => requests.put('/auth/update/data', body),
 };
 
 const orders = {
   create: (body) => requests.post('/orders', body),
   getLastForUser: (id) => requests.get(`/orders/last/for/user/${id}`),
   setPaid: (id) => requests.patch(`/orders/${id}/paid`),
+  getForUser: (id) => requests.get(`/orders/user/${id}`),
 };
 
 const contactRequests = {

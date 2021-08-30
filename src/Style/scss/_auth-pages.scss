@@ -2,7 +2,11 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: 20px 40px;
+  height: calc(100vh - 110px);
+  background: url('https://res.cloudinary.com/mountainshop/image/upload/v1630331334/login_banner_batkgf.png');
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-position-y: bottom;
 
   &__title {
     display: flex;
@@ -23,24 +27,33 @@
   }
 
   &__form-container {
+    margin-left: 100px;
     flex-basis: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+
+    & > div > div > h2 {
+      font-weight: 400;
+      margin-left: 10px;
+    }
   }
 }
 
 .sign-in-form {
   display: flex;
   flex-direction: column;
-  margin: 100px 0;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 20px;
   width: 400px;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(0, 0, 0, 0.02);
 
   & .text-input {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 15px 0;
+    margin: 5px 0;
 
     &__top-label {
       flex-basis: 30%;
@@ -52,19 +65,41 @@
       background-color: rgba(0, 0, 0, 0.1);
       border: 0;
     }
+
+    &__label {
+      margin-left: 20px;
+    }
   }
 
   & .text-input:nth-child(1) {
     margin-top: 40px;
   }
 
-  &__send {
+  &__send,
+  &__facebook,
+  &__google {
     flex-basis: 100%;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     margin-left: 15px;
     margin-right: 15px;
     padding: 10px 20px;
+  }
+
+  &__send {
+    margin-top: 50px;
+    margin-bottom: 5px;
+
+    &--disabled {
+      background-color: #acacac;
+    }
+  }
+
+  &__facebook,
+  &__google {
+    background-color: transparent;
+    border: 2px solid $primary-color;
+    color: $primary-color;
   }
 }
 
@@ -111,5 +146,133 @@
 
   &__icon {
     font-size: 5rem;
+  }
+}
+
+.update-data-page {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px 40px;
+
+  &__title {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+    flex-basis: 100%;
+    font-size: 2rem;
+  }
+
+  &__title::after {
+    content: '';
+    display: flex;
+    background-color: $secondary-color;
+    margin-left: 10px;
+    margin-right: 20px;
+    flex-grow: 1;
+    height: 2px;
+  }
+}
+
+.users-orders {
+  padding: 20px;
+
+  &__table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    vertical-align: top;
+    border-color: #dee2e6;
+    caption-side: bottom;
+    border-collapse: collapse;
+
+    & span {
+      text-decoration: underline;
+    }
+
+    & thead {
+      vertical-align: middle;
+    }
+
+    & tbody {
+      vertical-align: middle;
+    }
+
+    & td {
+      text-align: center;
+    }
+
+    & tbody,
+    & td,
+    & tfoot,
+    & th,
+    & thead,
+    & tr {
+      border: 0 solid;
+      border-color: inherit;
+    }
+
+    & > :not(caption) > * {
+      border-width: 1px 0;
+      padding: 0.5rem;
+    }
+
+    & > :not(caption) > * > * {
+      border-width: 0 1px;
+    }
+
+    & > thead > tr > th {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+  }
+}
+
+.account-orders-delivery-address,
+.account-orders-invoice-address {
+  list-style-type: none;
+}
+
+.account-orders-products {
+  display: flex;
+  flex-direction: column;
+  max-height: 350px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  &__product {
+    display: flex;
+    margin: 20px 0;
+  }
+
+  &__image {
+    width: 50px;
+    padding: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+  }
+
+  &__name {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin: 0;
+  }
+
+  &__price {
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.05);
+    color: rgba(0, 0, 0, 0.4);
+    margin: 5px 0;
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 5px;
+  }
+
+  &__amount {
+    margin: 5px 0;
   }
 }

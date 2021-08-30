@@ -1,8 +1,10 @@
 import { SET_LAST_USERS_ORDER_PAID } from '../Actions/ActionTypes/Order';
 import {
   SET_LAST_USERS_ORDER,
+  SET_USERS_ORDERS,
   SIGN_IN,
   SIGN_OUT,
+  USER_UPDATE,
 } from '../Actions/ActionTypes/User';
 import { initialUserState } from '../State/state';
 
@@ -20,6 +22,11 @@ export const userReducer = (state = initialUserState, action) => {
         user: {},
         isLogged: false,
       };
+    case SET_USERS_ORDERS:
+      return {
+        ...state,
+        orders: action.payload.orders,
+      };
     case SET_LAST_USERS_ORDER:
       return {
         ...state,
@@ -31,6 +38,17 @@ export const userReducer = (state = initialUserState, action) => {
         lastOrder: {
           ...state.lastOrder,
           status: 'Paid',
+        },
+      };
+    case USER_UPDATE:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          firstName: action.payload.firstName,
+          lastName: action.payload.lastName,
+          email: action.payload.email,
+          phoneNumber: action.payload.phoneNumber,
         },
       };
     default:
