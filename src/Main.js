@@ -20,6 +20,7 @@ import ScrollToTop from './ScrollToTop';
 import OrderDetailsSuccess from './Pages/OrderDetails/OrderDetailsSuccess';
 import CheckoutRedirect from './Pages/Checkout/CheckoutRedirect';
 import UserNotSignedIn from './Pages/Access/UserNotSignedIn';
+import UpdateMyData from './Pages/Access/UpdateMyData';
 
 const Main = () => {
   const interfaceState = useSelector((state) => state.interface);
@@ -57,6 +58,9 @@ const Main = () => {
         </Route>
         <Route path='/order/created'>
           <OrderDetailsSuccess />
+        </Route>
+        <Route path='/update/data'>
+          <UpdateMyData />
         </Route>
         <Route path='/checkout/redirect' children={<CheckoutRedirect />} />
         <Route path='/sign/in'>

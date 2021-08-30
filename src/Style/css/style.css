@@ -3425,7 +3425,11 @@ img {
           flex-direction: row;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  margin: 20px 40px;
+  height: calc(100vh - 110px);
+  background: url("https://res.cloudinary.com/mountainshop/image/upload/v1630331334/login_banner_batkgf.png");
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-position-y: bottom;
 }
 
 .sign-in-page__title {
@@ -3456,21 +3460,24 @@ img {
 }
 
 .sign-in-page__form-container {
+  margin-left: 100px;
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+}
+
+.sign-in-page__form-container > div > div > h2 {
+  font-weight: 400;
+  margin-left: 10px;
 }
 
 .sign-in-form {
@@ -3481,10 +3488,11 @@ img {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin-top: 100px;
+  margin-left: 10px;
+  margin-right: 10px;
   margin-bottom: 20px;
   width: 400px;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(0, 0, 0, 0.02);
 }
 
 .sign-in-form .text-input {
@@ -3497,7 +3505,7 @@ img {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin: 15px 0;
+  margin: 5px 0;
 }
 
 .sign-in-form .text-input__top-label {
@@ -3513,18 +3521,37 @@ img {
   border: 0;
 }
 
+.sign-in-form .text-input__label {
+  margin-left: 20px;
+}
+
 .sign-in-form .text-input:nth-child(1) {
   margin-top: 40px;
 }
 
-.sign-in-form__send {
+.sign-in-form__send, .sign-in-form__facebook, .sign-in-form__google {
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   margin-left: 15px;
   margin-right: 15px;
   padding: 10px 20px;
+}
+
+.sign-in-form__send {
+  margin-top: 50px;
+  margin-bottom: 5px;
+}
+
+.sign-in-form__send--disabled {
+  background-color: #acacac;
+}
+
+.sign-in-form__facebook, .sign-in-form__google {
+  background-color: transparent;
+  border: 2px solid #012454;
+  color: #012454;
 }
 
 .user-not-signed-in-page {
@@ -3591,6 +3618,49 @@ img {
 
 .checkout-page__icon {
   font-size: 5rem;
+}
+
+.update-data-page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 20px 40px;
+}
+
+.update-data-page__title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 30px;
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  font-size: 2rem;
+}
+
+.update-data-page__title::after {
+  content: '';
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #dc3545;
+  margin-left: 10px;
+  margin-right: 20px;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  height: 2px;
 }
 
 .statute-page,

@@ -1,5 +1,10 @@
 import httpClient from '../../API/httpClient';
-import { SIGN_IN, SIGN_OUT, SET_LAST_USERS_ORDER } from '../ActionTypes/User';
+import {
+  SIGN_IN,
+  SIGN_OUT,
+  SET_LAST_USERS_ORDER,
+  USER_UPDATE,
+} from '../ActionTypes/User';
 
 export const userSignOut = () => (dispatch, getState) => {
   dispatch(signOut());
@@ -20,6 +25,18 @@ export const signInCurrentUser = () => async (dispatch, getState) => {
         data.token = token;
         dispatch(userSignIn(data));
       }
+    }
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const userSignUp = (body) => async (dispatch, getState) => {
+  try {
+    const userCreated = await httpClient.auth.register(body);
+    if (userCreated.status === 200) {
+      window.localStorage.setItem('jwt', userCreated.data.token);
+      return dispatch(signInCurrentUser());
     }
   } catch (e) {
     console.log(e);
@@ -63,6 +80,27 @@ export const userGoogleSignIn = (body) => async (dispatch, getState) => {
     console.log(e);
   }
 };
+
+export const userUpdateData = (body) => async (dispatch, getState) => {
+  try {
+    const userUpdated = await httpClient.auth.updateData(body);
+    if (userUpdated.status === 204) {
+      return dispatch(userUpdate(body));
+    }
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+const userUpdate = (data) => ({
+  type: USER_UPDATE,
+  payload: {
+    firstName: data.firstName,
+    lastName: data.lastName,
+    email: data.email,
+    phoneNumber: data.phoneNumber,
+  },
+});
 
 const userSignIn = (data) => ({
   type: SIGN_IN,

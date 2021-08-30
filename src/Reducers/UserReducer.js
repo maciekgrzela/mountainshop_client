@@ -3,6 +3,7 @@ import {
   SET_LAST_USERS_ORDER,
   SIGN_IN,
   SIGN_OUT,
+  USER_UPDATE,
 } from '../Actions/ActionTypes/User';
 import { initialUserState } from '../State/state';
 
@@ -31,6 +32,17 @@ export const userReducer = (state = initialUserState, action) => {
         lastOrder: {
           ...state.lastOrder,
           status: 'Paid',
+        },
+      };
+    case USER_UPDATE:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          firstName: action.payload.firstName,
+          lastName: action.payload.lastName,
+          email: action.payload.email,
+          phoneNumber: action.payload.phoneNumber,
         },
       };
     default:
