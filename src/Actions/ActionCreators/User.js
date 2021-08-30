@@ -4,6 +4,7 @@ import {
   SIGN_OUT,
   SET_LAST_USERS_ORDER,
   USER_UPDATE,
+  SET_USERS_ORDERS,
 } from '../ActionTypes/User';
 
 export const userSignOut = () => (dispatch, getState) => {
@@ -106,6 +107,27 @@ const userSignIn = (data) => ({
   type: SIGN_IN,
   payload: {
     user: data,
+  },
+});
+
+export const fetchUsersOrders = () => async (dispatch, getState) => {
+  try {
+    const currentState = getState();
+    const orders = await httpClient.orders.getForUser(
+      currentState.user.user.id
+    );
+    if (orders.status === 200) {
+      dispatch(setUsersOrders(orders.data));
+    }
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+const setUsersOrders = (data) => ({
+  type: SET_USERS_ORDERS,
+  payload: {
+    orders: data,
   },
 });
 

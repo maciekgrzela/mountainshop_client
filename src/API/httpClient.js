@@ -98,6 +98,7 @@ const orders = {
   create: (body) => requests.post('/orders', body),
   getLastForUser: (id) => requests.get(`/orders/last/for/user/${id}`),
   setPaid: (id) => requests.patch(`/orders/${id}/paid`),
+  getForUser: (id) => requests.get(`/orders/user/${id}`),
 };
 
 const contactRequests = {

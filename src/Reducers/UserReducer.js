@@ -1,6 +1,7 @@
 import { SET_LAST_USERS_ORDER_PAID } from '../Actions/ActionTypes/Order';
 import {
   SET_LAST_USERS_ORDER,
+  SET_USERS_ORDERS,
   SIGN_IN,
   SIGN_OUT,
   USER_UPDATE,
@@ -20,6 +21,11 @@ export const userReducer = (state = initialUserState, action) => {
         ...state,
         user: {},
         isLogged: false,
+      };
+    case SET_USERS_ORDERS:
+      return {
+        ...state,
+        orders: action.payload.orders,
       };
     case SET_LAST_USERS_ORDER:
       return {

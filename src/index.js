@@ -5,6 +5,13 @@ import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import { store } from './Store/store';
 import { BrowserRouter } from 'react-router-dom';
+import moment from 'moment/min/moment-with-locales';
+import Moment from 'react-moment';
+
+moment.locale('pl');
+
+Moment.globalMoment = moment;
+Moment.globalLocale = 'pl';
 
 ReactDOM.render(
   <React.StrictMode>

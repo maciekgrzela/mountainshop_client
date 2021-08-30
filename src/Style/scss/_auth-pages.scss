@@ -174,3 +174,105 @@
     height: 2px;
   }
 }
+
+.users-orders {
+  padding: 20px;
+
+  &__table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    vertical-align: top;
+    border-color: #dee2e6;
+    caption-side: bottom;
+    border-collapse: collapse;
+
+    & span {
+      text-decoration: underline;
+    }
+
+    & thead {
+      vertical-align: middle;
+    }
+
+    & tbody {
+      vertical-align: middle;
+    }
+
+    & td {
+      text-align: center;
+    }
+
+    & tbody,
+    & td,
+    & tfoot,
+    & th,
+    & thead,
+    & tr {
+      border: 0 solid;
+      border-color: inherit;
+    }
+
+    & > :not(caption) > * {
+      border-width: 1px 0;
+      padding: 0.5rem;
+    }
+
+    & > :not(caption) > * > * {
+      border-width: 0 1px;
+    }
+
+    & > thead > tr > th {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+  }
+}
+
+.account-orders-delivery-address,
+.account-orders-invoice-address {
+  list-style-type: none;
+}
+
+.account-orders-products {
+  display: flex;
+  flex-direction: column;
+  max-height: 350px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  &__product {
+    display: flex;
+    margin: 20px 0;
+  }
+
+  &__image {
+    width: 50px;
+    padding: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+  }
+
+  &__name {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin: 0;
+  }
+
+  &__price {
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.05);
+    color: rgba(0, 0, 0, 0.4);
+    margin: 5px 0;
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 5px;
+  }
+
+  &__amount {
+    margin: 5px 0;
+  }
+}

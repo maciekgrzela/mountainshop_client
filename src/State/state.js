@@ -24,6 +24,7 @@ export const initialUserState = {
   isLogged: false,
   user: {},
   lastOrder: null,
+  orders: [],
 };
 
 export const initialInterfaceState = {
