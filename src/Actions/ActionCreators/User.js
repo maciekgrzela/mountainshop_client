@@ -24,7 +24,7 @@ export const signInCurrentUser = () => async (dispatch, getState) => {
       if (user.status === 200) {
         let data = user.data;
         data.token = token;
-        dispatch(userSignIn(data));
+        dispatch(userSignInAction(data));
       }
     }
   } catch (e) {
@@ -44,18 +44,17 @@ export const userSignUp = (body) => async (dispatch, getState) => {
   }
 };
 
-export const userSignInSlice =
-  (email, password) => async (dispatch, getState) => {
-    try {
-      const user = await httpClient.auth.login({ email, password });
-      if (user.status === 200) {
-        dispatch(userSignIn(user.data));
-        window.localStorage.setItem('jwt', user.data.token);
-      }
-    } catch (e) {
-      console.log(e);
+export const userSignIn = (email, password) => async (dispatch, getState) => {
+  try {
+    const user = await httpClient.auth.login({ email, password });
+    if (user.status === 200) {
+      dispatch(userSignInAction(user.data));
+      window.localStorage.setItem('jwt', user.data.token);
     }
-  };
+  } catch (e) {
+    console.log(e);
+  }
+};
 
 export const userFacebookSignIn = (body) => async (dispatch, getState) => {
   try {
@@ -73,8 +72,7 @@ export const userGoogleSignIn = (body) => async (dispatch, getState) => {
   try {
     const user = await httpClient.auth.loginGoogle(body);
     if (user.status === 200) {
-      console.log(user.data);
-      dispatch(userSignIn(user.data));
+      dispatch(userSignInAction(user.data));
       window.localStorage.setItem('jwt', user.data.token);
     }
   } catch (e) {
@@ -103,7 +101,7 @@ const userUpdate = (data) => ({
   },
 });
 
-const userSignIn = (data) => ({
+const userSignInAction = (data) => ({
   type: SIGN_IN,
   payload: {
     user: data,

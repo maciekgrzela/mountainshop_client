@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCategoriesSlice } from '../../Actions/ActionCreators/Categories';
+import { fetchCategories } from '../../Actions/ActionCreators/Categories';
 import { Link } from 'react-router-dom';
 import { skipWelcome } from '../../Actions/ActionCreators/Interface';
 
@@ -9,7 +9,7 @@ const Navbar = () => {
   const categories = useSelector((state) => state.categories.categories);
 
   useEffect(() => {
-    dispatch(fetchCategoriesSlice);
+    dispatch(fetchCategories());
   }, []);
 
   return (

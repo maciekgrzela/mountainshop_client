@@ -5,19 +5,23 @@ import ProductsDetailsContent from './ProductsDetailsContent';
 import ProductsDetailsHeading from './ProductsDetailsHeading';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  setDisplayedProductSlice,
+  fetchDisplayedProduct,
   removeDisplayedProduct,
-  fetchCommentsForDisplayedProductSlice,
-  fetchPropertiesForDisplayedProductSlice,
-  fetchProductsSlice,
+  fetchCommentsForDisplayedProduct,
+  fetchPropertiesForDisplayedProduct,
+  fetchProducts,
 } from '../../../Actions/ActionCreators/Products';
-import { setSingleProductScrolling } from '../../../Actions/ActionCreators/Interface';
+import {
+  setSingleProductScrolling,
+  skipWelcome,
+} from '../../../Actions/ActionCreators/Interface';
 
 const ProductsDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
   const products = useSelector((state) => state.products);
+  const skipped = useSelector((state) => state.interface.welcomeSkipped);
 
   const onScroll = (e) => {
     if (window.scrollY < 50) {
@@ -31,11 +35,15 @@ const ProductsDetails = () => {
   useEffect(() => {
     window.addEventListener('scroll', onScroll);
     if (products.displayedProducts.length === 0) {
-      dispatch(fetchProductsSlice(false));
+      dispatch(fetchProducts(false));
     }
-    dispatch(setDisplayedProductSlice(id));
-    dispatch(fetchPropertiesForDisplayedProductSlice(id));
-    dispatch(fetchCommentsForDisplayedProductSlice(id));
+    dispatch(fetchDisplayedProduct(id));
+    dispatch(fetchPropertiesForDisplayedProduct(id));
+    dispatch(fetchCommentsForDisplayedProduct(id));
+
+    if (!skipped) {
+      dispatch(skipWelcome());
+    }
 
     return () => {
       dispatch(removeDisplayedProduct);

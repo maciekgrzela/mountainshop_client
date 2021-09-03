@@ -15,10 +15,6 @@ const CartProductsTable = () => {
     dispatch(removeFromCart(product, removeAll));
   };
 
-  useEffect(() => {
-    console.log(cart.cart);
-  }, []);
-
   return (
     <div className='cart-page__table cart-products-table'>
       <table className='cart-products-table__table'>

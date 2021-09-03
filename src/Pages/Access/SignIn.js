@@ -5,11 +5,10 @@ import { useLocation } from 'react-router-dom';
 import {
   userFacebookSignIn,
   userGoogleSignIn,
-  userSignInSlice,
+  userSignIn,
   userSignUp,
 } from '../../Actions/ActionCreators/User';
 import TextInput from '../../Components/Common/TextInput';
-import { history } from '../../App';
 import { redirectToOrderAfterLogin } from '../../Actions/ActionCreators/Interface';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import GoogleLogin from 'react-google-login';
@@ -23,8 +22,8 @@ const SignIn = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  const userSignIn = (data) => {
-    dispatch(userSignInSlice(data.email, data.password));
+  const handleUserSignIn = (data) => {
+    dispatch(userSignIn(data.email, data.password));
     if (location.state?.redirectToOrder) {
       dispatch(redirectToOrderAfterLogin());
     }
@@ -53,7 +52,6 @@ const SignIn = () => {
   };
 
   const handleGoogleLogin = (data) => {
-    console.log(data);
     const body = {
       accessToken: data.tokenObj.id_token,
     };
@@ -67,7 +65,7 @@ const SignIn = () => {
           <div>
             <h2>Zaloguj się...</h2>
             <FinalForm
-              onSubmit={userSignIn}
+              onSubmit={handleUserSignIn}
               render={({
                 handleSubmit,
                 form,

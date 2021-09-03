@@ -1,7 +1,7 @@
 import {
   ADD_PRODUCT,
   DELETE_PRODUCT,
-  FETCH_PRODUCTS,
+  SET_PRODUCTS,
   LIKE_DISPLAYED_COMMENT,
   SET_DISPLAYED_COMMENTS,
   SET_DISPLAYED_PRODUCT,
@@ -20,7 +20,7 @@ import { initialProductsState } from '../State/state';
 
 export const productsReducer = (state = initialProductsState, action) => {
   switch (action.type) {
-    case FETCH_PRODUCTS:
+    case SET_PRODUCTS:
       if (action.payload.displayedProductsOnly) {
         if (state.appendProductsToList === true) {
           return {

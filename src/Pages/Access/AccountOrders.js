@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Moment from 'react-moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsersOrders } from '../../Actions/ActionCreators/User';
+import ListEmptyPlaceholder from '../../Components/Common/ListEmptyPlaceholder';
 import Modal from '../../Components/Common/Modal';
 import AccountOrdersDeliveryAddress from './AccountOrdersDeliveryAddress';
 import AccountOrdersInvoiceAddress from './AccountOrdersInvoiceAddress';
@@ -18,6 +19,10 @@ const AccountOrders = () => {
   useEffect(() => {
     dispatch(fetchUsersOrders());
   }, []);
+
+  if (orders.length === 0) {
+    return <ListEmptyPlaceholder />;
+  }
 
   return (
     <div className='users-orders'>

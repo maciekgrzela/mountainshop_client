@@ -1258,6 +1258,18 @@ img {
   list-style-type: none;
 }
 
+.categories-list__items > span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 20px 0;
+  -webkit-columns: #012454;
+          columns: #012454;
+}
+
 .categories-list__item--selected {
   background-color: rgba(0, 0, 0, 0.1);
 }
@@ -3779,6 +3791,36 @@ img {
   margin: 5px 0;
 }
 
+.not-found-page,
+.server-error {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: calc(100vh - 130px);
+}
+
+.not-found-page__title,
+.server-error__title {
+  font-size: 7rem;
+  margin: 5px 0;
+  color: #acacac;
+}
+
+.not-found-page__desc a,
+.server-error__desc a {
+  font-weight: bold;
+}
+
 .modal {
   position: fixed;
   z-index: 1000000;
@@ -3897,6 +3939,44 @@ img {
       -ms-flex-positive: 1;
           flex-grow: 1;
   height: 2px;
+}
+
+.list-empty {
+  width: 100%;
+  min-height: 400px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.list-empty__frame {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #e4e4e4;
+  color: #ffffff;
+  font-size: 1.6rem;
+  padding: 20px 40px;
+}
+
+.list-empty__icon {
+  font-size: 4rem;
 }
 
 .dv-star-rating label {

@@ -1,29 +1,14 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { history } from '../App';
 
 axios.defaults.baseURL = 'https://localhost:5001/api';
 
 axios.interceptors.response.use(undefined, (error) => {
   const { status, headers } = error.response;
 
-  switch (status) {
-    case 401:
-      if (
-        headers['www-authenticate'] !== undefined &&
-        headers['www-authenticate'].includes('The token expired') === true
-      ) {
-        // history.push('/expired');
-        toast.info('Sesja wygasła. Wprowadź ponownie dane uwierzytelniające');
-      }
-      break;
-    case 404:
-      // history.push('/notfound');
-      break;
-    case 500:
-      toast.error(
-        'Wystąpił błąd po stronie serwera. Skontaktuj się z administratorem systemu'
-      );
-      break;
+  if (status === 500) {
+    history.push('/server/error');
   }
 
   throw error;
@@ -62,7 +47,7 @@ const products = {
 };
 
 const categories = {
-  list: () => requests.get('/categories'),
+  list: (filters) => requests.get(`/categories?${filters}`),
 };
 
 const producers = {

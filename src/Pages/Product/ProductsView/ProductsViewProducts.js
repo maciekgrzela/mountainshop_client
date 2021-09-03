@@ -4,6 +4,7 @@ import ProductsViewProduct from './ProductsViewProduct';
 import { setProductsFilterProperty } from '../../../Actions/ActionCreators/Products';
 import ProductsViewSelectedCategory from './ProductsViewSelectedCategory';
 import { FiShoppingBag } from 'react-icons/fi';
+import ListEmptyPlaceholder from '../../../Components/Common/ListEmptyPlaceholder';
 
 const ProductsViewProducts = ({ products, viewType }) => {
   const dispatch = useDispatch();
@@ -25,24 +26,28 @@ const ProductsViewProducts = ({ products, viewType }) => {
       {category !== null && (
         <ProductsViewSelectedCategory category={category} />
       )}
-      <div
-        className={`products-view__products products-view__products--${viewType}`}
-      >
-        {products.map((product) => (
-          <ProductsViewProduct
-            key={product.id}
-            product={product}
-            viewType={viewType}
-          />
-        ))}
-        <button
-          className='products-view__load-more load-more'
-          onClick={handleLoadMore}
+      {products.length === 0 ? (
+        <ListEmptyPlaceholder />
+      ) : (
+        <div
+          className={`products-view__products products-view__products--${viewType}`}
         >
-          <FiShoppingBag className='load-more__icon' />
-          <span className='load-more__text'>Zobacz więcej produktów</span>
-        </button>
-      </div>
+          {products.map((product) => (
+            <ProductsViewProduct
+              key={product.id}
+              product={product}
+              viewType={viewType}
+            />
+          ))}
+          <button
+            className='products-view__load-more load-more'
+            onClick={handleLoadMore}
+          >
+            <FiShoppingBag className='load-more__icon' />
+            <span className='load-more__text'>Zobacz więcej produktów</span>
+          </button>
+        </div>
+      )}
     </div>
   );
 };

@@ -36,6 +36,11 @@ export const initialInterfaceState = {
 
 export const initialCategoriesState = {
   categories: [],
+  filter: {
+    pageSize: 10,
+    pageNumber: 1,
+  },
+  totalPages: null,
   selectedCategory: null,
 };
 

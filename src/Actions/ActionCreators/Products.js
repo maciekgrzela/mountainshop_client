@@ -3,7 +3,7 @@ import {
   ADD_PRODUCT,
   DELETE_PRODUCT,
   MODIFY_PRODUCT,
-  FETCH_PRODUCTS,
+  SET_PRODUCTS,
   SET_PRODUCTS_FILTER_PROP,
   SET_PRODUCTS_FILTER_PROPS,
   SET_DISPLAYED_PRODUCT,
@@ -19,8 +19,8 @@ import {
 } from '../ActionTypes/Products';
 import qs from 'query-string';
 
-const fetchProducts = (data, displayed, pagination) => ({
-  type: FETCH_PRODUCTS,
+const setProducts = (data, displayed, pagination) => ({
+  type: SET_PRODUCTS,
   payload: {
     products: data,
     displayedProductsOnly: displayed,
@@ -35,7 +35,7 @@ const setDisplayedProduct = (data) => ({
   },
 });
 
-export const fetchProductsSlice =
+export const fetchProducts =
   (displayedProductsOnly) => async (dispatch, getState) => {
     try {
       const currentState = getState();
@@ -47,7 +47,7 @@ export const fetchProductsSlice =
       const products = await httpClient.products.list(queryString);
       if (products.status === 200) {
         return dispatch(
-          fetchProducts(
+          setProducts(
             products.data,
             displayedProductsOnly,
             JSON.parse(products.headers.pagination)
@@ -59,7 +59,7 @@ export const fetchProductsSlice =
     }
   };
 
-export const setDisplayedProductSlice = (id) => async (dispatch, getState) => {
+export const fetchDisplayedProduct = (id) => async (dispatch, getState) => {
   try {
     const product = await httpClient.products.listOne(id);
     if (product.status === 200) {
@@ -70,73 +70,72 @@ export const setDisplayedProductSlice = (id) => async (dispatch, getState) => {
   }
 };
 
-export const likeDisplayedCommentSlice = (id) => async (dispatch, getState) => {
+export const likeDisplayedComment = (id) => async (dispatch, getState) => {
   try {
     const like = await httpClient.comments.like(id);
     if (like.status === 204) {
-      return dispatch(likeDisplayedComment(id));
+      return dispatch(likeDisplayedCommentAction(id));
     }
   } catch (e) {
     console.log(e);
   }
 };
 
-const likeDisplayedComment = (id) => ({
+const likeDisplayedCommentAction = (id) => ({
   type: LIKE_DISPLAYED_COMMENT,
   payload: {
     id: id,
   },
 });
 
-export const dislikeDisplayedCommentSlice =
-  (id) => async (dispatch, getState) => {
-    try {
-      const dislike = await httpClient.comments.dislike(id);
-      if (dislike.status === 204) {
-        return dispatch(dislikeDisplayedComment(id));
-      }
-    } catch (e) {
-      console.log(e);
+export const dislikeDisplayedComment = (id) => async (dispatch, getState) => {
+  try {
+    const dislike = await httpClient.comments.dislike(id);
+    if (dislike.status === 204) {
+      return dispatch(dislikeDisplayedCommentAction(id));
     }
-  };
+  } catch (e) {
+    console.log(e);
+  }
+};
 
-const dislikeDisplayedComment = (id) => ({
+const dislikeDisplayedCommentAction = (id) => ({
   type: DISLIKE_DISPLAYED_COMMENT,
   payload: {
     id: id,
   },
 });
 
-export const removeLikeSlice = (id) => async (dispatch, getState) => {
+export const removeLike = (id) => async (dispatch, getState) => {
   try {
     const likeRemoved = await httpClient.comments.removeLike(id);
     if (likeRemoved.status === 204) {
-      return dispatch(removeLike(id));
+      return dispatch(removeLikeAction(id));
     }
   } catch (e) {
     console.log(e);
   }
 };
 
-const removeLike = (id) => ({
+const removeLikeAction = (id) => ({
   type: REMOVE_LIKE,
   payload: {
     id: id,
   },
 });
 
-export const removeDislikeSlice = (id) => async (dispatch, getState) => {
+export const removeDislike = (id) => async (dispatch, getState) => {
   try {
     const likeRemoved = await httpClient.comments.removeDislike(id);
     if (likeRemoved.status === 204) {
-      return dispatch(removeDislike(id));
+      return dispatch(removeDislikeAction(id));
     }
   } catch (e) {
     console.log(e);
   }
 };
 
-const removeDislike = (id) => ({
+const removeDislikeAction = (id) => ({
   type: REMOVE_DISLIKE,
   payload: {
     id: id,
@@ -149,7 +148,7 @@ export const addProductsComment = (body) => async (dispatch, getState) => {
     const commentAdded = await httpClient.comments.add(body);
     if (commentAdded.status === 204) {
       return dispatch(
-        fetchCommentsForDisplayedProductSlice(
+        fetchCommentsForDisplayedProduct(
           currentState.products.displayedProduct.id
         )
       );
@@ -232,7 +231,7 @@ export const setProductsFilterProperty = (name, value) => {
   }
 };
 
-export const fetchCommentsForDisplayedProductSlice =
+export const fetchCommentsForDisplayedProduct =
   (id) => async (dispatch, getState) => {
     try {
       const comments = await httpClient.products.listComments(id);
@@ -251,7 +250,7 @@ const setCommentsForDisplayedProduct = (data) => ({
   },
 });
 
-export const fetchPropertiesForDisplayedProductSlice =
+export const fetchPropertiesForDisplayedProduct =
   (id) => async (dispatch, getState) => {
     try {
       const properties = await httpClient.products.listProperties(id);
