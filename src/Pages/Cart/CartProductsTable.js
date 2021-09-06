@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { FiTrash } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart } from '../../Actions/ActionCreators/Cart';

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import ReactStars from 'react-rating-stars-component';
-import { BsStar, BsStarFill, BsStarHalf } from 'react-icons/bs';
+import { BsStarFill, BsStarHalf } from 'react-icons/bs';
 import {
   AiOutlineLike,
   AiOutlineDislike,

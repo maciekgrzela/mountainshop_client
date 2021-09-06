@@ -6,7 +6,7 @@ import {
   SET_CATEGORIES_FILTER_PROPERTY,
 } from '../ActionTypes/Categories';
 import qs from 'query-string';
-import { setCollectionLoading, setFetchCategoriesLoading } from './Interface';
+import { setCollectionLoading } from './Interface';
 
 const setCategories = (data) => ({
   type: SET_CATEGORIES,

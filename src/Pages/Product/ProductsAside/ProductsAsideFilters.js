@@ -21,10 +21,6 @@ const ProductsAsideFilters = () => {
     dispatch(setProductsFilterProperties(filters));
   };
 
-  useEffect(() => {
-    console.log('FILTERS:', filters);
-  }, [filters]);
-
   return (
     <div className='categories-list__filters filters'>
       <ProductsAsideNameFilter setFilters={setFilters} />

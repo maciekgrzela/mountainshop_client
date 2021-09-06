@@ -1,5 +1,5 @@
 import React from 'react';
-import { FiPercent, FiShoppingCart, FiTag } from 'react-icons/fi';
+import { FiShoppingCart, FiTag } from 'react-icons/fi';
 import Magnifier from 'react-magnifier';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';

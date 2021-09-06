@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Form as FinalForm, Field } from 'react-final-form';
+import React, { useState } from 'react';
+import { Form as FinalForm } from 'react-final-form';
 import OrderDetailsDeliveryForm from './OrderDetailsDeliveryForm';
 import OrderDetailsInvoiceForm from './OrderDetailsInvoiceForm';
 import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
@@ -39,20 +39,16 @@ const OrderDetailsForm = ({ invoiceSelected, setInvoiceSelected }) => {
       orderedProducts: products,
     };
 
-    try {
-      const orderCreated = await httpClient.orders.create(orderBody);
-      if (orderCreated.status === 204) {
-        if (payment.externalApi) {
-          setPaymentRequested(true);
-        } else {
-          setOrderSucceed(true);
-        }
-        dispatch(clearCart());
-        dispatch(clearSelectedDelivery());
-        dispatch(clearSelectedPayment());
+    const orderCreated = await httpClient.orders.create(orderBody);
+    if (orderCreated.status === 204) {
+      if (payment.externalApi) {
+        setPaymentRequested(true);
+      } else {
+        setOrderSucceed(true);
       }
-    } catch (e) {
-      console.log(e);
+      dispatch(clearCart());
+      dispatch(clearSelectedDelivery());
+      dispatch(clearSelectedPayment());
     }
   };
 

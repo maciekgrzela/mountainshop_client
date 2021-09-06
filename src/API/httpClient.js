@@ -7,11 +7,8 @@ axios.defaults.baseURL = 'https://localhost:5001/api';
 axios.interceptors.response.use(undefined, (error) => {
   const { data, status } = error.response;
 
-  console.log('ERROR RESPONSE: ', error.response);
-
   switch (status) {
     case 400:
-      console.log('DATA ERROR RESPONSE: ', data);
       if (data.errors) {
         toast.error(data.errors[Object.keys(data.errors)[0]][0], {
           position: 'bottom-right',
