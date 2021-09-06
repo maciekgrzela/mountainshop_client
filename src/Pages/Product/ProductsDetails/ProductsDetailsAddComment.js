@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import ReactStars from 'react-rating-stars-component';
-import { BsStar, BsStarHalf, BsStarFill } from 'react-icons/bs';
+import { BsStarHalf, BsStarFill } from 'react-icons/bs';
 import StarRatingComponent from 'react-star-rating-component';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProductsComment } from '../../../Actions/ActionCreators/Products';

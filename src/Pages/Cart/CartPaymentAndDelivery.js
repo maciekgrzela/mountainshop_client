@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import CartDelivery from './CartDelivery';
 import CartPayment from './CartPayment';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDeliveryMethodsSlice } from '../../Actions/ActionCreators/DeliveryMethods';
+import { fetchDeliveryMethods } from '../../Actions/ActionCreators/DeliveryMethods';
+import withLoading from '../../Components/withLoading';
 
 const CartPaymentAndDelivery = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const CartPaymentAndDelivery = () => {
       cart.selectedDeliveryMethod === null ||
       cart.selectedPaymentMethod === null
     ) {
-      dispatch(fetchDeliveryMethodsSlice);
+      dispatch(fetchDeliveryMethods());
     }
   }, []);
 
@@ -31,4 +32,4 @@ const CartPaymentAndDelivery = () => {
   );
 };
 
-export default CartPaymentAndDelivery;
+export default withLoading(CartPaymentAndDelivery, 'Ładowanie metod płatności');

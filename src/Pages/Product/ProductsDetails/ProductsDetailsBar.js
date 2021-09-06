@@ -1,5 +1,4 @@
 import React from 'react';
-import plecakMock from '../../../Assets/images/plecak_mock.jpg';
 import { Link } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';

@@ -32,10 +32,17 @@ export const initialInterfaceState = {
   productsViewType: 'grid',
   singleProductScrolling: null,
   redirectToOrderAfterLogin: false,
+  collectionLoading: false,
+  searchProductsError: false,
 };
 
 export const initialCategoriesState = {
   categories: [],
+  filter: {
+    pageSize: 10,
+    pageNumber: 1,
+  },
+  totalPages: null,
   selectedCategory: null,
 };
 

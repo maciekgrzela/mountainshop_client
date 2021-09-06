@@ -1,6 +1,9 @@
 import {
   PRODUCTS_VIEW_TYPE_CHANGED,
   REDIRECT_TO_ODER_AFTER_LOGIN,
+  SET_COLLECTION_LOADING,
+  SET_FETCH_CATEGORIES_LOADING,
+  SET_SEARCH_PRODUCTS_ERROR,
   SET_SINGLE_PRODUCT_SCROLLING,
   WELCOME_SKIPPED,
 } from '../Actions/ActionTypes/Interface';
@@ -27,6 +30,21 @@ export const interfaceReducer = (state = initialInterfaceState, action) => {
       return {
         ...state,
         redirectToOrderAfterLogin: true,
+      };
+    case SET_FETCH_CATEGORIES_LOADING:
+      return {
+        ...state,
+        fetchCategoriesLoading: !state.fetchCategoriesLoading,
+      };
+    case SET_COLLECTION_LOADING:
+      return {
+        ...state,
+        collectionLoading: action.payload.value,
+      };
+    case SET_SEARCH_PRODUCTS_ERROR:
+      return {
+        ...state,
+        searchProductsError: action.payload.value,
       };
     default:
       return state;

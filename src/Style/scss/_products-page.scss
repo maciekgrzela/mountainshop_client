@@ -35,6 +35,13 @@
 
   &__items {
     list-style-type: none;
+
+    & > span {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+      columns: $primary-color;
+    }
   }
 
   &__item {
@@ -318,6 +325,15 @@
       margin-left: 10px;
       text-decoration: line-through;
       font-weight: 400;
+      background-color: rgba(0, 0, 0, 0.05);
+      color: rgba(0, 0, 0, 0.4);
+      padding: 5px;
+    }
+
+    #{$this}__minimal-amount {
+      font-size: 1.2rem;
+      margin-left: 10px;
+      font-weight: 600;
       background-color: rgba(0, 0, 0, 0.05);
       color: rgba(0, 0, 0, 0.4);
       padding: 5px;

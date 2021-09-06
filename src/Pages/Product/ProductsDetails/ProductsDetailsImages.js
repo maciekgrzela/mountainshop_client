@@ -8,7 +8,6 @@ const ProductsDetailsImages = ({ products, mainId }) => {
   const [downArrowVisible, setDownArrowVisible] = useState(true);
 
   const handleScrollUp = () => {
-    console.log(imagesContainerRef.current.scrollTop);
     if (imagesContainerRef.current.scrollTop - 110 < 0) {
       setTopArrowVisible(false);
     }
@@ -36,7 +35,6 @@ const ProductsDetailsImages = ({ products, mainId }) => {
     }
 
     setTopArrowVisible(true);
-    console.log(imagesContainerRef);
   };
 
   return (

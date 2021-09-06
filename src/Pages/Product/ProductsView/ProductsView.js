@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  fetchProductsSlice,
+  fetchProducts,
   setProductsFilterProperty,
 } from '../../../Actions/ActionCreators/Products';
-import { fetchProducersSlice } from '../../../Actions/ActionCreators/Producers';
+import { fetchProducers } from '../../../Actions/ActionCreators/Producers';
 
 import ProductsViewHeading from './ProductsViewHeading';
 import ProductsViewProducts from './ProductsViewProducts';
@@ -21,8 +21,8 @@ const ProductsView = () => {
 
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
-    dispatch(fetchProductsSlice(false));
-    dispatch(fetchProducersSlice);
+    dispatch(fetchProducts(false));
+    dispatch(fetchProducers());
     if (query.has('category')) {
       dispatch(
         setSelectedCategory(
@@ -34,7 +34,7 @@ const ProductsView = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(fetchProductsSlice(true));
+    dispatch(fetchProducts(true));
   }, [products.filterForDisplayedProducts]);
 
   return (

@@ -1,28 +1,39 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { history } from '..';
 
 axios.defaults.baseURL = 'https://localhost:5001/api';
 
 axios.interceptors.response.use(undefined, (error) => {
-  const { status, headers } = error.response;
+  const { data, status } = error.response;
 
   switch (status) {
-    case 401:
-      if (
-        headers['www-authenticate'] !== undefined &&
-        headers['www-authenticate'].includes('The token expired') === true
-      ) {
-        // history.push('/expired');
-        toast.info('Sesja wygasła. Wprowadź ponownie dane uwierzytelniające');
+    case 400:
+      if (data.errors) {
+        toast.error(data.errors[Object.keys(data.errors)[0]][0], {
+          position: 'bottom-right',
+          autoClose: 3000,
+          closeOnClick: true,
+          closeButton: true,
+        });
+      } else {
+        toast.error(data.title, {
+          position: 'bottom-right',
+          autoClose: 3000,
+          closeOnClick: true,
+          closeButton: true,
+        });
       }
+      history.push('/');
+      break;
+    case 401:
+      history.push('/not/authorized');
       break;
     case 404:
-      // history.push('/notfound');
+      history.push('/not/found');
       break;
-    case 500:
-      toast.error(
-        'Wystąpił błąd po stronie serwera. Skontaktuj się z administratorem systemu'
-      );
+    default:
+      history.push('/server/error');
       break;
   }
 
@@ -62,7 +73,7 @@ const products = {
 };
 
 const categories = {
-  list: () => requests.get('/categories'),
+  list: (filters) => requests.get(`/categories?${filters}`),
 };
 
 const producers = {
@@ -101,6 +112,10 @@ const orders = {
   getForUser: (id) => requests.get(`/orders/user/${id}`),
 };
 
+const checkout = {
+  validateSession: (id) => requests.get(`/checkout/session/${id}`),
+};
+
 const contactRequests = {
   send: (body) => requests.post('/contact/requests/send', body),
 };
@@ -115,4 +130,5 @@ export default {
   deliveryMethods,
   orders,
   contactRequests,
+  checkout,
 };

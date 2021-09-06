@@ -6,21 +6,19 @@ import {
   FiUser,
 } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
-import {
-  fetchLastUsersOrder,
-  signInCurrentUser,
-} from '../../Actions/ActionCreators/User';
+import { Link, useLocation, useHistory } from 'react-router-dom';
+import { fetchLastUsersOrder } from '../../Actions/ActionCreators/User';
 import { GrDocumentMissing } from 'react-icons/gr';
 import { sendRequestLastOrderPaid } from '../../Actions/ActionCreators/Order';
 import { skipWelcome } from '../../Actions/ActionCreators/Interface';
-import { history } from '../../App';
+import httpClient from '../../API/httpClient';
 
 const OrderDetailsSuccess = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const location = useLocation();
   const skipped = useSelector((state) => state.interface.welcomeSkipped);
+  const history = useHistory();
 
   const [grossSum, setGrossSum] = useState(0);
   const [deliveryAndPaymentSum, setDeliveryAndPaymentSum] = useState(0);
@@ -48,7 +46,13 @@ const OrderDetailsSuccess = () => {
   };
 
   useEffect(() => {
-    if (!user.isLogged && window.localStorage.getItem('jwt') === null) {
+    const query = new URLSearchParams(location.search);
+    if (
+      query.get('stripe_redirect') === null ||
+      (query.get('stripe_redirect') !== 'true' &&
+        query.get('stripe_redirect') !== 'false') ||
+      window.localStorage.getItem('jwt') === null
+    ) {
       history.push('/');
     }
     if (!skipped) {
@@ -59,22 +63,42 @@ const OrderDetailsSuccess = () => {
   useEffect(() => {
     if (user.lastOrder !== null) {
       const query = new URLSearchParams(location.search);
-      const stripeRedirect = query.get('stripe_redirect');
-      if (stripeRedirect !== null) {
-        if (stripeRedirect === true) {
-          dispatch(sendRequestLastOrderPaid());
-        } else {
-          setPaymentErrorMessage(true);
-        }
+      if (query.get('stripe_redirect') === 'true') {
+        dispatch(sendRequestLastOrderPaid());
+      } else {
+        setPaymentErrorMessage(true);
       }
       calculateOrderSummary();
     }
   }, [user.lastOrder]);
 
   useEffect(() => {
-    if (user.isLogged === true) {
-      dispatch(fetchLastUsersOrder());
-    }
+    const validateCheckoutSessionId = async (id) => {
+      try {
+        const sessionValidate = await httpClient.checkout.validateSession(id);
+        return sessionValidate.status === 200;
+      } catch (e) {
+        return false;
+      }
+    };
+
+    const validate = async () => {
+      const query = new URLSearchParams(location.search);
+
+      if (query.get('session') !== null) {
+        let valid = await validateCheckoutSessionId(query.get('session'));
+
+        if (valid) {
+          dispatch(fetchLastUsersOrder());
+        } else {
+          history.push('/');
+        }
+      } else {
+        history.push('/');
+      }
+    };
+
+    validate();
   }, [user.isLogged]);
 
   return (

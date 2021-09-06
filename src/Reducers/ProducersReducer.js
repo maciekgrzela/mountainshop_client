@@ -1,5 +1,5 @@
 import {
-  FETCH_PRODUCERS,
+  SET_PRODUCERS,
   SET_PRODUCERS_FILTER_PROP,
   SET_PRODUCERS_FILTER_PROPS,
 } from '../Actions/ActionTypes/Producers';
@@ -7,7 +7,7 @@ import { initialProducersState } from '../State/state';
 
 export const producersReducer = (state = initialProducersState, action) => {
   switch (action.type) {
-    case FETCH_PRODUCERS:
+    case SET_PRODUCERS:
       return {
         ...state,
         producers: action.payload.producers,

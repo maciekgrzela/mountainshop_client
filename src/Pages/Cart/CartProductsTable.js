@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { FiTrash } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart } from '../../Actions/ActionCreators/Cart';
@@ -14,10 +14,6 @@ const CartProductsTable = () => {
   const handleProductRemoveItem = (e, product, removeAll = false) => {
     dispatch(removeFromCart(product, removeAll));
   };
-
-  useEffect(() => {
-    console.log(cart.cart);
-  }, []);
 
   return (
     <div className='cart-page__table cart-products-table'>

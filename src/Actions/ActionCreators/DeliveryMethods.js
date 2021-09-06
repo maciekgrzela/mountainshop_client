@@ -1,27 +1,29 @@
 import httpClient from '../../API/httpClient';
 import {
-  FETCH_DELIVERY_METHODS,
+  SET_DELIVERY_METHODS,
   CLEAR_SELECTED_DELIVERY,
 } from '../ActionTypes/DeliveryMethods';
+import { setCollectionLoading } from './Interface';
 import { setPaymentMethods } from './PaymentMethods';
 
-const fetchDeliveryMethods = (data) => ({
-  type: FETCH_DELIVERY_METHODS,
+const setDeliveryMethods = (data) => ({
+  type: SET_DELIVERY_METHODS,
   payload: {
     deliveryMethods: data,
   },
 });
 
-export const fetchDeliveryMethodsSlice = async (dispatch, getState) => {
+export const fetchDeliveryMethods = () => async (dispatch, getState) => {
   try {
+    dispatch(setCollectionLoading(true));
     const deliveryMethods = await httpClient.deliveryMethods.list();
-
     if (deliveryMethods.status === 200) {
-      dispatch(fetchDeliveryMethods(deliveryMethods.data));
+      dispatch(setDeliveryMethods(deliveryMethods.data));
       dispatch(setPaymentMethods(deliveryMethods.data[0].id));
     }
+    dispatch(setCollectionLoading(false));
   } catch (e) {
-    console.log(e);
+    dispatch(setCollectionLoading(false));
   }
 };
 

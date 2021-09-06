@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import ReactStars from 'react-rating-stars-component';
-import { BsStar, BsStarFill, BsStarHalf } from 'react-icons/bs';
+import { BsStarFill, BsStarHalf } from 'react-icons/bs';
 import {
   AiOutlineLike,
   AiOutlineDislike,
@@ -9,10 +8,10 @@ import {
 } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import {
-  likeDisplayedCommentSlice,
-  dislikeDisplayedCommentSlice,
-  removeDislikeSlice,
-  removeLikeSlice,
+  likeDisplayedComment,
+  dislikeDisplayedComment,
+  removeDislike,
+  removeLike,
 } from '../../../Actions/ActionCreators/Products';
 import StarRatingComponent from 'react-star-rating-component';
 
@@ -23,22 +22,22 @@ const ProductsDetailsComment = ({ comment }) => {
   const dispatch = useDispatch();
 
   const handleLikeComment = () => {
-    dispatch(likeDisplayedCommentSlice(comment.id));
+    dispatch(likeDisplayedComment(comment.id));
     setLikeAdded(true);
   };
 
   const handleDislikeComment = () => {
-    dispatch(dislikeDisplayedCommentSlice(comment.id));
+    dispatch(dislikeDisplayedComment(comment.id));
     setDislikeAdded(true);
   };
 
   const handleRemoveLike = () => {
-    dispatch(removeLikeSlice(comment.id));
+    dispatch(removeLike(comment.id));
     setLikeAdded(false);
   };
 
   const handleRemoveDislike = () => {
-    dispatch(removeDislikeSlice(comment.id));
+    dispatch(removeDislike(comment.id));
     setDislikeAdded(false);
   };
 

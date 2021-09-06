@@ -176,7 +176,8 @@
 }
 
 .users-orders {
-  padding: 20px;
+  padding: 0 50px;
+  flex-basis: 100%;
 
   &__table {
     width: 100%;
@@ -274,5 +275,25 @@
 
   &__amount {
     margin: 5px 0;
+  }
+}
+
+.error-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 130px);
+
+  &__title {
+    font-size: 7rem;
+    margin: 5px 0;
+    color: #acacac;
+  }
+
+  &__desc {
+    & a {
+      font-weight: bold;
+    }
   }
 }

@@ -1,0 +1,22 @@
+.list-empty {
+  width: 100%;
+  min-height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__frame {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #e4e4e4;
+    color: $white-color;
+    font-size: 1.6rem;
+    padding: 20px 40px;
+  }
+
+  &__icon {
+    font-size: 4rem;
+  }
+}

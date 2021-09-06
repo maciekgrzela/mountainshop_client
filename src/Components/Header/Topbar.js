@@ -3,7 +3,7 @@ import logo from '../../Assets/images/logo.svg';
 import Searchbar from './Searchbar';
 import { Link } from 'react-router-dom';
 import TopbarOption from './TopbarOption';
-import { FiUser, FiShoppingCart, FiPercent, FiTag } from 'react-icons/fi';
+import { FiUser, FiShoppingCart } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import { skipWelcome } from '../../Actions/ActionCreators/Interface';
 

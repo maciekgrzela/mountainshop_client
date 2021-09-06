@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { history } from '../../App';
+import { history } from '../../index';
 import { RiSecurePaymentLine } from 'react-icons/ri';
 
 const CheckoutRedirect = () => {
@@ -11,15 +11,19 @@ const CheckoutRedirect = () => {
   const formRef = useRef();
 
   useEffect(() => {
-    if (
-      location.state !== undefined &&
-      user.isLogged &&
-      location.state.from.pathname === '/order/details'
-    ) {
-      formRef.current.submit();
-    } else {
-      history.push('/');
-    }
+    const redirectToCheckout = async () => {
+      if (
+        location.state !== undefined &&
+        user.isLogged &&
+        location.state.from.pathname === '/order/details'
+      ) {
+        formRef.current.submit();
+      } else {
+        history.push('/');
+      }
+    };
+
+    redirectToCheckout();
   }, []);
 
   return (

@@ -1,9 +1,6 @@
 import httpClient from '../../API/httpClient';
 import {
-  ADD_PRODUCT,
-  DELETE_PRODUCT,
-  MODIFY_PRODUCT,
-  FETCH_PRODUCTS,
+  SET_PRODUCTS,
   SET_PRODUCTS_FILTER_PROP,
   SET_PRODUCTS_FILTER_PROPS,
   SET_DISPLAYED_PRODUCT,
@@ -18,9 +15,11 @@ import {
   CLEAR_SEARCH_PRODUCTS,
 } from '../ActionTypes/Products';
 import qs from 'query-string';
+import { setCollectionLoading } from './Interface';
+import { SET_SEARCH_PRODUCTS_ERROR } from '../ActionTypes/Interface';
 
-const fetchProducts = (data, displayed, pagination) => ({
-  type: FETCH_PRODUCTS,
+const setProducts = (data, displayed, pagination) => ({
+  type: SET_PRODUCTS,
   payload: {
     products: data,
     displayedProductsOnly: displayed,
@@ -35,9 +34,10 @@ const setDisplayedProduct = (data) => ({
   },
 });
 
-export const fetchProductsSlice =
+export const fetchProducts =
   (displayedProductsOnly) => async (dispatch, getState) => {
     try {
+      dispatch(setCollectionLoading(true));
       const currentState = getState();
       const filter = currentState.products.filterForDisplayedProducts;
       let queryString = qs.stringify(filter, {
@@ -46,97 +46,75 @@ export const fetchProductsSlice =
       });
       const products = await httpClient.products.list(queryString);
       if (products.status === 200) {
-        return dispatch(
-          fetchProducts(
+        dispatch(
+          setProducts(
             products.data,
             displayedProductsOnly,
             JSON.parse(products.headers.pagination)
           )
         );
       }
+      dispatch(setCollectionLoading(false));
     } catch (e) {
-      console.log(e);
+      dispatch(setCollectionLoading(false));
     }
   };
 
-export const setDisplayedProductSlice = (id) => async (dispatch, getState) => {
+export const fetchDisplayedProduct = (id) => async (dispatch, getState) => {
   try {
+    dispatch(setCollectionLoading(true));
     const product = await httpClient.products.listOne(id);
     if (product.status === 200) {
-      return dispatch(setDisplayedProduct(product.data));
+      dispatch(setDisplayedProduct(product.data));
+      dispatch(setCollectionLoading(false));
     }
   } catch (e) {
-    console.log(e);
+    dispatch(setCollectionLoading(false));
   }
 };
 
-export const likeDisplayedCommentSlice = (id) => async (dispatch, getState) => {
-  try {
-    const like = await httpClient.comments.like(id);
-    if (like.status === 204) {
-      return dispatch(likeDisplayedComment(id));
-    }
-  } catch (e) {
-    console.log(e);
-  }
+export const likeDisplayedComment = (id) => async (dispatch, getState) => {
+  await httpClient.comments.like(id);
+  dispatch(likeDisplayedCommentAction(id));
 };
 
-const likeDisplayedComment = (id) => ({
+const likeDisplayedCommentAction = (id) => ({
   type: LIKE_DISPLAYED_COMMENT,
   payload: {
     id: id,
   },
 });
 
-export const dislikeDisplayedCommentSlice =
-  (id) => async (dispatch, getState) => {
-    try {
-      const dislike = await httpClient.comments.dislike(id);
-      if (dislike.status === 204) {
-        return dispatch(dislikeDisplayedComment(id));
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  };
+export const dislikeDisplayedComment = (id) => async (dispatch, getState) => {
+  await httpClient.comments.dislike(id);
+  dispatch(dislikeDisplayedCommentAction(id));
+};
 
-const dislikeDisplayedComment = (id) => ({
+const dislikeDisplayedCommentAction = (id) => ({
   type: DISLIKE_DISPLAYED_COMMENT,
   payload: {
     id: id,
   },
 });
 
-export const removeLikeSlice = (id) => async (dispatch, getState) => {
-  try {
-    const likeRemoved = await httpClient.comments.removeLike(id);
-    if (likeRemoved.status === 204) {
-      return dispatch(removeLike(id));
-    }
-  } catch (e) {
-    console.log(e);
-  }
+export const removeLike = (id) => async (dispatch, getState) => {
+  await httpClient.comments.removeLike(id);
+  dispatch(removeLikeAction(id));
 };
 
-const removeLike = (id) => ({
+const removeLikeAction = (id) => ({
   type: REMOVE_LIKE,
   payload: {
     id: id,
   },
 });
 
-export const removeDislikeSlice = (id) => async (dispatch, getState) => {
-  try {
-    const likeRemoved = await httpClient.comments.removeDislike(id);
-    if (likeRemoved.status === 204) {
-      return dispatch(removeDislike(id));
-    }
-  } catch (e) {
-    console.log(e);
-  }
+export const removeDislike = (id) => async (dispatch, getState) => {
+  await httpClient.comments.removeDislike(id);
+  dispatch(removeDislikeAction(id));
 };
 
-const removeDislike = (id) => ({
+const removeDislikeAction = (id) => ({
   type: REMOVE_DISLIKE,
   payload: {
     id: id,
@@ -145,17 +123,17 @@ const removeDislike = (id) => ({
 
 export const addProductsComment = (body) => async (dispatch, getState) => {
   try {
+    dispatch(setCollectionLoading(true));
     const currentState = getState();
-    const commentAdded = await httpClient.comments.add(body);
-    if (commentAdded.status === 204) {
-      return dispatch(
-        fetchCommentsForDisplayedProductSlice(
-          currentState.products.displayedProduct.id
-        )
-      );
-    }
+    await httpClient.comments.add(body);
+    dispatch(
+      fetchCommentsForDisplayedProduct(
+        currentState.products.displayedProduct.id
+      )
+    );
+    dispatch(setCollectionLoading(false));
   } catch (e) {
-    console.log(e);
+    dispatch(setCollectionLoading(false));
   }
 };
 
@@ -192,6 +170,7 @@ export const clearSearchProducts = () => ({
 
 export const fetchSearchProducts = () => async (dispatch, getState) => {
   try {
+    setSearchProductsError(false);
     const currentState = getState();
     let filter = {
       nameFilter: currentState.products.filterForSearchedProducts,
@@ -203,12 +182,19 @@ export const fetchSearchProducts = () => async (dispatch, getState) => {
     });
     const products = await httpClient.products.list(queryString);
     if (products.status === 200) {
-      return dispatch(setSearchProducts(products.data));
+      dispatch(setSearchProducts(products.data));
     }
   } catch (e) {
-    console.log(e);
+    setSearchProductsError(true);
   }
 };
+
+const setSearchProductsError = (value) => ({
+  type: SET_SEARCH_PRODUCTS_ERROR,
+  payload: {
+    value: value,
+  },
+});
 
 export const setProductsFilterProperty = (name, value) => {
   if (name === 'pageNumber') {
@@ -232,15 +218,17 @@ export const setProductsFilterProperty = (name, value) => {
   }
 };
 
-export const fetchCommentsForDisplayedProductSlice =
+export const fetchCommentsForDisplayedProduct =
   (id) => async (dispatch, getState) => {
     try {
+      dispatch(setCollectionLoading(true));
       const comments = await httpClient.products.listComments(id);
       if (comments.status === 200) {
-        return dispatch(setCommentsForDisplayedProduct(comments.data));
+        dispatch(setCommentsForDisplayedProduct(comments.data));
       }
+      dispatch(setCollectionLoading(false));
     } catch (e) {
-      console.log(e);
+      dispatch(setCollectionLoading(false));
     }
   };
 
@@ -251,15 +239,17 @@ const setCommentsForDisplayedProduct = (data) => ({
   },
 });
 
-export const fetchPropertiesForDisplayedProductSlice =
+export const fetchPropertiesForDisplayedProduct =
   (id) => async (dispatch, getState) => {
     try {
+      dispatch(setCollectionLoading(true));
       const properties = await httpClient.products.listProperties(id);
       if (properties.status === 200) {
-        return dispatch(setPropertiesForDisplayedProduct(properties.data));
+        dispatch(setPropertiesForDisplayedProduct(properties.data));
       }
+      dispatch(setCollectionLoading(false));
     } catch (e) {
-      console.log(e);
+      dispatch(setCollectionLoading(false));
     }
   };
 
@@ -269,21 +259,3 @@ const setPropertiesForDisplayedProduct = (data) => ({
     properties: data,
   },
 });
-
-export const addProduct = () => {
-  return {
-    type: ADD_PRODUCT,
-  };
-};
-
-export const modifyProduct = () => {
-  return {
-    type: MODIFY_PRODUCT,
-  };
-};
-
-export const deleteProduct = () => {
-  return {
-    type: DELETE_PRODUCT,
-  };
-};

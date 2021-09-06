@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FiFilter } from 'react-icons/fi';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setProductsFilterProperties } from '../../../Actions/ActionCreators/Products';
 import ProductsAsideNameFilter from './ProductsAsideNameFilter';
 import ProductsAsidePriceFilter from './ProductsAsidePriceFilter';
@@ -12,7 +12,10 @@ import ProductsAsideGenderFilter from './ProductsAsideGenderFilter';
 
 const ProductsAsideFilters = () => {
   const dispatch = useDispatch();
-  const [filters, setFilters] = useState({});
+  const productsFilters = useSelector(
+    (state) => state.products.filterForDisplayedProducts
+  );
+  const [filters, setFilters] = useState(productsFilters);
 
   const handleApplyFilters = () => {
     dispatch(setProductsFilterProperties(filters));

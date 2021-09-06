@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { setSelectedCategory } from '../../../Actions/ActionCreators/Categories';
 import { setProductsFilterProperty } from '../../../Actions/ActionCreators/Products';
 

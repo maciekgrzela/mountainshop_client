@@ -5,7 +5,7 @@ import {
 } from '../Actions/ActionTypes/Cart';
 import {
   CLEAR_SELECTED_DELIVERY,
-  FETCH_DELIVERY_METHODS,
+  SET_DELIVERY_METHODS,
 } from '../Actions/ActionTypes/DeliveryMethods';
 import {
   CHANGE_PAYMENT_METHOD,
@@ -16,7 +16,7 @@ import { initialCartState } from '../State/state';
 
 export const cartReducer = (state = initialCartState, action) => {
   switch (action.type) {
-    case FETCH_DELIVERY_METHODS:
+    case SET_DELIVERY_METHODS:
       return {
         ...state,
         deliveryMethods: action.payload.deliveryMethods,
