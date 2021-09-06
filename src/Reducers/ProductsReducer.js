@@ -1,6 +1,4 @@
 import {
-  ADD_PRODUCT,
-  DELETE_PRODUCT,
   SET_PRODUCTS,
   LIKE_DISPLAYED_COMMENT,
   SET_DISPLAYED_COMMENTS,
@@ -122,14 +120,6 @@ export const productsReducer = (state = initialProductsState, action) => {
       return {
         ...state,
         displayedProperties: action.payload.properties,
-      };
-    case ADD_PRODUCT:
-      return {
-        products: [...state.products, { name: 'Nowy kolejny produkt' }],
-      };
-    case DELETE_PRODUCT:
-      return {
-        products: state.products.slice(0, -1),
       };
     case SET_SEARCH_PRODUCTS_FILTER:
       return {

@@ -15,6 +15,7 @@ import {
   setSingleProductScrolling,
   skipWelcome,
 } from '../../../Actions/ActionCreators/Interface';
+import withLoading from '../../../Components/withLoading';
 
 const ProductsDetails = () => {
   const dispatch = useDispatch();
@@ -71,4 +72,4 @@ const ProductsDetails = () => {
   );
 };
 
-export default ProductsDetails;
+export default withLoading(ProductsDetails, 'Ładowanie produktu');

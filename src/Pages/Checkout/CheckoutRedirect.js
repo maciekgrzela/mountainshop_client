@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { history } from '../../App';
+import { history } from '../../index';
 import { RiSecurePaymentLine } from 'react-icons/ri';
 
 const CheckoutRedirect = () => {

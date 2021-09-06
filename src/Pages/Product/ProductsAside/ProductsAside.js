@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchCategories } from '../../../Actions/ActionCreators/Categories';
 import ProductsAsideFilters from './ProductsAsideFilters';
 import ProductsCategoriesListItems from './ProductsCategoriesListItems';
+import Loader from 'react-loader-spinner';
+import CollectionLoader from '../../../Components/Common/CollectionLoader';
+import withLoading from '../../../Components/withLoading';
 
 const ProductsAside = () => {
   const categories = useSelector((state) => state.categories.categories);
@@ -30,4 +33,4 @@ const ProductsAside = () => {
   );
 };
 
-export default ProductsAside;
+export default withLoading(ProductsAside, 'Ładowanie kategorii');

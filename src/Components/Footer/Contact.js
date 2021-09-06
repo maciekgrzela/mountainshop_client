@@ -44,7 +44,6 @@ const Contact = () => {
       form.resetFieldState('content');
       form.reset();
     } catch (e) {
-      console.log(e);
       setFormSendInfo({
         status: 'error',
         message: 'Wystąpił błąd podczas wysyłania wiadomości',

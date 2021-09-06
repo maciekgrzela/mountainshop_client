@@ -1,6 +1,7 @@
 import httpClient from '../../API/httpClient';
 import { SET_PRODUCERS } from '../ActionTypes/Producers';
 import qs from 'query-string';
+import { setCollectionLoading } from './Interface';
 
 const setProducers = (data) => ({
   type: SET_PRODUCERS,
@@ -11,6 +12,7 @@ const setProducers = (data) => ({
 
 export const fetchProducers = () => async (dispatch, getState) => {
   try {
+    dispatch(setCollectionLoading(true));
     const currentState = getState();
     const filter = currentState.products.filterForDisplayedProducts;
     let queryString = qs.stringify(filter, {
@@ -19,9 +21,10 @@ export const fetchProducers = () => async (dispatch, getState) => {
     });
     const producers = await httpClient.producers.list(queryString);
     if (producers.status === 200) {
-      return dispatch(setProducers(producers.data));
+      dispatch(setProducers(producers.data));
     }
+    dispatch(setCollectionLoading(false));
   } catch (e) {
-    console.log(e);
+    dispatch(setCollectionLoading(false));
   }
 };

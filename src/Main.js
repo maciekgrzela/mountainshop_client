@@ -21,6 +21,8 @@ import UserNotSignedIn from './Pages/Access/UserNotSignedIn';
 import UpdateMyData from './Pages/Access/UpdateMyData';
 import AuthRoute from './AuthRoute';
 import ServerErrors from './Pages/Errors/ServerErrors';
+import { ToastContainer } from 'react-toastify';
+import OrderDetailsSuccessSkipPayment from './Pages/OrderDetails/OrderDetailsSuccessSkipPayment';
 
 const Main = () => {
   const interfaceState = useSelector((state) => state.interface);
@@ -29,6 +31,7 @@ const Main = () => {
   return (
     <main className='page-wrapper__main main'>
       <ScrollToTop />
+      <ToastContainer />
       <Switch>
         <Route exact path='/'>
           {interfaceState.welcomeSkipped ? (
@@ -46,6 +49,11 @@ const Main = () => {
         <Route exact path='/cart' component={Cart} />
         <AuthRoute exact path='/order/details' component={OrderDetails} />
         <Route exact path='/order/created' component={OrderDetailsSuccess} />
+        <AuthRoute
+          exact
+          path='/order/created/no/payment'
+          component={OrderDetailsSuccessSkipPayment}
+        />
         <AuthRoute exact path='/update/data' component={UpdateMyData} />
         <AuthRoute
           exact

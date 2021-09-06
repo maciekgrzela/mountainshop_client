@@ -6,6 +6,7 @@ import {
   USER_UPDATE,
   SET_USERS_ORDERS,
 } from '../ActionTypes/User';
+import { setCollectionLoading } from './Interface';
 
 export const userSignOut = () => (dispatch, getState) => {
   dispatch(signOut());
@@ -18,6 +19,7 @@ const signOut = () => ({
 
 export const signInCurrentUser = () => async (dispatch, getState) => {
   try {
+    dispatch(setCollectionLoading(true));
     const token = window.localStorage.getItem('jwt');
     if (token) {
       const user = await httpClient.auth.current();
@@ -27,8 +29,10 @@ export const signInCurrentUser = () => async (dispatch, getState) => {
         dispatch(userSignInAction(data));
       }
     }
+    dispatch(setCollectionLoading(false));
   } catch (e) {
     console.log(e);
+    dispatch(setCollectionLoading(false));
   }
 };
 
@@ -37,7 +41,7 @@ export const userSignUp = (body) => async (dispatch, getState) => {
     const userCreated = await httpClient.auth.register(body);
     if (userCreated.status === 200) {
       window.localStorage.setItem('jwt', userCreated.data.token);
-      return dispatch(signInCurrentUser());
+      dispatch(signInCurrentUser());
     }
   } catch (e) {
     console.log(e);
@@ -46,47 +50,59 @@ export const userSignUp = (body) => async (dispatch, getState) => {
 
 export const userSignIn = (email, password) => async (dispatch, getState) => {
   try {
+    dispatch(setCollectionLoading(true));
     const user = await httpClient.auth.login({ email, password });
     if (user.status === 200) {
       dispatch(userSignInAction(user.data));
       window.localStorage.setItem('jwt', user.data.token);
+      dispatch(setCollectionLoading(false));
     }
   } catch (e) {
+    dispatch(setCollectionLoading(false));
     console.log(e);
   }
 };
 
 export const userFacebookSignIn = (body) => async (dispatch, getState) => {
   try {
+    dispatch(setCollectionLoading(true));
     const user = await httpClient.auth.loginFacebook(body);
     if (user.status === 200) {
       dispatch(userSignIn(user.data));
       window.localStorage.setItem('jwt', user.data.token);
+      dispatch(setCollectionLoading(false));
     }
   } catch (e) {
     console.log(e);
+    dispatch(setCollectionLoading(false));
   }
 };
 
 export const userGoogleSignIn = (body) => async (dispatch, getState) => {
   try {
+    dispatch(setCollectionLoading(true));
     const user = await httpClient.auth.loginGoogle(body);
     if (user.status === 200) {
       dispatch(userSignInAction(user.data));
       window.localStorage.setItem('jwt', user.data.token);
+      dispatch(setCollectionLoading(false));
     }
   } catch (e) {
     console.log(e);
+    dispatch(setCollectionLoading(false));
   }
 };
 
 export const userUpdateData = (body) => async (dispatch, getState) => {
   try {
+    dispatch(setCollectionLoading(true));
     const userUpdated = await httpClient.auth.updateData(body);
     if (userUpdated.status === 204) {
-      return dispatch(userUpdate(body));
+      dispatch(userUpdate(body));
+      dispatch(setCollectionLoading(false));
     }
   } catch (e) {
+    dispatch(setCollectionLoading(false));
     console.log(e);
   }
 };
@@ -110,14 +126,17 @@ const userSignInAction = (data) => ({
 
 export const fetchUsersOrders = () => async (dispatch, getState) => {
   try {
+    dispatch(setCollectionLoading(true));
     const currentState = getState();
     const orders = await httpClient.orders.getForUser(
       currentState.user.user.id
     );
     if (orders.status === 200) {
       dispatch(setUsersOrders(orders.data));
+      dispatch(setCollectionLoading(false));
     }
   } catch (e) {
+    dispatch(setCollectionLoading(false));
     console.log(e);
   }
 };
@@ -131,15 +150,18 @@ const setUsersOrders = (data) => ({
 
 export const fetchLastUsersOrder = () => async (dispatch, getState) => {
   try {
+    dispatch(setCollectionLoading(true));
     const currentState = getState();
     const order = await httpClient.orders.getLastForUser(
       currentState.user.user.id
     );
     if (order.status === 200) {
       dispatch(setLastUsersOrder(order.data));
+      dispatch(setCollectionLoading(false));
     }
   } catch (e) {
     console.log(e);
+    dispatch(setCollectionLoading(false));
   }
 };
 

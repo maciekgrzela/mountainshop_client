@@ -3,6 +3,7 @@ import CartDelivery from './CartDelivery';
 import CartPayment from './CartPayment';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDeliveryMethods } from '../../Actions/ActionCreators/DeliveryMethods';
+import withLoading from '../../Components/withLoading';
 
 const CartPaymentAndDelivery = () => {
   const dispatch = useDispatch();
@@ -31,4 +32,4 @@ const CartPaymentAndDelivery = () => {
   );
 };
 
-export default CartPaymentAndDelivery;
+export default withLoading(CartPaymentAndDelivery, 'Ładowanie metod płatności');

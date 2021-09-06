@@ -14,13 +14,27 @@ const ProductsAsideProducerFilter = ({ setFilters }) => {
             : [producer.id],
       }));
     } else {
-      setFilters((prev) => ({
-        ...prev,
-        producerIds: prev.producerIds.splice(
-          prev.producerIds.indexOf(producer.id),
-          1
-        ),
-      }));
+      setFilters((prev) => {
+        if (prev.producerIds.length === 1) {
+          return {
+            ...prev,
+            producerIds: undefined,
+          };
+        } else {
+          return {
+            ...prev,
+            producerIds: [
+              ...prev.producerIds.slice(
+                0,
+                prev.producerIds.indexOf(producer.id)
+              ),
+              ...prev.producerIds.slice(
+                prev.producerIds.indexOf(producer.id) + 1
+              ),
+            ],
+          };
+        }
+      });
     }
   };
 

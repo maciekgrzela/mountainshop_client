@@ -65,7 +65,7 @@ const OrderDetailsForm = ({ invoiceSelected, setInvoiceSelected }) => {
   return (
     <>
       {orderSucceed ? (
-        <Redirect to='/order/success' />
+        <Redirect to='/order/created/no/payment' />
       ) : (
         <>
           {paymentRequested ? (

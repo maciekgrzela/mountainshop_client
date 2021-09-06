@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Form as FinalForm, Field } from 'react-final-form';
 import TextInput from '../../Components/Common/TextInput';
 import { userUpdateData } from '../../Actions/ActionCreators/User';
+import withLoading from '../../Components/withLoading';
 
 const required = (value) => (value ? undefined : 'Pole wymagane');
 
@@ -77,4 +78,4 @@ const UpdateMyData = () => {
   );
 };
 
-export default UpdateMyData;
+export default withLoading(UpdateMyData, 'Aktualizowanie danych użytkownika');

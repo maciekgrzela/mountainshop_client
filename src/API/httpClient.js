@@ -1,13 +1,43 @@
 import axios from 'axios';
-import { history } from '../App';
+import { toast } from 'react-toastify';
+import { history } from '..';
 
 axios.defaults.baseURL = 'https://localhost:5001/api';
 
 axios.interceptors.response.use(undefined, (error) => {
-  const { status, headers } = error.response;
+  const { data, status } = error.response;
 
-  if (status === 500) {
-    history.push('/server/error');
+  console.log('ERROR RESPONSE: ', error.response);
+
+  switch (status) {
+    case 400:
+      console.log('DATA ERROR RESPONSE: ', data);
+      if (data.errors) {
+        toast.error(data.errors[Object.keys(data.errors)[0]][0], {
+          position: 'bottom-right',
+          autoClose: 3000,
+          closeOnClick: true,
+          closeButton: true,
+        });
+      } else {
+        toast.error(data.title, {
+          position: 'bottom-right',
+          autoClose: 3000,
+          closeOnClick: true,
+          closeButton: true,
+        });
+      }
+      history.push('/');
+      break;
+    case 401:
+      history.push('/not/authorized');
+      break;
+    case 404:
+      history.push('/not/found');
+      break;
+    default:
+      history.push('/server/error');
+      break;
   }
 
   throw error;

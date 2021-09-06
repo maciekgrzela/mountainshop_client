@@ -5,6 +5,7 @@ import { setProductsFilterProperty } from '../../../Actions/ActionCreators/Produ
 import ProductsViewSelectedCategory from './ProductsViewSelectedCategory';
 import { FiShoppingBag } from 'react-icons/fi';
 import ListEmptyPlaceholder from '../../../Components/Common/ListEmptyPlaceholder';
+import withLoading from '../../../Components/withLoading';
 
 const ProductsViewProducts = ({ products, viewType }) => {
   const dispatch = useDispatch();
@@ -52,4 +53,4 @@ const ProductsViewProducts = ({ products, viewType }) => {
   );
 };
 
-export default ProductsViewProducts;
+export default withLoading(ProductsViewProducts, 'Ładowanie produktów');

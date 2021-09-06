@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsersOrders } from '../../Actions/ActionCreators/User';
 import ListEmptyPlaceholder from '../../Components/Common/ListEmptyPlaceholder';
 import Modal from '../../Components/Common/Modal';
+import withLoading from '../../Components/withLoading';
 import AccountOrdersDeliveryAddress from './AccountOrdersDeliveryAddress';
 import AccountOrdersInvoiceAddress from './AccountOrdersInvoiceAddress';
 import AccountOrdersProducts from './AccountOrdersProducts';
@@ -112,4 +113,4 @@ const AccountOrders = () => {
   );
 };
 
-export default AccountOrders;
+export default withLoading(AccountOrders, 'Ładowanie listy zamówień');

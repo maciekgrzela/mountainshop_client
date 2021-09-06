@@ -1,28 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import {
-  FiAlertCircle,
-  FiPackage,
-  FiShoppingBag,
-  FiUser,
-} from 'react-icons/fi';
+import { FiPackage, FiShoppingBag, FiUser } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useLocation, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { fetchLastUsersOrder } from '../../Actions/ActionCreators/User';
 import { GrDocumentMissing } from 'react-icons/gr';
-import { sendRequestLastOrderPaid } from '../../Actions/ActionCreators/Order';
-import { skipWelcome } from '../../Actions/ActionCreators/Interface';
-import httpClient from '../../API/httpClient';
 
-const OrderDetailsSuccess = () => {
+const OrderDetailsSuccessSkipPayment = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const location = useLocation();
-  const skipped = useSelector((state) => state.interface.welcomeSkipped);
-  const history = useHistory();
 
   const [grossSum, setGrossSum] = useState(0);
   const [deliveryAndPaymentSum, setDeliveryAndPaymentSum] = useState(0);
-  const [paymentErrorMessage, setPaymentErrorMessage] = useState(false);
 
   const calculateOrderSummary = () => {
     let gross = 0;
@@ -46,74 +34,19 @@ const OrderDetailsSuccess = () => {
   };
 
   useEffect(() => {
-    const query = new URLSearchParams(location.search);
-    if (
-      query.get('stripe_redirect') === null ||
-      (query.get('stripe_redirect') !== 'true' &&
-        query.get('stripe_redirect') !== 'false') ||
-      window.localStorage.getItem('jwt') === null
-    ) {
-      history.push('/');
-    }
-    if (!skipped) {
-      dispatch(skipWelcome());
-    }
+    dispatch(fetchLastUsersOrder());
   }, []);
 
   useEffect(() => {
     if (user.lastOrder !== null) {
-      const query = new URLSearchParams(location.search);
-      if (query.get('stripe_redirect') === 'true') {
-        dispatch(sendRequestLastOrderPaid());
-      } else {
-        setPaymentErrorMessage(true);
-      }
       calculateOrderSummary();
     }
   }, [user.lastOrder]);
-
-  useEffect(() => {
-    const validateCheckoutSessionId = async (id) => {
-      try {
-        const sessionValidate = await httpClient.checkout.validateSession(id);
-        return sessionValidate.status === 200;
-      } catch (e) {
-        return false;
-      }
-    };
-
-    const validate = async () => {
-      const query = new URLSearchParams(location.search);
-
-      if (query.get('session') !== null) {
-        let valid = await validateCheckoutSessionId(query.get('session'));
-
-        if (valid) {
-          dispatch(fetchLastUsersOrder());
-        } else {
-          history.push('/');
-        }
-      } else {
-        history.push('/');
-      }
-    };
-
-    validate();
-  }, [user.isLogged]);
 
   return (
     <>
       {user.lastOrder !== null && (
         <div className='order-success-page'>
-          {paymentErrorMessage === true && (
-            <div className='order-success-page__payment-error'>
-              <FiAlertCircle />
-              <span>
-                Płatność nie została zrealizowana. Skontaktuj się z pracownikiem
-                sklepu w celu opłacenia zamówienia.
-              </span>
-            </div>
-          )}
           <FiPackage className='order-success-page__package' />
           <h2 className='order-success-page__title'>
             Zamówienie:{' '}
@@ -260,4 +193,4 @@ const OrderDetailsSuccess = () => {
   );
 };
 
-export default OrderDetailsSuccess;
+export default OrderDetailsSuccessSkipPayment;

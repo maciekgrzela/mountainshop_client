@@ -11,13 +11,22 @@ const ProductsAsideGenderFilter = ({ setFilters }) => {
             : [gender],
       }));
     } else {
-      setFilters((prev) => ({
-        ...prev,
-        genderFilter: prev.genderFilter.splice(
-          prev.genderFilter.indexOf(gender),
-          1
-        ),
-      }));
+      setFilters((prev) => {
+        if (prev.genderFilter.length === 1) {
+          return {
+            ...prev,
+            genderFilter: undefined,
+          };
+        } else {
+          return {
+            ...prev,
+            genderFilter: [
+              ...prev.genderFilter.slice(0, prev.genderFilter.indexOf(gender)),
+              ...prev.genderFilter.slice(prev.genderFilter.indexOf(gender) + 1),
+            ],
+          };
+        }
+      });
     }
   };
 

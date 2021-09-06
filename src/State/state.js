@@ -32,6 +32,8 @@ export const initialInterfaceState = {
   productsViewType: 'grid',
   singleProductScrolling: null,
   redirectToOrderAfterLogin: false,
+  collectionLoading: false,
+  searchProductsError: false,
 };
 
 export const initialCategoriesState = {

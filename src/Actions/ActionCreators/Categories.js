@@ -6,6 +6,7 @@ import {
   SET_CATEGORIES_FILTER_PROPERTY,
 } from '../ActionTypes/Categories';
 import qs from 'query-string';
+import { setCollectionLoading, setFetchCategoriesLoading } from './Interface';
 
 const setCategories = (data) => ({
   type: SET_CATEGORIES,
@@ -16,6 +17,7 @@ const setCategories = (data) => ({
 
 export const fetchCategories = () => async (dispatch, getState) => {
   try {
+    dispatch(setCollectionLoading(true));
     const currentState = getState();
     const filter = currentState.categories.filter;
     let queryString = qs.stringify(filter, {
@@ -30,17 +32,10 @@ export const fetchCategories = () => async (dispatch, getState) => {
           setTotalPages(JSON.parse(categories.headers.pagination).totalPages)
         );
       }
+      dispatch(setCollectionLoading(false));
     }
   } catch (error) {
-    if (error.response) {
-      console.log(error.response.data);
-      console.log(error.response.status);
-      console.log(error.response.headers);
-    } else if (error.request) {
-      console.log(error.request);
-    } else {
-      console.log('Error', error.message);
-    }
+    dispatch(setCollectionLoading(false));
   }
 };
 
