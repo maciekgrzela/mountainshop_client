@@ -11,15 +11,19 @@ const CheckoutRedirect = () => {
   const formRef = useRef();
 
   useEffect(() => {
-    if (
-      location.state !== undefined &&
-      user.isLogged &&
-      location.state.from.pathname === '/order/details'
-    ) {
-      formRef.current.submit();
-    } else {
-      history.push('/');
-    }
+    const redirectToCheckout = async () => {
+      if (
+        location.state !== undefined &&
+        user.isLogged &&
+        location.state.from.pathname === '/order/details'
+      ) {
+        formRef.current.submit();
+      } else {
+        history.push('/');
+      }
+    };
+
+    redirectToCheckout();
   }, []);
 
   return (

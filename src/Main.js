@@ -45,11 +45,7 @@ const Main = () => {
         <Route path='/products' component={Products} />
         <Route exact path='/cart' component={Cart} />
         <AuthRoute exact path='/order/details' component={OrderDetails} />
-        <AuthRoute
-          exact
-          path='/order/created'
-          component={OrderDetailsSuccess}
-        />
+        <Route exact path='/order/created' component={OrderDetailsSuccess} />
         <AuthRoute exact path='/update/data' component={UpdateMyData} />
         <AuthRoute
           exact

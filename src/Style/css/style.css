@@ -3676,7 +3676,9 @@ img {
 }
 
 .users-orders {
-  padding: 20px;
+  padding: 0 50px;
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
 }
 
 .users-orders__table {

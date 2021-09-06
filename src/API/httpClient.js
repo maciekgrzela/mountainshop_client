@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { toast } from 'react-toastify';
 import { history } from '../App';
 
 axios.defaults.baseURL = 'https://localhost:5001/api';
@@ -86,6 +85,10 @@ const orders = {
   getForUser: (id) => requests.get(`/orders/user/${id}`),
 };
 
+const checkout = {
+  validateSession: (id) => requests.get(`/checkout/session/${id}`),
+};
+
 const contactRequests = {
   send: (body) => requests.post('/contact/requests/send', body),
 };
@@ -100,4 +103,5 @@ export default {
   deliveryMethods,
   orders,
   contactRequests,
+  checkout,
 };

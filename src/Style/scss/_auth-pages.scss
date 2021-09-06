@@ -176,7 +176,8 @@
 }
 
 .users-orders {
-  padding: 20px;
+  padding: 0 50px;
+  flex-basis: 100%;
 
   &__table {
     width: 100%;
