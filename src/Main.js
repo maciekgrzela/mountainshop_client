@@ -7,7 +7,6 @@ import Products from './Pages/Product/Products';
 import Cart from './Pages/Cart/Cart';
 import SignIn from './Pages/Access/SignIn';
 import Account from './Pages/Access/Account';
-import SignUp from './Pages/Access/SignUp';
 import NotFound from './Pages/Errors/NotFound';
 import About from './Pages/Static/About';
 import RefundPolicy from './Pages/Static/RefundPolicy';
@@ -71,7 +70,6 @@ const Main = () => {
             <SignIn />
           )}
         </Route>
-        <AuthRoute exact path='/sign/up' component={SignUp} />
         <AuthRoute
           exact
           path='/account'

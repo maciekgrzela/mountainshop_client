@@ -1674,6 +1674,15 @@ img {
   padding: 5px;
 }
 
+.product--list .product__minimal-amount {
+  font-size: 1.2rem;
+  margin-left: 10px;
+  font-weight: 600;
+  background-color: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.4);
+  padding: 5px;
+}
+
 .product--list .product__the-new {
   background-color: rgba(0, 0, 0, 0.1);
   color: #012454;

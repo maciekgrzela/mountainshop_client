@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Moment from 'react-moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsersOrders } from '../../Actions/ActionCreators/User';
 import ListEmptyPlaceholder from '../../Components/Common/ListEmptyPlaceholder';
@@ -8,6 +7,7 @@ import withLoading from '../../Components/withLoading';
 import AccountOrdersDeliveryAddress from './AccountOrdersDeliveryAddress';
 import AccountOrdersInvoiceAddress from './AccountOrdersInvoiceAddress';
 import AccountOrdersProducts from './AccountOrdersProducts';
+import AccountOrdersRow from './AccountOrdersRow';
 
 const AccountOrders = () => {
   const dispatch = useDispatch();
@@ -43,39 +43,12 @@ const AccountOrders = () => {
         </thead>
         <tbody>
           {orders.map((order) => (
-            <tr>
-              <td>#{order.number}</td>
-              <td>
-                <span
-                  onClick={() => setDeliveryAddress(order)}
-                >{`${order.orderDetails.addressLineOne} ${order.orderDetails.place}...`}</span>
-              </td>
-              <td>
-                {order.orderDetails.companyName !== null ? (
-                  <span onClick={() => setInvoiceAddress(order)}>
-                    {`${order.orderDetails.companyName.substr(0, 20)}...`}
-                  </span>
-                ) : (
-                  'Nie podano'
-                )}
-              </td>
-              <td>{order.paymentMethod.name}</td>
-              <td>{order.deliveryMethod.name}</td>
-              <td>
-                {order.orderedProducts.length > 0 ? (
-                  <span onClick={() => setOrderedProducts(order)}>Zobacz</span>
-                ) : (
-                  'Brak produktów'
-                )}
-              </td>
-              <td>{order.status === 'Paid' ? 'Opłacono' : 'Nie opłacone'}</td>
-              <td>
-                <Moment format='DD/MM/YYYY'>{order.warrantyIsInForce}</Moment>
-              </td>
-              <td>
-                <Moment format='DD/MM/YYYY'>{order.created}</Moment>
-              </td>
-            </tr>
+            <AccountOrdersRow
+              order={order}
+              setDeliveryAddress={setDeliveryAddress}
+              setInvoiceAddress={setInvoiceAddress}
+              setOrderedProducts={setOrderedProducts}
+            />
           ))}
         </tbody>
       </table>
