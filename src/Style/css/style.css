@@ -410,6 +410,12 @@
   padding-bottom: 5rem;
 }
 
+.d-flex {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+}
+
 .tooltip {
   position: relative;
 }

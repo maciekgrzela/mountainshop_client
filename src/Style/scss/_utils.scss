@@ -71,6 +71,10 @@ $spaces: 0, 1, 2, 3, 4, 5;
   }
 }
 
+.d-flex {
+  display: flex !important;
+}
+
 .tooltip {
   position: relative;
 
