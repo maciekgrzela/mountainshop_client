@@ -4,6 +4,10 @@
   flex-wrap: wrap;
   margin: 20px 40px;
 
+  @media (max-width: 992px) {
+    margin: 40px 20px;
+  }
+
   &__title {
     display: flex;
     font-weight: 500;
@@ -11,6 +15,14 @@
     margin-top: 30px;
     flex-basis: 100%;
     font-size: 2rem;
+
+    @media (max-width: 992px) {
+      font-size: 1.5rem;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 1.3rem;
+    }
   }
 
   &__title::after {

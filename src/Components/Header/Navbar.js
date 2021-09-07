@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCategories } from '../../Actions/ActionCreators/Categories';
-import NavbarCategory from './NavbarCategory';
+import NavbarCategories from './NavbarCategories';
 
-const Navbar = () => {
+const Navbar = ({ skipped }) => {
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.categories.categories);
 
@@ -12,12 +12,8 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className='header__navbar navbar'>
-      <ul className='navbar__categories'>
-        {categories.map((item) => (
-          <NavbarCategory item={item} />
-        ))}
-      </ul>
+    <nav className={`header__navbar navbar ${skipped && 'navbar--skipped'}`}>
+      <NavbarCategories skipped={skipped} categories={categories} />
     </nav>
   );
 };

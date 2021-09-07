@@ -6,7 +6,7 @@ const SignIn = () => {
   return (
     <div className='sign-in-page'>
       <div className='sign-in-page__form-container'>
-        <div className='d-flex'>
+        <div>
           <div>
             <h2>Zaloguj się...</h2>
             <SignInForm />

@@ -2,12 +2,12 @@ import React from 'react';
 
 const ProductsDetailsDescription = ({ properties, product }) => {
   return (
-    <div className='product-content__description my-5'>
+    <div className='product-content__description'>
       <div
         className='my-2'
         dangerouslySetInnerHTML={{ __html: product.description }}
       ></div>
-      {properties !== undefined && (
+      {properties !== undefined && properties.length > 0 && (
         <div className='product-content__properties'>
           <table className='product-content__table'>
             <thead>

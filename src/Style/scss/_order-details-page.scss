@@ -4,12 +4,24 @@
   flex-wrap: wrap;
   margin: 20px 40px;
 
+  @media (max-width: 992px) {
+    margin: 40px 20px;
+  }
+
   &__title {
     display: flex;
     align-items: center;
     margin-top: 30px;
     flex-basis: 100%;
     font-size: 2rem;
+
+    @media (max-width: 992px) {
+      font-size: 1.5rem;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 1.3rem;
+    }
   }
 
   &__title::after {
@@ -43,6 +55,10 @@
 
   &__invoice {
     flex-basis: 40%;
+
+    @media (max-width: 768px) {
+      margin-top: 30px;
+    }
   }
 
   &__save-order-details {
@@ -73,6 +89,14 @@
   align-items: center;
   background-color: rgba(0, 0, 0, 0.05);
   padding-bottom: 30px;
+
+  @media (max-width: 1200px) {
+    padding: 0 10px;
+  }
+
+  @media (max-width: 992px) {
+    padding: 0 20px;
+  }
 
   &--disabled {
     background-color: rgba(0, 0, 0, 0.02);
@@ -184,6 +208,10 @@
   margin: 20px 40px;
   align-items: center;
 
+  @media (max-width: 992px) {
+    margin: 40px 20px;
+  }
+
   &__payment-error {
     flex-basis: 100%;
     width: 100%;
@@ -206,18 +234,46 @@
     font-size: 2rem;
     font-weight: 400;
     margin-bottom: 10px;
+
+    @media (max-width: 992px) {
+      font-size: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 1.3rem;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 1rem;
+    }
   }
 
   &__delivery-and-payment {
     & h3 {
       font-weight: 300;
       margin: 10px 0;
+
+      @media (max-width: 992px) {
+        font-size: 1.3rem;
+      }
+
+      @media (max-width: 768px) {
+        font-size: 1.1rem;
+      }
+
+      @media (max-width: 576px) {
+        font-size: 0.9rem;
+      }
     }
   }
 
   &__package {
     font-size: 10rem;
     color: $primary-color;
+
+    @media (max-width: 992px) {
+      font-size: 8rem;
+    }
   }
 
   &__products-gallery {
@@ -246,10 +302,18 @@
     display: flex;
     flex-direction: row;
 
+    @media (max-width: 992px) {
+      flex-wrap: wrap;
+    }
+
     & > div {
       margin: 10px 20px;
       padding: 20px 40px;
       background-color: rgba(0, 0, 0, 0.03);
+
+      @media (max-width: 992px) {
+        flex-basis: 100%;
+      }
     }
 
     & table {

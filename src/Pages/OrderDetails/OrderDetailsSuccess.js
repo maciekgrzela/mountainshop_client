@@ -98,7 +98,9 @@ const OrderDetailsSuccess = () => {
       }
     };
 
-    validate();
+    if (user.isLogged) {
+      validate();
+    }
   }, [user.isLogged]);
 
   return (

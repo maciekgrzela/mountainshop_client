@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   fetchProducts,
   setProductsFilterProperty,
+  setProductsFilterProperties,
 } from '../../../Actions/ActionCreators/Products';
 import { fetchProducers } from '../../../Actions/ActionCreators/Producers';
-
+import { changeProductsViewType } from '../../../Actions/ActionCreators/Interface';
 import ProductsViewHeading from './ProductsViewHeading';
 import ProductsViewProducts from './ProductsViewProducts';
 import { setSelectedCategory } from '../../../Actions/ActionCreators/Categories';
@@ -18,6 +19,37 @@ const ProductsView = () => {
 
   const categories = useSelector((state) => state.categories);
   const products = useSelector((state) => state.products);
+
+  const preparePropertiesObjectWithActiveProp = (activeProp) => {
+    const propObject = {
+      grossPriceAsc: null,
+      grossPriceDesc: null,
+      bestRatingDesc: null,
+      commentsCountDesc: null,
+    };
+
+    propObject[activeProp] = true;
+
+    return propObject;
+  };
+
+  const handleSortingOptions = (e) => {
+    dispatch(
+      setProductsFilterProperties(
+        preparePropertiesObjectWithActiveProp(
+          e.target.options[e.target.options.selectedIndex].value
+        )
+      )
+    );
+  };
+
+  const setGridView = () => {
+    dispatch(changeProductsViewType('grid'));
+  };
+
+  const setListView = () => {
+    dispatch(changeProductsViewType('list'));
+  };
 
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
@@ -40,10 +72,16 @@ const ProductsView = () => {
   return (
     <main className='products-view'>
       <ProductsViewHeading
+        setListView={setListView}
+        setGridView={setGridView}
+        handleSortingOptions={handleSortingOptions}
         selectedCategory={categories.selectedCategory}
         viewType={productsViewType}
       />
       <ProductsViewProducts
+        setListView={setListView}
+        setGridView={setGridView}
+        handleSortingOptions={handleSortingOptions}
         products={products.displayedProducts}
         viewType={productsViewType}
       />
