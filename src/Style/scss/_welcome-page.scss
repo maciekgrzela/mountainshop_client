@@ -4,10 +4,28 @@
   background: url('../../Assets/images/banner.jpg');
   background-size: cover;
 
+  @media (max-width: 992px) {
+    height: calc(100vh - 220px);
+    background-position: right;
+  }
+
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
+
   &__banner {
     margin-left: 100px;
     background-color: rgba(255, 255, 255, 0.2);
     width: 450px;
+
+    @media (max-width: 992px) {
+      margin-left: 50px;
+      width: 350px;
+    }
+
+    @media (max-width: 768px) {
+      margin-left: 0;
+    }
   }
 }
 
@@ -31,10 +49,14 @@
     font-family: fantasy;
     text-transform: uppercase;
     font-weight: 100;
-    font-size: 100px;
+    font-size: 6rem;
     color: $white-color;
     text-shadow: 2px 2px 3px rgb(61, 131, 194);
     margin: 0;
+
+    @media (max-width: 1200px) {
+      font-size: 4.5rem;
+    }
   }
 
   &__desc {
@@ -42,9 +64,14 @@
     transform: rotate(355deg);
     font-family: fantasy;
     font-weight: 100;
-    font-size: 30px;
+    font-size: 1.9rem;
     text-shadow: 2px 2px 3px $white-color;
     margin: 0;
+    flex-basis: 100%;
+
+    @media (max-width: 1200px) {
+      font-size: 1.5rem;
+    }
   }
 
   &__go-to-store {

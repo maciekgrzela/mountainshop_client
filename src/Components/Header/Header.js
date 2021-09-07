@@ -10,7 +10,7 @@ const Header = () => {
   return (
     <header className='page-wrapper__header header'>
       <Topbar />
-      {interfaceState.welcomeSkipped === false && <Navbar />}
+      <Navbar skipped={interfaceState.welcomeSkipped} />
       {interfaceState.welcomeSkipped === true &&
         interfaceState.singleProductScrolling === true && (
           <ProductsDetailsBar />

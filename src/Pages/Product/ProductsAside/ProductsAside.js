@@ -19,14 +19,18 @@ const ProductsAside = () => {
 
   return (
     <aside className='products-aside categories-list'>
-      <h3 className='categories-list__header'>Wybierz kategorię</h3>
-      <ProductsCategoriesListItems
-        currentPage={currentPage}
-        totalPages={totalPages}
-        categories={categories}
-      />
-      <h3 className='categories-list__header mt-3'>Filtruj produkty</h3>
-      <ProductsAsideFilters />
+      <div className='categories-list__categories-wrapper'>
+        <h3 className='categories-list__header'>Wybierz kategorię</h3>
+        <ProductsCategoriesListItems
+          currentPage={currentPage}
+          totalPages={totalPages}
+          categories={categories}
+        />
+      </div>
+      <div className='categories-list__filters-wrapper'>
+        <h3 className='categories-list__header mt-3'>Filtruj produkty</h3>
+        <ProductsAsideFilters />
+      </div>
     </aside>
   );
 };

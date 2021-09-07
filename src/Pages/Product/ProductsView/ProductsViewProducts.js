@@ -5,9 +5,16 @@ import { setProductsFilterProperty } from '../../../Actions/ActionCreators/Produ
 import ProductsViewSelectedCategory from './ProductsViewSelectedCategory';
 import { FiShoppingBag } from 'react-icons/fi';
 import ListEmptyPlaceholder from '../../../Components/Common/ListEmptyPlaceholder';
+import ProductsViewControls from './ProductsViewControls';
 import withLoading from '../../../Components/withLoading';
 
-const ProductsViewProducts = ({ products, viewType }) => {
+const ProductsViewProducts = ({
+  products,
+  viewType,
+  setListView,
+  setGridView,
+  handleSortingOptions,
+}) => {
   const dispatch = useDispatch();
   const pageNumber = useSelector(
     (state) => state.products.filterForDisplayedProducts.pageNumber
@@ -27,6 +34,13 @@ const ProductsViewProducts = ({ products, viewType }) => {
       {category !== null && (
         <ProductsViewSelectedCategory category={category} />
       )}
+      <ProductsViewControls
+        handleSortingOptions={handleSortingOptions}
+        setGridView={setGridView}
+        setListView={setListView}
+        viewType={viewType}
+        small
+      />
       {products.length === 0 ? (
         <ListEmptyPlaceholder />
       ) : (

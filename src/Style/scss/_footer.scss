@@ -12,12 +12,28 @@
     flex-wrap: wrap;
     padding-left: 30px;
     padding-right: 30px;
+
+    @media (max-width: 1200px) {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
   }
 
   &__contact,
   &__shortcut,
   &__socials {
     flex-basis: 33.3333%;
+
+    @media (max-width: 992px) {
+      flex-basis: 100%;
+      padding-left: 50px;
+      padding-right: 50px;
+    }
+
+    @media (max-width: 576px) {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
   }
 
   &__explanation {
@@ -28,6 +44,10 @@
     flex-basis: 100%;
     background-color: rgba(0, 0, 0, 0.3);
     color: darken($white-color, 30%);
+
+    @media (max-width: 992px) {
+      padding: 10px 5px;
+    }
   }
 }
 
@@ -123,9 +143,6 @@
 
     &:disabled {
       cursor: auto;
-      background-color: rgba(0, 0, 0, 0.3);
-      border: 2px solid rgba(0, 0, 0, 0.3);
-      color: #000;
     }
   }
 }
@@ -136,6 +153,10 @@
   flex-wrap: nowrap;
   padding-left: 10px;
   padding-right: 10px;
+
+  @media (max-width: 992px) {
+    margin-top: 30px;
+  }
 
   & a {
     color: $white-color;
@@ -168,6 +189,11 @@
   padding-left: 10px;
   padding-right: 10px;
   height: 100%;
+
+  @media (max-width: 992px) {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
 
   &__title {
     color: $white-color;
